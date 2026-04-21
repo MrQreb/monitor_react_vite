@@ -37,7 +37,7 @@ export function EstatusViaje({ viajes }: Props) {
       <CardContent className="min-w-0 px-0 pb-0 pt-0">
         <ScrollArea className="h-77.5 w-full min-w-0">
           <Table>
-            <TableHeader>
+            <TableHeader className="[&_tr]:sticky [&_tr]:top-0 [&_tr]:z-10 [&_tr]:bg-white">
               <TableRow className="border-slate-300 hover:bg-transparent">
                 <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
                   Rancho

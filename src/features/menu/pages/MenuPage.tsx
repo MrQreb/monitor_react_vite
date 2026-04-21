@@ -1,4 +1,4 @@
-import NavBar from '@/features/materia-prima/NavBar'
+import NavBar from '@/components/common/NavBar/NavBar'
 import { Shield } from 'lucide-react'
 import { CardMenu } from '../components/SystemCard'
 

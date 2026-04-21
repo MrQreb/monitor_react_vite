@@ -1,5 +1,5 @@
+import NavBar from "@/components/common/NavBar/NavBar"
 import { ViajesProgramados } from "../components/ViajesProgramados"
-import NavBar from '../../NavBar';
 
 type ViajeProgramado = {
   agricultor: string
@@ -65,12 +65,10 @@ const viajesProgramados: ViajeProgramado[] = [
 ]
 
 
-
 export default function ViajesProgramadosPage() {
   return (
-    <div className="flex min-h-screen w-full min-w-0 flex-col overflow-y-auto overflow-x-hidden  bg-[#2f2f2f] px-2 pb-2 pt-1 md:h-screen md:overflow-hidden md:px-3">
+    <div className="flex h-screen w-full flex-col overflow-hidden bg-[#2f2f2f] px-2 pb-2 pt-1 md:px-3">
       <NavBar />
-      {/* <ModoDashboard /> */}
 
       <div className="flex h-14 shrink-0 items-center justify-center text-center">
         <h1 className="text-2xl font-extrabold tracking-tight text-white">
@@ -78,12 +76,9 @@ export default function ViajesProgramadosPage() {
         </h1>
       </div>
 
-      <section className="grid min-h-0 w-full flex-1 grid-cols-1 gap-4">
-
-          <ViajesProgramados viajes={viajesProgramados} />
-        
+      <section className="flex min-h-0 w-full flex-1">
+        <ViajesProgramados viajes={viajesProgramados} />
       </section>
     </div>
   )
 }
-

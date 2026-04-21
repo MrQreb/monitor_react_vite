@@ -1,7 +1,7 @@
 import { ViajesProgramados } from "../components/ViajesProgramados"
 import { EstatusViaje } from "../components/EstatusViaje"
 import { Grafica } from "../components/Grafica"
-import NavBar from '../../NavBar';
+import NavBar from '../../../../components/common/NavBar/NavBar';
 
 type ViajeProgramado = {
   agricultor: string
