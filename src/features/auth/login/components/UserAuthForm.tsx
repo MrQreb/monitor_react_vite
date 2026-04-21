@@ -23,7 +23,13 @@ export function UserAuthForm({ className, ...props }: HTMLAttributes<HTMLDivElem
   return (
     <section className={cn("w-full", className)} {...props}>
 
-     
+      {isMobile && (
+        <section className="flex justify-center items-center">
+          <div>
+            <TabsLogin />
+          </div>
+        </section>
+      )}
       <form
         className="space-y-8"
         onSubmit={(e) => {
