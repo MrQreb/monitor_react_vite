@@ -1,21 +1,10 @@
 import { Separator } from "@/components/ui/separator";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+
 import { Label } from "@/components/ui/label";
 import { UserAuthForm } from "../components/UserAuthForm";
-import { SYSTEMS } from "../const/SYSTEMS";
-import { useSystemStore } from "../store/system.store";
-import { ImageCard, Image } from "@/components/common/ImageCard/ImageCard";
 
 export default function LoginPage() {
 
-  const { setSystem, system } = useSystemStore();
 
   return (
     <section className="w-screen dark">
@@ -32,14 +21,14 @@ export default function LoginPage() {
             <div className="flex gap-4 mt-4">
               <div className="h-10 w-10 rounded-md bg-blue-600" />
               <span className="text-5xl font-bold text-white">
-                {system.name}
+                hola
               </span>
-              {system.icon && <system.icon />}
+              hola
             </div>
           </section>
 
           {/* Carrusel */}
-          <div className="relative z-20 row-span-5 h-full min-h-0">
+          {/* <div className="relative z-20 row-span-5 h-full min-h-0">
             <Carousel
               className="w-full h-full flex flex-col"
               setApi={(api) => {
@@ -69,7 +58,7 @@ export default function LoginPage() {
               <CarouselPrevious />
               <CarouselNext />
             </Carousel>
-          </div>
+          </div> */}
 
           {/* Texto */}
           <div className="relative z-20 row-span-3 flex flex-col justify-end space-y-4">

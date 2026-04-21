@@ -6,8 +6,6 @@ import { CrearUsuarioPage } from '../features/usuarios/creacion/pages/CrearUsuar
 import { requireAuth } from '@/app/router/auth-guard';
 import { Role } from './ROLES';
 import { RequireRolesService } from '../services/require-roles.service';
-import { AsignRolesPage } from '../features/roles-usuarios/asingar-roles/pages/AsignarRolUsuarios';
-import UsersPage from '../features/usuarios/tabla/pages/TablaUsuariosPage';
 import { PREFIX_USUARIOS, ROUTES_USUARIOS } from './ROUTES_USUARIOS';
 import TablaUsuariosPage from '../features/usuarios/tabla/pages/TablaUsuariosPage';
 import { CrearRol } from '../features/rol/crear/pages/CrearRol';
@@ -46,11 +44,11 @@ const crearUsuario = createRoute({
 });
 
 
-const asignarRoles = createRoute({
-  getParentRoute: () => usuarioLayoutRoute,
-  path: ROUTES_USUARIOS.asignarRoles,
-  component: AsignRolesPage,
-});
+// const asignarRoles = createRoute({
+//   getParentRoute: () => usuarioLayoutRoute,
+//   path: ROUTES_USUARIOS.asignarRoles,
+//   component: AsignRolesPage,
+// });
 
 
 const tablaUsuarios = createRoute({
@@ -72,7 +70,7 @@ const crearRol = createRoute({
 export const usuariosRoutes = usuarioLayoutRoute.addChildren([
   crearPlantas,
   crearUsuario,
-  asignarRoles,
+  // asignarRoles,
   tablaUsuarios,
   crearRol
 ]);

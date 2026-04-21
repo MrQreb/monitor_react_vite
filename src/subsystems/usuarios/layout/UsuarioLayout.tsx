@@ -4,14 +4,14 @@ import {
   SidebarInset,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { UsuarioSidebar } from '../features/sidebar/components/UsuarioSideBar'
+// import { UsuarioSidebar } from '../features/sidebar/components/UsuarioSideBar'
 
 export default function UsuarioLayouyt() {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
         
-        <UsuarioSidebar />
+        {/* <UsuarioSidebar /> */}
 
         <SidebarInset className="p-4">
           <div className="mb-4 flex items-center gap-2 relative">

@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { TabsLogin } from "./TabsLogin";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 /**
@@ -24,13 +23,7 @@ export function UserAuthForm({ className, ...props }: HTMLAttributes<HTMLDivElem
   return (
     <section className={cn("w-full", className)} {...props}>
 
-      {isMobile && (
-        <section className="flex justify-center items-center">
-          <div>
-            <TabsLogin />
-          </div>
-        </section>
-      )}
+     
       <form
         className="space-y-8"
         onSubmit={(e) => {

@@ -4,22 +4,17 @@ import { toast } from "sonner"
 import { autenticacionService } from "@/subsystems/usuarios/api/features/autenticacion/instances/autenticacion-instance"
 import type { LoginDto } from "@/subsystems/usuarios/api/features/autenticacion/dto/login-dto"
 import { useUsuarioStore } from "@/shared/store/usuario.store"
-import { useSystemStore } from "../../store/system.store"
 import { useNavigate } from "@tanstack/react-router"
-import { AuthService } from "../../services/redirect.service"
 
 export function useLogin() {
-  const { system } = useSystemStore();
   const { setUsuario, setIsAuthenticated } = useUsuarioStore();
   const navigate = useNavigate();
-  const authService = new AuthService(navigate);
 
   const mutation = useMutation({
     mutationFn: (data: LoginDto) => autenticacionService.login(data),
     onSuccess: (data) => {
       setUsuario(data);
-	  setIsAuthenticated(true);
-      authService.handleLoginRedirect(data, system.name);
+      setIsAuthenticated(true);
     },
     onError: (error: any) => {
       toast.error(error.message || "No se pudo iniciar sesión");
