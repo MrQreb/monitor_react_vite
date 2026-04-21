@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 type ViajeEstatus = {
   producto: string
@@ -34,50 +35,71 @@ export function EstatusViaje({ viajes }: Props) {
       </CardHeader>
 
       <CardContent className="min-w-0 px-0 pb-0 pt-0">
-        <div className="grid min-w-0 grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,.8fr)_72px_72px_72px] border-b border-slate-300 px-4 pb-2 text-center text-sm text-slate-600 sm:px-5 sm:text-base lg:text-lg">
-          <span>Rancho</span>
-          <span>Producto</span>
-          <span>Estatus / Folio</span>
-          <span>Centro</span>
-          <span>Hora Pes</span>
-          <span>Hora Eva</span>
-          <span>Hora Imp</span>
-        </div>
-
         <ScrollArea className="h-77.5 w-full min-w-0">
-          <div className="space-y-8 px-3 py-5 sm:space-y-10 sm:px-4">
-            {viajes.map((viaje, index) => (
-              <div
-                key={`${viaje.rancho}-${viaje.ticket}-${index}`}
-                className="grid min-w-0 grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,.8fr)_72px_72px_72px] items-start gap-2 text-xs text-cyan-700 sm:gap-4 sm:text-sm lg:text-[1.02rem]"
-              >
-                <div className="min-w-0 whitespace-normal wrap-break-word text-left leading-tight">
-                  {viaje.rancho}
-                </div>
+          <Table>
+            <TableHeader>
+              <TableRow className="border-slate-300 hover:bg-transparent">
+                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Rancho
+                </TableHead>
+                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Producto
+                </TableHead>
+                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Estatus / Folio
+                </TableHead>
+                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Centro
+                </TableHead>
+                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Hora Pes
+                </TableHead>
+                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Hora Eva
+                </TableHead>
+                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Hora Imp
+                </TableHead>
+              </TableRow>
+            </TableHeader>
 
-                <div className="min-w-0 whitespace-normal wrap-break-word text-left leading-tight">
-                  {viaje.producto}
-                </div>
+            <TableBody>
+              {viajes.map((viaje, index) => (
+                <TableRow key={`${viaje.rancho}-${viaje.ticket}-${index}`} className="border-slate-300 hover:bg-transparent align-top">
+                  <TableCell className="px-4 py-5 text-left text-xs leading-tight whitespace-normal wrap-break-word text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
+                    {viaje.rancho}
+                  </TableCell>
 
-                <div className="flex min-w-0 flex-col items-center gap-2 text-center leading-tight sm:gap-3">
-                  <span>{viaje.estatus}</span>
-                  <span className="text-base font-bold sm:text-xl">{emptyCell(viaje.folio)}</span>
-                </div>
+                  <TableCell className="px-4 py-5 text-left text-xs leading-tight whitespace-normal wrap-break-word text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
+                    {viaje.producto}
+                  </TableCell>
 
-                <div className="min-w-0 whitespace-normal text-center leading-tight">
-                  {emptyCell(viaje.centro_corte)}
-                </div>
+                  <TableCell className="px-4 py-5 text-center text-xs leading-tight text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
+                    <div className="flex flex-col items-center gap-2 sm:gap-3">
+                      <span>{viaje.estatus}</span>
+                      <span className="text-base font-bold sm:text-xl">{emptyCell(viaje.folio)}</span>
+                    </div>
+                  </TableCell>
 
-                <div className="text-center text-sm leading-tight sm:text-lg">
-                  {emptyCell(viaje.hora_pesaje)}
-                </div>
+                  <TableCell className="px-4 py-5 text-center text-xs leading-tight whitespace-normal text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
+                    {emptyCell(viaje.centro_corte)}
+                  </TableCell>
 
-                <div className="text-center text-sm leading-tight sm:text-lg">{emptyCell(viaje.hora_evaluacion)}</div>
+                  <TableCell className="px-4 py-5 text-center text-sm leading-tight text-cyan-700 sm:text-lg">
+                    {emptyCell(viaje.hora_pesaje)}
+                  </TableCell>
 
-                <div className="text-center text-sm leading-tight sm:text-lg">{emptyCell(viaje.hora_impresion)}</div>
-              </div>
-            ))}
-          </div>
+                  <TableCell className="px-4 py-5 text-center text-sm leading-tight text-cyan-700 sm:text-lg">
+                    {emptyCell(viaje.hora_evaluacion)}
+                  </TableCell>
+
+                  <TableCell className="px-4 py-5 text-center text-sm leading-tight text-cyan-700 sm:text-lg">
+                    {emptyCell(viaje.hora_impresion)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
           <ScrollBar orientation="vertical" />
         </ScrollArea>
       </CardContent>

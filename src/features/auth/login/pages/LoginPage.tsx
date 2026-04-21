@@ -27,39 +27,6 @@ export default function LoginPage() {
             </div>
           </section>
 
-          {/* Carrusel */}
-          {/* <div className="relative z-20 row-span-5 h-full min-h-0">
-            <Carousel
-              className="w-full h-full flex flex-col"
-              setApi={(api) => {
-                if (!api) return;
-
-                api.on("select", () => {
-                  const index = api.selectedScrollSnap();
-                  setSystem(SYSTEMS[index]);
-                });
-              }}
-            >
-              <CarouselContent className="h-full min-h-0">
-                {SYSTEMS.map((sistema) => (
-                  <CarouselItem key={sistema.id} className="h-full">
-                    <div className="p-1 h-auto">
-                      <Card className="h-[340px]">
-                        <CardContent className="flex h-full items-center justify-center">
-                          <ImageCard className="h-full bg-gray-100" >
-                            <Image className="w-[70%] object-contain" src={sistema.urlImage ?? ""} />
-                          </ImageCard>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-          </div> */}
-
           {/* Texto */}
           <div className="relative z-20 row-span-3 flex flex-col justify-end space-y-4">
             <h2 className="text-5xl font-extrabold text-white leading-tight">
