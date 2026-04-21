@@ -1,10 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export function ChartCard({ title }: { title: string }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg md:text-xl font-semibold">{title}</CardTitle>
+        <CardTitle className="text-lg font-semibold md:text-xl">{title}</CardTitle>
       </CardHeader>
 
       <CardContent>
@@ -19,5 +19,5 @@ export function ChartCard({ title }: { title: string }) {
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }

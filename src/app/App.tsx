@@ -11,7 +11,7 @@ function App() {
   return (
     <TooltipProvider>
       <QueryProvider>
-        <ThemeProvider defaultTheme='dark'>
+        <ThemeProvider defaultTheme='light'>
           <AuthProvider>
             <RouterProvider router={router} />
           </AuthProvider>

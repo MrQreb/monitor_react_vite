@@ -39,9 +39,17 @@ export function Grafica({ datos }: Props) {
               <YAxis tick={{ fill: '#52525b', fontSize: 10 }} domain={[0, 11000]} />
               <Tooltip
                 cursor={{ fill: 'rgba(15, 118, 110, 0.08)' }}
-                contentStyle={{ borderRadius: '12px', border: '1px solid #e4e4e7' }}
+                contentStyle={{
+                  borderRadius: '12px',
+                  border: '1px solid #e4e4e7',
+                }}
               />
-              <Legend verticalAlign="bottom" height={24} wrapperStyle={{ paddingTop: 4 }} />
+              <Legend
+                verticalAlign="bottom"
+                height={24}
+                wrapperStyle={{ paddingTop: 4 }}
+                formatter={(value) => <span style={{ color: '#64748b' }}>{value}</span>}
+              />
               <Bar dataKey="estimado" name="estimado" fill="#f97355" radius={[4, 4, 0, 0]}>
                 <LabelList dataKey="estimado" position="top" fill="#8c6b52" fontSize={10} />
               </Bar>

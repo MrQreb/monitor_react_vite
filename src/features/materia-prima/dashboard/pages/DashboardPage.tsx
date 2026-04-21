@@ -153,7 +153,7 @@ const graficaResumen: GraficaResumen[] = [
 
 export default function DashboardPage() {
   return (
-    <div className="flex min-h-screen w-full min-w-0 flex-col overflow-y-auto overflow-x-hidden  bg-[#2f2f2f] px-2 pb-2 pt-1 md:h-screen md:overflow-hidden md:px-3">
+    <div className="flex min-h-screen w-full min-w-0 flex-col overflow-y-auto overflow-x-hidden bg-[#2f2f2f] px-2 pb-2 pt-1 md:h-screen md:overflow-hidden md:px-3">
       <NavBar />
       {/* <ModoDashboard /> */}
 

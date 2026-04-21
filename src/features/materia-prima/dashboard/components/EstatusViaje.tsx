@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 type ViajeEstatus = {
   producto: string
@@ -33,7 +33,7 @@ export function EstatusViaje({ viajes }: Props) {
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="flex min-h-0 flex-1 min-w-0 flex-col px-0 pb-0 pt-0">
+      <CardContent className="min-w-0 px-0 pb-0 pt-0">
         <div className="grid min-w-0 grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,.8fr)_72px_72px_72px] border-b border-slate-300 px-4 pb-2 text-center text-sm text-slate-600 sm:px-5 sm:text-base lg:text-lg">
           <span>Rancho</span>
           <span>Producto</span>
@@ -44,8 +44,8 @@ export function EstatusViaje({ viajes }: Props) {
           <span>Hora Imp</span>
         </div>
 
-        <ScrollArea className="min-h-0 flex-1 w-full min-w-0">
-          <div className="space-y-6 px-3 py-4 sm:space-y-8 sm:px-4">
+        <ScrollArea className="h-77.5 w-full min-w-0">
+          <div className="space-y-8 px-3 py-5 sm:space-y-10 sm:px-4">
             {viajes.map((viaje, index) => (
               <div
                 key={`${viaje.rancho}-${viaje.ticket}-${index}`}
@@ -78,6 +78,7 @@ export function EstatusViaje({ viajes }: Props) {
               </div>
             ))}
           </div>
+          <ScrollBar orientation="vertical" />
         </ScrollArea>
       </CardContent>
     </Card>
