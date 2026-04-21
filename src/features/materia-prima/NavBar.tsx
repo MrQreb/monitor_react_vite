@@ -14,7 +14,7 @@ export default function NavBar() {
                 <div className="flex min-w-0 items-center gap-2.5">
                     <img
                         className="h-8 w-auto max-w-36 shrink-0 cursor-pointer object-contain sm:h-9 sm:max-w-44 md:h-10 md:max-w-52"
-                        src="/logo.svg"
+                        src="/logo.png"
                         alt="MarBran"
                     />
                 </div>
