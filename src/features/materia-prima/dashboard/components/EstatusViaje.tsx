@@ -24,17 +24,17 @@ type Props = {
 
 const emptyCell = (value: string | null | undefined) => value?.trim() || ""
 
-export function EStatusDeViaje({ viajes }: Props) {
+export function EstatusViaje({ viajes }: Props) {
   return (
-    <Card className="rounded-[1.75rem] border-0 bg-white shadow-none">
+    <Card className="flex h-full min-w-0 w-full flex-col rounded-[1.75rem] border-0 bg-white shadow-none">
       <CardHeader className="pb-1 pt-4 text-center">
         <CardTitle className="text-[1.15rem] font-extrabold text-cyan-700">
           Estatus de viajes
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="px-0 pb-0 pt-0">
-        <div className="grid grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)_minmax(0,1.25fr)_minmax(0,.75fr)_82px_82px_82px] border-b border-slate-300 px-5 pb-2 text-center text-lg text-slate-600">
+      <CardContent className="flex min-h-0 flex-1 min-w-0 flex-col px-0 pb-0 pt-0">
+        <div className="grid min-w-0 grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,.8fr)_72px_72px_72px] border-b border-slate-300 px-4 pb-2 text-center text-sm text-slate-600 sm:px-5 sm:text-base lg:text-lg">
           <span>Rancho</span>
           <span>Producto</span>
           <span>Estatus / Folio</span>
@@ -44,37 +44,37 @@ export function EStatusDeViaje({ viajes }: Props) {
           <span>Hora Imp</span>
         </div>
 
-        <ScrollArea className="h-[310px]">
-          <div className="space-y-10 px-4 py-5">
+        <ScrollArea className="min-h-0 flex-1 w-full min-w-0">
+          <div className="space-y-6 px-3 py-4 sm:space-y-8 sm:px-4">
             {viajes.map((viaje, index) => (
               <div
                 key={`${viaje.rancho}-${viaje.ticket}-${index}`}
-                className="grid grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)_minmax(0,1.25fr)_minmax(0,.75fr)_82px_82px_82px] items-start gap-4 text-[1.02rem] text-cyan-700"
+                className="grid min-w-0 grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)_minmax(0,1.2fr)_minmax(0,.8fr)_72px_72px_72px] items-start gap-2 text-xs text-cyan-700 sm:gap-4 sm:text-sm lg:text-[1.02rem]"
               >
-                <div className="whitespace-normal text-left leading-tight">
+                <div className="min-w-0 whitespace-normal wrap-break-word text-left leading-tight">
                   {viaje.rancho}
                 </div>
 
-                <div className="whitespace-normal text-left leading-tight">
+                <div className="min-w-0 whitespace-normal wrap-break-word text-left leading-tight">
                   {viaje.producto}
                 </div>
 
-                <div className="flex flex-col items-center gap-3 text-center leading-tight">
+                <div className="flex min-w-0 flex-col items-center gap-2 text-center leading-tight sm:gap-3">
                   <span>{viaje.estatus}</span>
-                  <span className="text-xl font-bold">{emptyCell(viaje.folio)}</span>
+                  <span className="text-base font-bold sm:text-xl">{emptyCell(viaje.folio)}</span>
                 </div>
 
-                <div className="whitespace-normal text-center leading-tight">
+                <div className="min-w-0 whitespace-normal text-center leading-tight">
                   {emptyCell(viaje.centro_corte)}
                 </div>
 
-                <div className="text-center text-lg leading-tight">
+                <div className="text-center text-sm leading-tight sm:text-lg">
                   {emptyCell(viaje.hora_pesaje)}
                 </div>
 
-                <div className="text-center text-lg leading-tight">{emptyCell(viaje.hora_evaluacion)}</div>
+                <div className="text-center text-sm leading-tight sm:text-lg">{emptyCell(viaje.hora_evaluacion)}</div>
 
-                <div className="text-center text-lg leading-tight">{emptyCell(viaje.hora_impresion)}</div>
+                <div className="text-center text-sm leading-tight sm:text-lg">{emptyCell(viaje.hora_impresion)}</div>
               </div>
             ))}
           </div>

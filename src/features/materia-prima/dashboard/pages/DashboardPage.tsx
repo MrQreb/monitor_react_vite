@@ -1,8 +1,7 @@
-
-import { ArrowUpRight, ChevronDown } from "lucide-react"
 import { ViajesProgramados } from "../components/ViajesProgramados"
-import { EStatusDeViaje } from "../components/EstatusViaje"
+import { EstatusViaje } from "../components/EstatusViaje"
 import { Grafica } from "../components/Grafica"
+import NavBar from '../../NavBar';
 
 type ViajeProgramado = {
   agricultor: string
@@ -152,64 +151,35 @@ const graficaResumen: GraficaResumen[] = [
   { producto: 'COLIFLOR ORGANI', estimado: 3600, real: 1481 },
 ]
 
-const currentDate = '21/4/2026'
-
 export default function DashboardPage() {
   return (
-    <main className="min-h-screen bg-[#2f2f2f] text-white">
-      <section className="bg-white px-4 py-3 text-black md:px-8">
-        <div className="mx-auto flex max-w-[1500px] items-start justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[conic-gradient(from_180deg,#c01f3d_0deg,#0f766e_80deg,#f59e0b_150deg,#2563eb_230deg,#c01f3d_360deg)] p-[3px] shadow-sm">
-              <div className="flex h-full w-full items-center justify-center rounded-full bg-white text-[10px] font-black tracking-[0.3em] text-slate-700">
-                MB
-              </div>
-            </div>
-            <span className="font-serif text-[2.15rem] font-bold leading-none tracking-tight text-[#1f2d64] md:text-[3.25rem]">
-              MarBran
-            </span>
-          </div>
-          <div className="pt-1 text-2xl font-extrabold leading-none text-black md:text-[2.4rem]">
-            {currentDate}
-          </div>
+    <div className="flex min-h-screen w-full min-w-0 flex-col overflow-y-auto overflow-x-hidden  bg-[#2f2f2f] px-2 pb-2 pt-1 md:h-screen md:overflow-hidden md:px-3">
+      <NavBar />
+      {/* <ModoDashboard /> */}
+
+      <div className="flex h-14 shrink-0 items-center justify-center text-center">
+        <h1 className="text-2xl font-extrabold tracking-tight text-white">
+          Planta 1
+        </h1>
+      </div>
+
+      <section className="grid min-h-0 w-full flex-1 grid-cols-1 gap-4 items-stretch md:grid-cols-2 md:grid-rows-[minmax(0,1fr)_minmax(0,1fr)]">
+
+        <div className="min-h-0 h-full w-full">
+          <ViajesProgramados viajes={viajesProgramados} />
         </div>
-      </section>
 
-      <section className="mx-auto flex max-w-[1500px] flex-col gap-4 px-3 py-3 md:px-4">
-        <div className="rounded-[2rem] bg-[#2f2f2f] px-2 pb-2 pt-1 md:px-3">
-          <div className="mb-3 flex flex-col items-stretch gap-3 xl:flex-row xl:items-start xl:gap-4">
-            <div className="flex w-full max-w-[280px] items-center gap-2 self-start rounded-[1.1rem] border border-black/35 bg-[#353535] px-4 py-3 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-              <span className="text-[0.95rem] font-semibold">Modo</span>
-              <ArrowUpRight className="size-4 text-sky-300" />
-              <span className="text-[0.95rem] font-semibold">:</span>
-              <select className="w-full appearance-none bg-transparent pr-5 text-[0.95rem] font-semibold outline-none">
-                <option>Scroll</option>
-                <option>Auto</option>
-                <option>Manual</option>
-              </select>
-              <ChevronDown className="pointer-events-none size-4 shrink-0 text-white/70" />
-            </div>
-
-            <div className="flex-1 text-center">
-              <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl">
-                Planta 1
-              </h1>
-            </div>
-
-            <div className="hidden w-full max-w-[280px] xl:block" />
-          </div>
-
-          <div className="grid gap-4 xl:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)]">
-            <ViajesProgramados viajes={viajesProgramados} />
-            <Grafica datos={graficaResumen} />
-          </div>
-
-          <div className="mt-4">
-            <EStatusDeViaje viajes={estatusDeViaje} />
-          </div>
+        <div className="min-h-0 h-full w-full">
+          <Grafica datos={graficaResumen} />
         </div>
+
+        <div className="col-span-1 min-h-0 h-full w-full md:col-span-2">
+
+          <EstatusViaje viajes={estatusDeViaje} />
+        </div>
+
       </section>
-    </main>
+    </div>
   )
 }
 

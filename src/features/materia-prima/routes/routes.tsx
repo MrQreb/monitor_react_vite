@@ -7,7 +7,8 @@ import { rootRoute } from "@/app/router/__root";
 
 const materiaPrimaLayout = createRoute({
   getParentRoute: () => rootRoute,
-  path:'/materia-prima'
+  path:'/materia-prima',
+//   component: Layout,
 });
 
 const materiaPrima = createRoute({
