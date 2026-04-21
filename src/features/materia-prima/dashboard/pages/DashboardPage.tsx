@@ -1,7 +1,7 @@
 
 import { ArrowUpRight, ChevronDown } from "lucide-react"
 import { ViajesProgramados } from "../components/ViajesProgramados"
-import { EStatusDeViaje } from "../components/EStatusDeViaje"
+import { EStatusDeViaje } from "../components/EstatusViaje"
 import { Grafica } from "../components/Grafica"
 
 type ViajeProgramado = {
