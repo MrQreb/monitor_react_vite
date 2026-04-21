@@ -17,7 +17,7 @@ export function useLogin() {
       setIsAuthenticated(true);
     },
     onError: (error: any) => {
-      toast.error(error.message || "No se pudo iniciar sesión");
+      toast.error(error.message || "No se pudo iniciar sesión"); 
     },
   });
 
