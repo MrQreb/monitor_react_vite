@@ -1,7 +1,7 @@
 import { createRoute } from "@tanstack/react-router";
 import DashboardPage from "@/features/materia-prima/dashboard/pages/DashboardPage";
 import { rootRoute } from "@/app/router/__root";
-import ViajesProgramadosPage from "../dashboard/pages/ViajesProgramadosPage";
+import ViajesProgramadosPage from "../dashboard/pages/ViajesEstatusPage";
 
 
 const materiaPrimaLayout = createRoute({

@@ -2,37 +2,12 @@ import { ViajesProgramados } from "../components/ViajesProgramados"
 import { EstatusViaje } from "../components/EstatusViaje"
 import { Grafica } from "../components/Grafica"
 import NavBar from '../../../../components/common/NavBar/NavBar';
+import type { CajasEsperadasDto, ViajeEstatusDto, ViajeProgramadoDto } from "../../api/features/dto";
 
-type ViajeProgramado = {
-  agricultor: string
-  producto: string
-  cantidad: number
-}
 
-type ViajeEstatus = {
-  producto: string
-  folio: string
-  status_embarque: string
-  ticket: string
-  fecha_alta: string
-  hora_alta: string
-  hora_evaluacion: string
-  hora_impresion: string
-  centro_corte: string
-  fecha_envio: string | null
-  fecha_evaluador: string
-  hora_pesaje: string
-  rancho: string
-  estatus: string
-}
 
-type GraficaResumen = {
-  producto: string
-  estimado: number
-  real: number
-}
 
-const viajesProgramados: ViajeProgramado[] = [
+const viajesProgramados: ViajeProgramadoDto[] = [
   { agricultor: '00109 - AGRICOLA ROJAS, SA DE CV - ', producto: 'BROCCOLI', cantidad: 1000 },
   { agricultor: '00367 - PRODUCTORES DE GRANOS Y HORTALIZAS CARDENAS S DE PR DE RL - ', producto: 'BROCCOLI', cantidad: 1000 },
   { agricultor: '00679 - GONZALEZ LEDESMA YANET - ', producto: 'BROCCOLI', cantidad: 1000 },
@@ -45,7 +20,7 @@ const viajesProgramados: ViajeProgramado[] = [
   { agricultor: '02600 - PRODUCTORES DE GRANOS Y HORTALIZAS EL CHARCO SPR DE RL - ', producto: 'BROCCOLI', cantidad: 1000 },
 ]
 
-const estatusDeViaje: ViajeEstatus[] = [
+const estatusDeViaje: ViajeEstatusDto[] = [
   {
     producto: 'COLIFLOR ORGANI',
     folio: '26101234',
@@ -144,7 +119,7 @@ const estatusDeViaje: ViajeEstatus[] = [
   },
 ]
 
-const graficaResumen: GraficaResumen[] = [
+const graficaResumen: CajasEsperadasDto[] = [
   { producto: 'BROCCOLI', estimado: 8000, real: 689 },
   { producto: 'CALABAZA VERDE', estimado: 1200, real: 205 },
   { producto: 'CALABAZAMARILLA', estimado: 400, real: 0 },

@@ -13,7 +13,7 @@ type Props = {
 
 export function ViajesProgramados({ viajes }: Props) {
   return (
-    <Card className="flex h-full w-full flex-col rounded-[1.75rem] border-0 bg-white shadow-none">
+    <Card className="flex   min-h-0 h-full w-full flex-col rounded-[1.75rem] border-0 bg-white shadow-none">
 
       <CardHeader className="pb-1 pt-4 text-center">
         <CardTitle className="text-[1.15rem] font-extrabold text-cyan-700">

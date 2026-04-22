@@ -1,26 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import type { ViajeEstatusDto } from "../../api/features/dto"
 
-type ViajeEstatus = {
-  producto: string
-  folio: string
-  status_embarque: string
-  ticket: string
-  fecha_alta: string
-  hora_alta: string
-  hora_evaluacion: string
-  hora_impresion: string
-  centro_corte: string
-  fecha_envio: string | null
-  fecha_evaluador: string
-  hora_pesaje: string
-  rancho: string
-  estatus: string
-}
+
 
 type Props = {
-  viajes: ViajeEstatus[]
+  viajes: ViajeEstatusDto[]
 }
 
 const emptyCell = (value: string | null | undefined) => value?.trim() || ""
