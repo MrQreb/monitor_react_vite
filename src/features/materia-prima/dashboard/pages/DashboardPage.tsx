@@ -130,7 +130,7 @@ export default function DashboardPage() {
   return (
     <div className="flex min-h-screen w-full min-w-0 flex-col overflow-y-auto overflow-x-hidden bg-[#2f2f2f] px-2 pb-2 pt-1 md:h-screen md:overflow-hidden md:px-3">
       <NavBar />
-      {/* <ModoDashboard /> */}
+      {/* <SelectScroll /> */}
 
       <div className="flex h-14 shrink-0 items-center justify-center text-center">
         <h1 className="text-2xl font-extrabold tracking-tight text-white">

@@ -12,7 +12,7 @@ export const useScrollStore = create<UseScrollStore>()(
   devtools(
     persist(
       (set) => ({
-        mode: 'scroll',
+        mode: 'auto',
         setMode: (mode) => set({ mode }),
       }),
       {

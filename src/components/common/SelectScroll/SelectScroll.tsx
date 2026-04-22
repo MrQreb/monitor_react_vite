@@ -17,12 +17,14 @@ const modeLabels: Record<scrollMode, string> = {
   manual: 'Manual',
 }
 
-export function ModoDashboard() {
+
+/** Permite cambiar el tipo de scroll de los componentes */
+export function SelectScroll() {
   const mode = useScrollStore((state) => state.mode)
   const setMode = useScrollStore((state) => state.setMode)
 
   return (
-    <div className="flex w-full max-w-70 items-center gap-2 self-start rounded-[1.1rem] border border-black/35 bg-[#353535] px-4 py-3 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+    <div className="flex w-full max-w-70  items-center gap-2 self-start rounded-[1.1rem] border border-black/35 bg-[#353535] px-4 py-3 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
       <span className="text-[0.95rem] font-semibold">Modo</span>
       <ArrowUpRight className="size-4 text-sky-300" />
       <span className="text-[0.95rem] font-semibold">:</span>

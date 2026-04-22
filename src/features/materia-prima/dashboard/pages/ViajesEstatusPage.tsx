@@ -2,7 +2,7 @@ import NavBar from "@/components/common/NavBar/NavBar"
 import { ViajesProgramados } from "../components/ViajesProgramados"
 import { EstatusViaje } from "../components/EstatusViaje"
 import { useBoletasPlanta1, useEstatusPlanta1 } from "../hooks/useGetBoletasPlanta"
-import { ModoDashboard } from '../components/ModoDashboard';
+import { SelectScroll } from '../../../../components/common/SelectScroll/SelectScroll';
 // const viajesProgramados: ViajeProgramadoDto[] = [
 //   { agricultor: '00109 - AGRICOLA ROJAS, SA DE CV - ', producto: 'BROCCOLI', cantidad: 1000 },
 //   { agricultor: '00367 - PRODUCTORES DE GRANOS Y HORTALIZAS CARDENAS S DE PR DE RL - ', producto: 'BROCCOLI', cantidad: 1000 },
@@ -431,7 +431,7 @@ import { ModoDashboard } from '../components/ModoDashboard';
 // ]
 
 export default function ViajesProgramadosPage() {
-  
+
   const boletas = useBoletasPlanta1();
   const estatus = useEstatusPlanta1();
 
@@ -439,13 +439,16 @@ export default function ViajesProgramadosPage() {
   console.log(boletas.data)
   console.log(estatus.data)
 
- 
+
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-[#2f2f2f] px-2 pb-2 pt-1 md:px-3">
       <NavBar />
-      <ModoDashboard/>
 
-      <div className="flex h-14 shrink-0 items-center justify-center text-center">
+      <div className="mt-4">
+        <SelectScroll />
+      </div>
+
+      <div className="flex justify-center text-center">
         <h1 className="text-2xl font-extrabold tracking-tight text-white">
           Planta 1
         </h1>
