@@ -48,7 +48,7 @@ export function ViajesEstatusGraficaView({
         </div>
 
         <div className="min-h-0 h-full w-full">
-          <GraficaCajas datos={cajas.data ?? []} />
+          <GraficaCajas cajas={cajas.data ?? []} />
         </div>
 
         <div className="col-span-1 min-h-0 h-full w-full md:col-span-2">

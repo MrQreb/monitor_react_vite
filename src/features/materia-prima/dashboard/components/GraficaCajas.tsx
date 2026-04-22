@@ -14,10 +14,10 @@ import type { CajasEsperadasDto } from "../../api/features/dto"
 
 
 type Props = {
-  datos: CajasEsperadasDto[]
+  cajas: CajasEsperadasDto[] 
 }
 
-export function GraficaCajas({ datos }: Props) {
+export function GraficaCajas({ cajas }: Props) {
   return (
     <Card className="flex h-full min-w-0 w-full flex-col rounded-[1.5rem] border-0 bg-white shadow-none">
       <CardHeader className="pb-0 pt-3 text-center">
@@ -29,7 +29,7 @@ export function GraficaCajas({ datos }: Props) {
       <CardContent className="flex min-h-0 flex-1 min-w-0 px-2 pb-3 pt-0 sm:px-3">
         <div className="min-h-0 h-full w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={datos} margin={{ top: 8, right: 8, left: 0, bottom: 0 }} barCategoryGap="16%">
+            <BarChart data={cajas} margin={{ top: 8, right: 8, left: 0, bottom: 0 }} barCategoryGap="16%">
               <CartesianGrid strokeDasharray="3 3" stroke="#d4d4d8" />
               <XAxis dataKey="producto" tick={{ fill: '#52525b', fontSize: 10 }} interval={0} />
               <YAxis tick={{ fill: '#52525b', fontSize: 10 }} domain={[0, 11000]} />
