@@ -32,9 +32,9 @@ export class MateriaPrimaWSService {
   onCajasPlanta1 = (
     callback: (data: CajasEsperadasDto) => void
   ) => {
-    this.socket.on("dashboard:cajas_planta_1", callback);
+    this.socket.on("dashboard:deliveries_plata_1", callback);
     return () =>
-      this.socket.off("dashboard:cajas_planta_1", callback);
+      this.socket.off("dashboard:deliveries_plata_1", callback);
   };
 
   onBoletasPlanta3 = (
@@ -48,16 +48,16 @@ export class MateriaPrimaWSService {
   onEstatusPlanta3 = (
     callback: (data: ViajeEstatusDto[]) => void
   ) => {
-    this.socket.on("dashboard:deliveriesStatus_plata_3", callback);
+    this.socket.on("dashboard:deliveries_plata_3", callback);
     return () =>
-      this.socket.off("dashboard:deliveriesStatus_plata_3", callback);
+      this.socket.off("dashboard:deliveries_plata_3", callback);
   };
 
   onCajasPlanta3 = (
     callback: (data: CajasEsperadasDto) => void
   ) => {
-    this.socket.on("dashboard:cajas_planta_3", callback);
+    this.socket.on("dashboard:deliveries_plata_3", callback);
     return () =>
-      this.socket.off("dashboard:cajas_planta_3", callback);
+      this.socket.off("dashboard:deliveries_plata_3", callback);
   };
 }

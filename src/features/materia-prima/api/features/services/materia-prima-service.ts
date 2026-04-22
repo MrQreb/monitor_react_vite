@@ -35,14 +35,14 @@ export class MateriaPrimaService implements IMateriaService {
 
   async getCajasPlanta1(): Promise<CajasEsperadasDto> {
     return api<CajasEsperadasDto>(
-      `${this.url}/materia-prima-planta-1/sumatoria-estimadas-cajas`
+      `${this.url}/materia-prima-planta-1/informacion-grafica-barras`
     );
   }
 
 
   async getBoletasPlanta3(): Promise<ViajeProgramadoDto[]> {
     return api<ViajeProgramadoDto[]>(
-      `${this.url}/materia-prima-planta-3/boletas`
+      `${this.url}/materia-prima-planta-1/registro-agronomos?factory=2`
     );
   }
 
@@ -54,7 +54,7 @@ export class MateriaPrimaService implements IMateriaService {
 
   async getCajasPlanta3(): Promise<CajasEsperadasDto> {
     return api<CajasEsperadasDto>(
-      `${this.url}/materia-prima-planta-3/sumatoria-estimadas-cajas`
+      `${this.url}/materia-prima-planta-3/informacion-grafica-barras`
     );
   }
 }

@@ -2,16 +2,18 @@
 import { useRealtimeQuery } from "@/shared/hooks/useRealTimeQuery";
 import { materiaPrimaService, materiaWsPrimaService } from "../../api/features/instances/materia-prima-instances";
 
+/** Custoom hooks para la data de los viajes de materia prima */
 export const useBoletasPlanta1 = () =>
     useRealtimeQuery({
-        queryKey: ["boletas", "planta1"],
+        queryKey: ["planta-1-boletas"],
         queryFn: () => materiaPrimaService.getBoletasPlanta1(),
         subscribe: materiaWsPrimaService.onBoletasPlanta1,
     });
 
-export const useEstatusPlanta1 = () =>
+/** Custoom hooks para la data de los viajes de materia prima */
+export const useBoletasPlanta3 = () =>
     useRealtimeQuery({
-        queryKey: ["estatus", "planta1"],
-        queryFn: () => materiaPrimaService.getEstatusPlanta1(),
-        subscribe: materiaWsPrimaService.onEstatusPlanta1,
+        queryKey: ["planta-3-boletas"],
+        queryFn: () => materiaPrimaService.getBoletasPlanta3(),
+        subscribe: materiaWsPrimaService.onBoletasPlanta3,
     });

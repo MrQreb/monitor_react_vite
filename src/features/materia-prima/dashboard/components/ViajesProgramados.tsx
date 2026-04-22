@@ -57,7 +57,7 @@ export function ViajesProgramados({ viajes }: Props) {
             </TableHeader>
 
             <TableBody>
-              {viajes.map((viaje, index) => (
+              {viajes?.map((viaje, index) => (
                 <TableRow
                   key={`${viaje.agricultor}-${viaje.producto}-${index}`}
                   className="border-slate-300 hover:bg-transparent"

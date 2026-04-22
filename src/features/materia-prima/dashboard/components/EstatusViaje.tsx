@@ -60,7 +60,7 @@ export function EstatusViaje({ viajes }: Props) {
             </TableHeader>
 
             <TableBody>
-              {viajes.map((viaje, index) => (
+              {viajes?.map((viaje, index) => (
                 <TableRow key={`${viaje.rancho}-${viaje.ticket}-${index}`} className="border-slate-300 hover:bg-transparent align-top">
                   <TableCell className="px-4 py-5 text-left text-xs leading-tight whitespace-normal wrap-break-word text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
                     {viaje.rancho}

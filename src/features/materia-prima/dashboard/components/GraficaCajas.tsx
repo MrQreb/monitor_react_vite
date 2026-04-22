@@ -10,18 +10,14 @@ import {
   YAxis,
 } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import type { CajasEsperadasDto } from "../../api/features/dto"
 
-type GraficaResumen = {
-  producto: string
-  estimado: number
-  real: number
-}
 
 type Props = {
-  datos: GraficaResumen[]
+  datos: CajasEsperadasDto[]
 }
 
-export function Grafica({ datos }: Props) {
+export function GraficaCajas({ datos }: Props) {
   return (
     <Card className="flex h-full min-w-0 w-full flex-col rounded-[1.5rem] border-0 bg-white shadow-none">
       <CardHeader className="pb-0 pt-3 text-center">
