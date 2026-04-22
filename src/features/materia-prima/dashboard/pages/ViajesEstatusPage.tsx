@@ -3,6 +3,8 @@ import { ViajesProgramados } from "../components/ViajesProgramados"
 import { EstatusViaje } from "../components/EstatusViaje"
 import { useBoletasPlanta1, useEstatusPlanta1 } from "../hooks/useGetBoletasPlanta"
 import { SelectScroll } from '../../../../components/common/SelectScroll/SelectScroll';
+import useSocketConnection from "@/shared/hooks/useConnetion";
+import { NoConnection } from "@/components/common/NoConnection/NoConnection";
 // const viajesProgramados: ViajeProgramadoDto[] = [
 //   { agricultor: '00109 - AGRICOLA ROJAS, SA DE CV - ', producto: 'BROCCOLI', cantidad: 1000 },
 //   { agricultor: '00367 - PRODUCTORES DE GRANOS Y HORTALIZAS CARDENAS S DE PR DE RL - ', producto: 'BROCCOLI', cantidad: 1000 },
@@ -434,7 +436,13 @@ export default function ViajesProgramadosPage() {
 
   const boletas = useBoletasPlanta1();
   const estatus = useEstatusPlanta1();
+  const connection = useSocketConnection();
 
+  if (!connection) return (
+    <NoConnection />
+  )
+
+  console.log(connection)
 
   console.log(boletas.data)
   console.log(estatus.data)
