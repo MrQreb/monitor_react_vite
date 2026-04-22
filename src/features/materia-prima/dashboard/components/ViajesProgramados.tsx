@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { useAutoScroll } from "@/shared/hooks/useAutoScroll"
 
 type ViajeProgramado = {
   agricultor: string
@@ -12,6 +13,12 @@ type Props = {
 }
 
 export function ViajesProgramados({ viajes }: Props) {
+
+  const { containerRef } = useAutoScroll({
+    itemCount: viajes.length,
+    msPerItem: 700, // ajusta velocidad
+  });
+
   return (
     <Card className="flex   min-h-0 h-full w-full flex-col rounded-[1.75rem] border-0 bg-white shadow-none">
 
@@ -23,7 +30,7 @@ export function ViajesProgramados({ viajes }: Props) {
 
       <CardContent className="flex min-h-0 flex-1 flex-col px-0 pb-0 pt-0">
 
-        <div className="flex-1 overflow-auto h-0">
+        <div ref={containerRef} className="flex-1 overflow-auto h-0">
 
           <Table>
             <TableHeader>

@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import type { ViajeEstatusDto } from "../../api/features/dto"
+import { useAutoScroll } from "@/shared/hooks/useAutoScroll"
 
 
 
@@ -11,7 +12,15 @@ type Props = {
 
 const emptyCell = (value: string | null | undefined) => value?.trim() || ""
 
+
 export function EstatusViaje({ viajes }: Props) {
+
+  const { containerRef } = useAutoScroll({
+    itemCount: viajes.length,
+    msPerItem: 700, // ajusta velocidad
+  });
+
+
   return (
     <Card className="flex h-full min-w-0 w-full flex-col rounded-[1.75rem] border-0 bg-white shadow-none">
       <CardHeader className="pb-1 pt-4 text-center">
@@ -22,6 +31,7 @@ export function EstatusViaje({ viajes }: Props) {
 
       <CardContent className="min-w-0 px-0 pb-0 pt-0">
         <ScrollArea className="h-77.5 w-full min-w-0">
+          
           <Table>
             <TableHeader className="[&_tr]:sticky [&_tr]:top-0 [&_tr]:z-10 [&_tr]:bg-white">
               <TableRow className="border-slate-300 hover:bg-transparent">
