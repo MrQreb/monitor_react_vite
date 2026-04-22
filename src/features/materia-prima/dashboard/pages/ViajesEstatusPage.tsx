@@ -442,11 +442,6 @@ export default function ViajesProgramadosPage() {
     <NoConnection />
   )
 
-  console.log(connection)
-
-  console.log(boletas.data)
-  console.log(estatus.data)
-
 
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-[#2f2f2f] px-2 pb-2 pt-1 md:px-3">

@@ -26,7 +26,7 @@ export function Grafica({ datos }: Props) {
     <Card className="flex h-full min-w-0 w-full flex-col rounded-[1.5rem] border-0 bg-white shadow-none">
       <CardHeader className="pb-0 pt-3 text-center">
         <CardTitle className="text-sm font-extrabold text-cyan-700 sm:text-base">
-          Grafica
+          Estimado y Real
         </CardTitle>
       </CardHeader>
 

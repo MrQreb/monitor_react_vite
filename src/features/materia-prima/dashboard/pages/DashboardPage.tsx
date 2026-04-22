@@ -3,6 +3,9 @@ import { EstatusViaje } from "../components/EstatusViaje"
 import { Grafica } from "../components/Grafica"
 import NavBar from '../../../../components/common/NavBar/NavBar';
 import type { CajasEsperadasDto, ViajeEstatusDto, ViajeProgramadoDto } from "../../api/features/dto";
+import useSocketConnection from "@/shared/hooks/useConnetion";
+import { NoConnection } from "@/components/common/NoConnection/NoConnection";
+import { SelectScroll } from "@/components/common/SelectScroll/SelectScroll";
 
 
 
@@ -127,12 +130,22 @@ const graficaResumen: CajasEsperadasDto[] = [
 ]
 
 export default function DashboardPage() {
-  return (
-    <div className="flex min-h-screen w-full min-w-0 flex-col overflow-y-auto overflow-x-hidden bg-[#2f2f2f] px-2 pb-2 pt-1 md:h-screen md:overflow-hidden md:px-3">
-      <NavBar />
-      {/* <SelectScroll /> */}
 
-      <div className="flex h-14 shrink-0 items-center justify-center text-center">
+  const connection = useSocketConnection();
+
+  if (!connection) return (
+    <NoConnection />
+  )
+
+  return (
+    <div className="flex min-h-screen w-full min-w-0 flex-col overflow-y-auto overflow-x-hidden bg-[#2f2f2f] md:h-screen md:overflow-hidden md:px-3">
+      <NavBar />
+
+      <div className="mt-3">
+        <SelectScroll />
+      </div>
+
+      <div className="flex h-auto shrink-0 items-center justify-center text-center">
         <h1 className="text-2xl font-extrabold tracking-tight text-white">
           Planta 1
         </h1>
