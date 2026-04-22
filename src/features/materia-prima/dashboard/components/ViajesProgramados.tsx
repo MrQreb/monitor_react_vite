@@ -16,7 +16,7 @@ export function ViajesProgramados({ viajes }: Props) {
 
   const { containerRef } = useAutoScroll({
     itemCount: viajes.length,
-    msPerItem: 700, // ajusta velocidad
+    msPerItem: 900, 
   });
 
   return (
@@ -33,18 +33,18 @@ export function ViajesProgramados({ viajes }: Props) {
         <div ref={containerRef} className="flex-1 overflow-auto h-0">
 
           <Table>
-            <TableHeader>
+            <TableHeader className="sticky top-0 bg-white">
               <TableRow className="border-slate-300 hover:bg-transparent">
 
-                <TableHead className="sticky top-0 z-30 bg-white border-b border-slate-300 text-center text-base font-normal text-slate-600 sm:text-lg">
+                <TableHead className="sticky top-0 bg-white border-b border-slate-300 text-center text-base font-normal text-slate-600 sm:text-lg">
                   Rancho
                 </TableHead>
 
-                <TableHead className="sticky top-0 z-30 bg-white border-b border-slate-300 text-center text-base font-normal text-slate-600 sm:text-lg">
+                <TableHead className="sticky top-0 bg-white border-b border-slate-300 text-center text-base font-normal text-slate-600 sm:text-lg">
                   Producto
                 </TableHead>
 
-                <TableHead className="sticky top-0 z-30 bg-white border-b border-slate-300 text-center text-base font-normal text-slate-600 sm:text-lg">
+                <TableHead className="sticky top-0 bg-white border-b border-slate-300 text-center text-base font-normal text-slate-600 sm:text-lg">
                   Cajas
                 </TableHead>
 
