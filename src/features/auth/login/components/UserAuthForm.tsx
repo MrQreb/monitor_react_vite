@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 /**
  * Formulario de login con los inputs
@@ -14,7 +13,6 @@ export function UserAuthForm({ className, ...props }: HTMLAttributes<HTMLDivElem
 
   const { form, isLoading } = useLogin();
 
-  const isMobile = useIsMobile();
 
   const [isVisible, setIsVisible] = useState(false);
 

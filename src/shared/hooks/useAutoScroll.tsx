@@ -40,6 +40,15 @@ type UseAutoScrollProps = {
    * 2000 // pausa de 2 segundos
    */
   pauseOnEnd?: number;
+
+  /**
+   * Habilita o deshabilita el scroll automático.
+   *
+   * Permite controlar la animación desde estado externo (ej. Zustand).
+   *
+   * @default true
+   */
+  enabled?: boolean;
 };
 
 /**
@@ -59,7 +68,6 @@ type UseAutoScrollProps = {
  *    - abajo → arriba
  * 3. Aplica una pausa en cada extremo
  * 4. Repite el ciclo infinitamente
- *
  *
  * #### Consideraciones
  *
@@ -85,6 +93,7 @@ type UseAutoScrollProps = {
  * const { containerRef } = useAutoScroll({
  *   itemCount: viajes.length,
  *   msPerItem: 700,
+ *   enabled: scroll.mode === "auto",
  * });
  *
  * return (
@@ -98,10 +107,13 @@ export const useAutoScroll = ({
   itemCount,
   msPerItem = 800,
   pauseOnEnd = 1500,
+  enabled = true,
 }: UseAutoScrollProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!enabled) return;
+
     const el = containerRef.current;
     if (!el) return;
 
@@ -111,13 +123,10 @@ export const useAutoScroll = ({
     const duration = itemCount * msPerItem;
 
     let startTime: number | null = null;
-    let direction: 1 | -1 = 1; // 1 = hacia abajo, -1 = hacia arriba
+    let direction: 1 | -1 = 1;
     let animationFrame: number;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
-    /**
-     * Función principal de animación.
-     * Se ejecuta en cada frame usando requestAnimationFrame.
-     */
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
 
@@ -127,31 +136,17 @@ export const useAutoScroll = ({
       if (percent >= 1) {
         percent = 1;
 
-        /**
-         * Pausa en el extremo y cambio de dirección.
-         */
-        setTimeout(() => {
+        timeoutId = setTimeout(() => {
           direction *= -1;
           startTime = null;
           animationFrame = requestAnimationFrame(animate);
         }, pauseOnEnd);
 
-        /**
-         * Ajuste final para evitar frames inconsistentes.
-         */
-        el.scrollTop =
-          direction === 1 ? totalScroll : 0;
-
+        el.scrollTop = direction === 1 ? totalScroll : 0;
         return;
       }
 
-      /**
-       * Calcula el progreso dependiendo de la dirección.
-       */
-      const value =
-        direction === 1
-          ? percent
-          : 1 - percent;
+      const value = direction === 1 ? percent : 1 - percent;
 
       el.scrollTop = totalScroll * value;
 
@@ -160,11 +155,11 @@ export const useAutoScroll = ({
 
     animationFrame = requestAnimationFrame(animate);
 
-    /**
-     * Cleanup: cancela la animación al desmontar el componente.
-     */
-    return () => cancelAnimationFrame(animationFrame);
-  }, [itemCount, msPerItem, pauseOnEnd]);
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [itemCount, msPerItem, pauseOnEnd, enabled]);
 
   return { containerRef };
 };

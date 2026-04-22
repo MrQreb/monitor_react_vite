@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useAutoScroll } from "@/shared/hooks/useAutoScroll"
+import { useScrollStore } from "@/shared/store/use-scroll-store"
 
 type ViajeProgramado = {
   agricultor: string
@@ -14,9 +15,12 @@ type Props = {
 
 export function ViajesProgramados({ viajes }: Props) {
 
+  const scroll = useScrollStore();
+
   const { containerRef } = useAutoScroll({
     itemCount: viajes.length,
-    msPerItem: 900, 
+    msPerItem: 900,
+    enabled: scroll.mode === "auto",
   });
 
   return (

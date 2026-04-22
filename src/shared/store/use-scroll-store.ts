@@ -1,14 +1,14 @@
 import { create } from 'zustand'
 import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 
-export type MateriaPrimaDashboardMode = 'scroll' | 'auto' | 'manual'
+export type scrollMode = 'auto' | 'scroll' | 'manual'
 
-type MateriaPrimaDashboardStore = {
-  mode: MateriaPrimaDashboardMode
-  setMode: (mode: MateriaPrimaDashboardMode) => void
+type UseScrollStore = {
+  mode: scrollMode
+  setMode: (mode: scrollMode) => void
 }
 
-export const useMateriaPrimaDashboardStore = create<MateriaPrimaDashboardStore>()(
+export const useScrollStore = create<UseScrollStore>()(
   devtools(
     persist(
       (set) => ({
@@ -22,7 +22,7 @@ export const useMateriaPrimaDashboardStore = create<MateriaPrimaDashboardStore>(
       }
     ),
     {
-      name: 'materia-prima-dashboard-store',
+      name: 'scroll-store',
     }
   )
 )
