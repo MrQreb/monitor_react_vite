@@ -10,16 +10,16 @@ export function TemperaturasCedis1Page() {
     const temperaturas = useTemperaturasCedis1();
 
 
-    const ultimaTemperatura4 = useGetLastTemperatura({
+    const temperatura1 = useGetLastTemperatura({
         temperaturas: temperaturas.data ?? [],
         temperaturaBuscar: "temperatura1"
     });
 
     useToastTemperatura({
         duration: 30000,
-        message: `La temperatura de succión sobrepasó el límite: -37°C (Tunel P1)`,
-        max: -37,
-        value: ultimaTemperatura4,
+        message: `La temperatura de succión sobrepasó el límite: -18°C (Cedis 1 P3)`,
+        max: -18,
+        value: temperatura1,
     });
 
 

@@ -10,17 +10,17 @@ import { useToastTemperatura } from "../hooks/useToastTemperatura";
 export function TemperaturasPlanta1Page() {
     
     const connection = useSocketConnection();
-    
+
     const temperaturas = useTemperaturasPlanta1();
 
     const ultimaTemperatura4 = useGetLastTemperatura({
         temperaturas: temperaturas.data ?? [],
-        temperaturaBuscar: "temperatura1"
+        temperaturaBuscar: "temperatura4"
     });
 
     useToastTemperatura({
         duration: 30000,
-        message: `La temperatura de succión sobrepasó el límite: -37°C (Tunel P1)`,
+        message: `La temperatura del sobrepasó el límite: -37°C (Tunel P1)`,
         max: -37,
         value: ultimaTemperatura4,
     });
