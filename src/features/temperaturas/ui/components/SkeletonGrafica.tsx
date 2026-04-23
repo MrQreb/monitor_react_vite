@@ -9,11 +9,6 @@ export function SkeletonGrafica() {
     return (
         <div className="flex h-screen w-full flex-col overflow-hidden bg-[#2f2f2f] px-2 pb-2 pt-1 md:px-3">
             <NavBar />
-            <div className="flex justify-center text-center">
-                <h1 className="text-2xl font-extrabold tracking-tight text-white">
-                    Planta 1
-                </h1>
-            </div>
             <section className="flex min-h-0 w-full flex-1 flex-col gap-4">
                 <div className="flex min-h-0 flex-1 flex-col rounded-xl border border-white/20 bg-white/5 p-4">
                     <div className="mb-4 flex items-center justify-between">

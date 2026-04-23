@@ -5,7 +5,10 @@ export type TemperaturaBuscar = 'temperatura1' | 'temperatura2' | 'temperatura3'
 
 
 interface Props{
+    /** Arregla de las temperatuas */
     temperaturas: TemperaturasDto[];
+
+    /** Nombre de la temperatura a buscar como: temperatura1, temperatura2... temperatura4 */
     temperaturaBuscar:TemperaturaBuscar;
 }
 
