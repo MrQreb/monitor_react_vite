@@ -14,7 +14,7 @@ export interface IMateriaPrimaWSService {
   ): () => void;
 
   onCajasPlanta1(
-    callback: (data: CajasEsperadasDto) => void
+    callback: (data: CajasEsperadasDto[]) => void
   ): () => void;
 
   onBoletasPlanta3(
@@ -26,6 +26,6 @@ export interface IMateriaPrimaWSService {
   ): () => void;
 
   onCajasPlanta3(
-    callback: (data: CajasEsperadasDto) => void
+    callback: (data: CajasEsperadasDto[]) => void
   ): () => void;
 }

@@ -16,7 +16,7 @@ export interface IMateriaService {
   getEstatusPlanta3(): Promise<Partial<ViajeEstatusDto[]>>;
   
   /** Obtiene compartivo de cajas reales y cajas estimadas */
-  getCajasPlanta1(): Promise<Partial<CajasEsperadasDto>>;
+  getCajasPlanta1(): Promise<Partial<CajasEsperadasDto[]>>;
   /** Obtiene compartivo de cajas reales y cajas estimadas */
-  getCajasPlanta3(): Promise<Partial<CajasEsperadasDto>>;
+  getCajasPlanta3(): Promise<Partial<CajasEsperadasDto[]>>;
 }

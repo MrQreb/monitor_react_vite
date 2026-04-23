@@ -31,7 +31,7 @@ export class MateriaPrimaWSService implements IMateriaPrimaWSService {
   };
 
   onCajasPlanta1 = (
-    callback: (data: CajasEsperadasDto) => void
+    callback: (data: CajasEsperadasDto[]) => void
   ) => {
     this.socket.on("dashboard:deliveries_plata_1", callback);
     return () =>
@@ -55,7 +55,7 @@ export class MateriaPrimaWSService implements IMateriaPrimaWSService {
   };
 
   onCajasPlanta3 = (
-    callback: (data: CajasEsperadasDto) => void
+    callback: (data: CajasEsperadasDto[]) => void
   ) => {
     this.socket.on("dashboard:deliveries_plata_3", callback);
     return () =>

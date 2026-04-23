@@ -12,7 +12,6 @@ const materiaPrimaLayout = createRoute({
     //   component: Layout,
 });
 
-
 const viajesProgramadosPlanta1 = createRoute({
     getParentRoute: () => materiaPrimaLayout,
     path: "/planta-1/viajes",
@@ -43,8 +42,6 @@ const compativoCajas = createRoute({
     path: "/compartivo-cajas",
     component: CompativoGraficaCajas,
 });
-
-
 
 export const materiaPrimaRoutes = materiaPrimaLayout.addChildren([
     viajesProgramadosPlanta1,
