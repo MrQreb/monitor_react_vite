@@ -14,6 +14,13 @@ import {
 import { Card, CardContent } from "@/components/ui/card"
 import type { TemperaturasDto } from "../../api/features/dto"
 
+
+/** Para graficar los limites de la tempera */
+export interface LineaTemperatura{
+    limiteTemperatura?: number;
+    text:string;
+}
+
 /**
  * Props del componente {@link GraficaTemperaturas}
  */
@@ -33,7 +40,7 @@ type Props = {
   /**
    * Limite de temperatura para linea
    */
-  limiteTemperatura?: number;
+  lineaTemperatura?:LineaTemperatura;
 }
 
 /**
@@ -180,7 +187,7 @@ function CustomTooltip({ active, payload, label }: any) {
 export function GraficaTemperaturas({
   temperaturas,
   className = "",
-  limiteTemperatura
+  lineaTemperatura = undefined,
 }: Props) {
 
   /**
@@ -220,18 +227,18 @@ export function GraficaTemperaturas({
                 }}
               />
 
-              {limiteTemperatura !== undefined && (
+              {lineaTemperatura !== undefined && (
                 <ReferenceLine
-                  y={limiteTemperatura}
+                  y={lineaTemperatura.limiteTemperatura}
                   stroke="#ef4444"
                   strokeDasharray="6 6"
-                  strokeWidth={3}
+                  strokeWidth={4}
                   label={{
-                    value: `Límite (${limiteTemperatura}°C)`,
+                    value: `${lineaTemperatura.text}`,
                     position: "top",
                     offset: 12,
                     fill: "#ef4444",
-                    fontSize: 11,
+                    fontSize: 13,
                     fontWeight: 800,
                   }}
                 />

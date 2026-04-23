@@ -8,7 +8,7 @@ import { useGetLastTemperatura } from '../hooks/useGetLastTemperatura';
 import { useToastTemperatura } from "../hooks/useToastTemperatura";
 
 export function TemperaturasPlanta1Page() {
-    
+
     const connection = useSocketConnection();
 
     const temperaturas = useTemperaturasPlanta1();
@@ -26,7 +26,7 @@ export function TemperaturasPlanta1Page() {
     });
 
 
-    if(temperaturas.isLoading) return <SkeletonGrafica/> 
+    if (temperaturas.isLoading) return <SkeletonGrafica />
 
     if (!connection) return <NoConnection />
 
@@ -40,7 +40,13 @@ export function TemperaturasPlanta1Page() {
             </div>
             <section className="flex min-h-0 w-full flex-1 flex-col gap-4">
                 <div className="flex-1 min-h-0">
-                    <GraficaTemperaturas limiteTemperatura={-37} temperaturas={temperaturas.data ?? []} />
+                    <GraficaTemperaturas
+                        temperaturas={temperaturas.data ?? []}
+                        lineaTemperatura={{
+                            limiteTemperatura: -37,
+                            text: 'Límite: -37°C'
+                        }}
+                    />
                 </div>
             </section>
         </div>
