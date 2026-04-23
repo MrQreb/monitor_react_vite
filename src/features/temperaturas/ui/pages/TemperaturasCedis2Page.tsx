@@ -1,14 +1,26 @@
 import NavBar from "@/components/common/NavBar/NavBar"
 import { NoConnection } from "@/components/common/NoConnection/NoConnection"
 import useSocketConnection from "@/shared/hooks/useConnetion"
-import { GraficaTemperaturas } from "../components/GraficaTemperaturas"
+import { GraficaTemperaturas, type SeriesConfig } from '../components/GraficaTemperaturas';
 import { SkeletonGrafica } from "../components/SkeletonGrafica";
 import { useGetLastTemperatura, useTemperaturasCedis2, useToastTemperatura } from "../hooks";
 
 export function TemperaturasCedis2Page() {
+
     const connection = useSocketConnection();
     const temperaturas = useTemperaturasCedis2();
 
+    const series: SeriesConfig[] = [
+        { key: "temperatura1", name: "Aire en Descarga", color: "#f4c95d" },
+        { key: "temperatura2", name: "Aire en Entrada", color: "#f97355" },
+        { key: "temperatura3", name: "Aire en Punto Medio", color: "#2ea8a0" },
+        { key: "temperatura4", name: "Succion", color: "#607d8b" },
+    ];
+
+    const lineaTemperatura = {
+        limiteTemperatura: -18,
+        text: 'Límite: -18°C'
+    };
 
     const temperatura1 = useGetLastTemperatura({
         temperaturas: temperaturas.data ?? [],
@@ -38,10 +50,8 @@ export function TemperaturasCedis2Page() {
                 <div className="flex-1 min-h-0">
                     <GraficaTemperaturas
                         temperaturas={temperaturas.data ?? []}
-                        lineaTemperatura={{
-                            limiteTemperatura: -18,
-                            text: 'Límite: -18°C'
-                        }}
+                        lineaTemperatura={lineaTemperatura}
+                        series={series}
                     />
                 </div>
             </section>

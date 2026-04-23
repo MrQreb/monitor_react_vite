@@ -41,6 +41,9 @@ type Props = {
    * Limite de temperatura para linea
    */
   lineaTemperatura?:LineaTemperatura;
+
+  /** Lineas a renderizar de la grafica basado en temperatura1, temperatura2 ... temperatura4 */
+  series: SeriesConfig[];
 }
 
 /**
@@ -66,7 +69,7 @@ type ChartRow = {
 /**
  * Configuración de cada serie de la gráfica.
  */
-type SeriesConfig = {
+export type SeriesConfig = {
   /**
    * Clave del dato en {@link ChartRow}
    */
@@ -86,15 +89,7 @@ type SeriesConfig = {
   color: string
 }
 
-/**
- * Configuración de las series que se renderizan en la gráfica.
- */
-const series: SeriesConfig[] = [
-  { key: "temperatura1", name: "Aire en Descarga", color: "#f4c95d" },
-  { key: "temperatura2", name: "Aire en Entrada", color: "#f97355" },
-  { key: "temperatura3", name: "Aire en Punto Medio", color: "#2ea8a0" },
-  { key: "temperatura4", name: "Succion", color: "#607d8b" },
-]
+
 
 /**
  * Formateador numérico para mostrar temperaturas.
@@ -188,6 +183,7 @@ export function GraficaTemperaturas({
   temperaturas,
   className = "",
   lineaTemperatura = undefined,
+  series
 }: Props) {
 
   /**

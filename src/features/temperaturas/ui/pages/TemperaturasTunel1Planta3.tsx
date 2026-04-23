@@ -1,13 +1,26 @@
 import NavBar from "@/components/common/NavBar/NavBar"
 import { NoConnection } from "@/components/common/NoConnection/NoConnection"
 import useSocketConnection from "@/shared/hooks/useConnetion"
-import { GraficaTemperaturas } from "../components/GraficaTemperaturas"
+import { GraficaTemperaturas, type LineaTemperatura, type SeriesConfig } from "../components/GraficaTemperaturas"
 import { SkeletonGrafica } from "../components/SkeletonGrafica";
 import { useGetLastTemperatura, useTemperaturasTunel1Planta3, useToastTemperatura } from "../hooks";
 
 export function TemperaturasTunel1Planta3Page() {
+
     const connection = useSocketConnection();
     const temperaturas = useTemperaturasTunel1Planta3();
+
+    const series: SeriesConfig[] = [
+        { key: "temperatura1", name: "Aire en Descarga", color: "#f4c95d" },
+        { key: "temperatura2", name: "Aire en Entrada", color: "#f97355" },
+        { key: "temperatura3", name: "Aire en Punto Medio", color: "#2ea8a0" },
+        { key: "temperatura4", name: "Succion", color: "#607d8b" },
+    ];
+
+    const lineaTeperatura:LineaTemperatura = {
+        limiteTemperatura: -37,
+        text: 'Límite: -37°C'
+    }
 
     const ultimaTemperatura4 = useGetLastTemperatura({
         temperaturas: temperaturas.data ?? [],
@@ -37,10 +50,8 @@ export function TemperaturasTunel1Planta3Page() {
                 <div className="flex-1 min-h-0">
                     <GraficaTemperaturas
                         temperaturas={temperaturas.data ?? []}
-                        lineaTemperatura={{
-                            limiteTemperatura: -37,
-                            text: 'Límite: -37°C'
-                        }}
+                        lineaTemperatura={lineaTeperatura}
+                        series={series}
                     />
                 </div>
             </section>
