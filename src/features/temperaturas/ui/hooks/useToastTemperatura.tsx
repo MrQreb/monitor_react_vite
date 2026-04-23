@@ -47,6 +47,7 @@ export const useToastTemperatura = ({ duration, max, message, value }: Props) =>
 
         toast.custom(() => <ToastTemperaturaWarning message={message} />, {
             duration,
+            
         });
     }, [value]);
 
