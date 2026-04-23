@@ -1,5 +1,6 @@
 // shared/services/socket-client.ts
 
+import { baseUrl } from "@/config/base-url-env.config";
 import { io, Socket } from "socket.io-client";
 
 /**
@@ -36,7 +37,7 @@ export class SocketClient<Events extends Record<string, any>> {
    * Usa `getInstance()` para obtener el cliente.
    */
   private constructor() {
-    const URL = import.meta.env.VITE_SOCKET_URL;
+    const URL = baseUrl;
 
     this.socket = io(URL, {
       autoConnect: true,

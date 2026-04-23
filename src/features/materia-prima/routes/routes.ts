@@ -1,9 +1,9 @@
 import { createRoute } from "@tanstack/react-router";
-import { rootRoute } from "@/app/router/__root"; import ViajesEstatusPlanta3Page from "../dashboard/pages/ViajesEstatusPlanta3Page";
-import ViajesEstatusPlanta1Page from "../dashboard/pages/ViajesEstatusPlanta1Page";
-import ViajesEstatusGraficaPlanta3Page from "../dashboard/pages/ViajesEstatusGraficaPlanta3Page";
-import ViajesEstatusGraficaPlanta1Page from "../dashboard/pages/ViajesEstatusGraficaPlanta1Page";
-import { CompativoGraficaCajas } from "../dashboard/pages/CompativoGraficaCajas";
+import { rootRoute } from "@/app/router/__root"; import ViajesEstatusPlanta3Page from "../ui/pages/ViajesEstatusPlanta3Page";
+import ViajesEstatusPlanta1Page from "../ui/pages/ViajesEstatusPlanta1Page";
+import ViajesEstatusGraficaPlanta3Page from "../ui/pages/ViajesEstatusGraficaPlanta3Page";
+import ViajesEstatusGraficaPlanta1Page from "../ui/pages/ViajesEstatusGraficaPlanta1Page";
+import { CompativoGraficaCajas } from "../ui/pages/CompativoGraficaCajas";
 
 
 const materiaPrimaLayout = createRoute({
