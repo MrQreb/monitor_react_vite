@@ -3,11 +3,25 @@ import { NoConnection } from "@/components/common/NoConnection/NoConnection"
 import useSocketConnection from "@/shared/hooks/useConnetion"
 import { GraficaTemperaturas } from "../components/GraficaTemperaturas"
 import { SkeletonGrafica } from "../components/SkeletonGrafica";
-import { useTemperaturasCedis1 } from "../hooks/useTemperaturasCedis1";
+import { useGetLastTemperatura, useTemperaturasCedis1, useToastTemperatura } from "../hooks";
 
 export function TemperaturasCedis1Page() {
     const connection = useSocketConnection();
     const temperaturas = useTemperaturasCedis1();
+
+
+    const ultimaTemperatura4 = useGetLastTemperatura({
+        temperaturas: temperaturas.data ?? [],
+        temperaturaBuscar: "temperatura1"
+    });
+
+    useToastTemperatura({
+        duration: 30000,
+        message: `La temperatura de succión sobrepasó el límite: -37°C (Tunel P1)`,
+        max: -37,
+        value: ultimaTemperatura4,
+    });
+
 
 
     if (temperaturas.isLoading) return <SkeletonGrafica />

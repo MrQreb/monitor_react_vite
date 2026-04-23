@@ -4,12 +4,30 @@ import useSocketConnection from "@/shared/hooks/useConnetion"
 import { GraficaTemperaturas } from "../components/GraficaTemperaturas"
 import { useTemperaturasPlanta1 } from "../hooks/useTemperaturasPlanta1";
 import { SkeletonGrafica } from "../components/SkeletonGrafica";
+import { useGetLastTemperatura } from '../hooks/useGetLastTemperatura';
+import { useToastTemperatura } from "../hooks/useToastTemperatura";
 
 export function TemperaturasPlanta1Page() {
+    
     const connection = useSocketConnection();
+    
     const temperaturas = useTemperaturasPlanta1();
- 
+
+    const ultimaTemperatura4 = useGetLastTemperatura({
+        temperaturas: temperaturas.data ?? [],
+        temperaturaBuscar: "temperatura1"
+    });
+
+    useToastTemperatura({
+        duration: 30000,
+        message: `La temperatura de succión sobrepasó el límite: -37°C (Tunel P1)`,
+        max: -37,
+        value: ultimaTemperatura4,
+    });
+
+
     if(temperaturas.isLoading) return <SkeletonGrafica/> 
+
     if (!connection) return <NoConnection />
 
     return (
@@ -17,12 +35,12 @@ export function TemperaturasPlanta1Page() {
             <NavBar />
             <div className="flex justify-center text-center">
                 <h1 className="text-2xl font-extrabold tracking-tight text-white">
-                    Planta 1
+                    Tunel Planta 1
                 </h1>
             </div>
             <section className="flex min-h-0 w-full flex-1 flex-col gap-4">
                 <div className="flex-1 min-h-0">
-                    <GraficaTemperaturas limiteTemperatura={3} temperaturas={temperaturas.data ?? []} />
+                    <GraficaTemperaturas limiteTemperatura={-37} temperaturas={temperaturas.data ?? []} />
                 </div>
             </section>
         </div>

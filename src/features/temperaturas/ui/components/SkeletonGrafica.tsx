@@ -1,5 +1,10 @@
 import NavBar from "@/components/common/NavBar/NavBar"
 import { Skeleton } from "@/components/ui/skeleton"
+
+/**
+ * Componente que muestra el Skeleton al cargar la grafica de temperaturas
+ * @returns tsx componente
+ */
 export function SkeletonGrafica() {
     return (
         <div className="flex h-screen w-full flex-col overflow-hidden bg-[#2f2f2f] px-2 pb-2 pt-1 md:px-3">

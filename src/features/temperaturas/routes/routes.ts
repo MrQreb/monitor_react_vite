@@ -2,6 +2,9 @@ import { rootRoute } from "@/app/router/__root";
 import { createRoute } from "@tanstack/react-router";
 import { TemperaturasCedis1Page, TemperaturasCedis2Page, TemperaturasPlanta1Page, TemperaturasTunel1Planta3Page, TemperaturasTunel2Planta3Page } from "../ui/pages";
 
+/**
+ * Url inicial de las temperaturas
+ */
 const temperaturasLayout = createRoute({
   getParentRoute: () => rootRoute,
   path: "/temperaturas",
@@ -37,6 +40,8 @@ const cedis2 = createRoute({
   component: () => TemperaturasCedis2Page(),
 });
 
+
+/** Rutas a todo lo relacionado de las temperaturas */
 export const temperaturasRoutes = temperaturasLayout.addChildren([
   planta1,
   tunel1Planta3,
