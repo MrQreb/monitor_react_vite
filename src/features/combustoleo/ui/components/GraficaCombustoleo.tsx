@@ -34,6 +34,11 @@ const numberFormatter = new Intl.NumberFormat("es-ES", {
     minimumFractionDigits: 0,
 })
 
+const yAxisFormatter = new Intl.NumberFormat("es-ES", {
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+})
+
 function normalizeValue(value: string | number | null | undefined) {
     const parsedValue = typeof value === "number" ? value : Number(value)
     return Number.isFinite(parsedValue) ? parsedValue : 0
@@ -79,6 +84,24 @@ function CustomTooltip({ active, payload, label }: any) {
 export function GraficaCombustoleo({ datos, className = "" }: Props) {
     const chartData = useMemo(() => buildChartData(datos), [datos])
 
+    const yDomain = useMemo<[number, number]>(() => {
+        if (chartData.length === 0) {
+            return [0, 100]
+        }
+
+        const values = chartData.map((item) => item.litros)
+        const min = Math.min(...values)
+        const max = Math.max(...values)
+        const range = max - min
+
+        // Agrega aire visual arriba y abajo para evitar que la linea quede pegada.
+        const padding = Math.max(range * 0.12, 5)
+        const lowerBound = Math.max(0, min - padding)
+        const upperBound = max + padding
+
+        return [lowerBound, upperBound]
+    }, [chartData])
+
     return (
         <Card
             className={`flex h-full min-w-0 w-full flex-col rounded-[1.5rem] border-0 bg-white shadow-none ${className}`.trim()}
@@ -96,11 +119,11 @@ export function GraficaCombustoleo({ datos, className = "" }: Props) {
                             <XAxis
                                 dataKey="hora"
                                 tickCount={10}
-                                tick={{ fill: "#607080", fontSize: 11 }}
+                                tick={{ fill: "#607080", fontSize: 12 }}
                                 axisLine={{ stroke: "#9ca3af" }}
                                 tickLine={false}
                                 interval="preserveStartEnd"
-                                minTickGap={18}
+                                minTickGap={28}
                                 label={{
                                     value: "Tiempo",
                                     position: "insideBottom",
@@ -111,11 +134,12 @@ export function GraficaCombustoleo({ datos, className = "" }: Props) {
 
                             <YAxis
                                 tickCount={10}
-                                tick={{ fill: "#607080", fontSize: 11 }}
+                                tick={{ fill: "#607080", fontSize: 12 }}
                                 axisLine={{ stroke: "#9ca3af" }}
                                 tickLine={false}
-                                width={42}
-                                domain={["dataMin - 1", "dataMax + 1"]}
+                                width={64}
+                                tickFormatter={(value: number) => yAxisFormatter.format(value)}
+                                domain={yDomain}
                                 label={{
                                     value: "Litros",
                                     angle: -90,
