@@ -6,6 +6,6 @@ export const useTemperaturasPlanta1 = () => {
         queryKey: ['temperaturas-planta-1'],
         queryFn: () => temperaturaService.getTemperaturasPlanta1(),
         subscribe: temperatuWsService.onTemperaturasPlanta1,
-    })
+    });
 }
 

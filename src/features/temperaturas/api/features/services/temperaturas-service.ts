@@ -17,24 +17,24 @@ export class TemeperaturasService implements ITemperaturasService {
     this.url = `${baseUrl}/api/v1`;
   }
 
-  getTemperaturasPlanta1(): Promise<Partial<TemperaturasDto[]>> {
+  getTemperaturasPlanta1(): Promise<TemperaturasDto[]> {
     return api<TemperaturasDto[]>(`${this.url}/temperaturas/planta-1`);
   }
 
-  getTemperaturasTunel1Planta3(): Promise<Partial<TemperaturasDto[]>> {
+  getTemperaturasTunel1Planta3(): Promise<TemperaturasDto[]> {
     return api<TemperaturasDto[]>(`${this.url}/temperaturas/tunel-1-planta-3`);
   }
-  getTemperaturasTunel2Planta3(): Promise<Partial<TemperaturasDto[]>> {
+  getTemperaturasTunel2Planta3(): Promise<TemperaturasDto[]> {
     return api<TemperaturasDto[]>(`${this.url}/temperaturas/tunel-2-planta-3`);
   }
 
-  getTemperaturasCedis1(): Promise<Partial<TemperaturasCedisDto[]>> {
+  getTemperaturasCedis1(): Promise<TemperaturasCedisDto[]> {
     return api<TemperaturasCedisDto[]>(
       `${this.url}/temperaturas/cedis-planta-3?tipoCedis=CEDIS%201`,
     );
   }
 
-  getTemperaturasCedis2(): Promise<Partial<TemperaturasCedisDto[]>> {
+  getTemperaturasCedis2(): Promise<TemperaturasCedisDto[]> {
     return api<TemperaturasCedisDto[]>(
       `${this.url}/temperaturas/cedis-planta-3?tipoCedis=CEDIS%202`,
     );

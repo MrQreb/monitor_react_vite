@@ -1,4 +1,4 @@
-import { TemperaturasWSService } from "../services/materia-prima-ws-service";
+import { TemperaturasWSService } from "../services/temperaturas-ws-service";
 import { TemeperaturasService } from "../services/temperaturas-service";
 
 export const temperaturaService = new TemeperaturasService();

@@ -1,5 +1,3 @@
-// shared/services/socket-client.ts
-
 import { baseUrl } from "@/config/base-url-env.config";
 import { io, Socket } from "socket.io-client";
 

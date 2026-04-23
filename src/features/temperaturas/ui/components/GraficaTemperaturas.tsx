@@ -202,7 +202,6 @@ export function GraficaTemperaturas({
                 label={{
                   value: "Tiempo",
                   position: "insideBottom",
-                  offset: -6,
                   fill: "#111827",
                   fontWeight: 700,
                 }}
