@@ -20,7 +20,7 @@ export function TemperaturasPlanta1() {
             </div>
             <section className="flex min-h-0 w-full flex-1 flex-col gap-4">
                 <div className="flex-1 min-h-0">
-                    <GraficaTemperaturas temperaturas={temperaturas.data ?? []} />
+                    <GraficaTemperaturas limiteTemperatura={3} temperaturas={temperaturas.data ?? []} />
                 </div>
             </section>
         </div>

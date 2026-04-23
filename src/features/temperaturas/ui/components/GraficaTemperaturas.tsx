@@ -9,6 +9,7 @@ import {
   Tooltip,
   XAxis,
   YAxis,
+  ReferenceLine
 } from "recharts"
 import { Card, CardContent } from "@/components/ui/card"
 import type { TemperaturasDto } from "../../api/features/dto"
@@ -28,6 +29,11 @@ type Props = {
    * Clases adicionales para personalizar el contenedor raíz.
    */
   className?: string
+
+  /**
+   * Limite de temperatura para linea
+   */
+  limiteTemperatura?: number;
 }
 
 /**
@@ -174,6 +180,7 @@ function CustomTooltip({ active, payload, label }: any) {
 export function GraficaTemperaturas({
   temperaturas,
   className = "",
+  limiteTemperatura
 }: Props) {
 
   /**
@@ -189,7 +196,12 @@ export function GraficaTemperaturas({
       <CardContent className="flex min-h-0 flex-1 min-w-0 px-2 pb-3 pt-0 sm:px-4">
         <div className="min-h-0 h-full w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData} margin={{ top: 14, right: 18, left: 10, bottom: 20 }}>
+
+            <LineChart
+              key={temperaturas.length}
+              data={chartData}
+              margin={{ top: 14, right: 18, left: 10, bottom: 20 }}
+            >
               <CartesianGrid strokeDasharray="3 3" stroke="#d8d8d8" vertical />
 
               <XAxis
@@ -206,6 +218,23 @@ export function GraficaTemperaturas({
                   fontWeight: 700,
                 }}
               />
+
+              {limiteTemperatura !== undefined && (
+                <ReferenceLine
+                  y={limiteTemperatura}
+                  stroke="#ef4444"
+                  strokeDasharray="6 6"
+                  strokeWidth={3}
+                  label={{
+                    value: `Límite (${limiteTemperatura}°C)`,
+                    position: "top", 
+                    offset: 12,        
+                    fill: "#ef4444",
+                    fontSize: 11,
+                    fontWeight: 800,
+                  }}
+                />
+              )}
 
               <YAxis
                 tick={{ fill: "#607080", fontSize: 11 }}
@@ -247,7 +276,6 @@ export function GraficaTemperaturas({
                 fill="#eff6f6"
                 tickFormatter={() => ""}
               />
-
               {series.map((serie) => (
                 <Line
                   key={serie.key}
