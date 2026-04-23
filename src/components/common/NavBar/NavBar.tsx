@@ -22,7 +22,7 @@ export default function NavBar() {
     }
     
     return (
-        <header className="w-full  bg-white px-12 py-2 text-black md:px-4 md:py-2.5">
+        <header className="w-full bg-white px-12 py-2 text-black md:px-4 md:py-2.5">
             <div className="mx-auto flex w-full  items-center justify-between gap-3">
                 <div className="flex min-w-0 items-center gap-2.5">
                     <img

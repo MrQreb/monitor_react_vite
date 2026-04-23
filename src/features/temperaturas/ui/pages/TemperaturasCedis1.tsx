@@ -1,16 +1,17 @@
+// import { useEffect } from 'react';
 import NavBar from "@/components/common/NavBar/NavBar"
 import { NoConnection } from "@/components/common/NoConnection/NoConnection"
 import useSocketConnection from "@/shared/hooks/useConnetion"
 import { GraficaTemperaturas } from "../components/GraficaTemperaturas"
-import { useTemperaturasTunel1Planta3 } from "../hooks/useTemperaturasTunel1Planta3";
+import { useTemperaturasPlanta1 } from "../hooks/useTemperaturasPlanta1";
 import { SkeletonGrafica } from "../components/SkeletonGrafica";
 
-export function TemperaturasTunel1Planta3() {
+export function TemperaturasCedis1() {
     const connection = useSocketConnection();
-    const temperaturas = useTemperaturasTunel1Planta3();
+    const temperaturas = useTemperaturasPlanta1();
+
 
     if (temperaturas.isLoading) return <SkeletonGrafica />
-
     if (!connection) return <NoConnection />
 
     return (
@@ -18,12 +19,12 @@ export function TemperaturasTunel1Planta3() {
             <NavBar />
             <div className="flex justify-center text-center">
                 <h1 className="text-2xl font-extrabold tracking-tight text-white">
-                    Tunel 1 Planta 3
+                    Planta 1
                 </h1>
             </div>
             <section className="flex min-h-0 w-full flex-1 flex-col gap-4">
                 <div className="flex-1 min-h-0">
-                    <GraficaTemperaturas temperaturas={temperaturas.data ?? []} />
+                    <GraficaTemperaturas limiteTemperatura={3} temperaturas={temperaturas.data ?? []} />
                 </div>
             </section>
         </div>

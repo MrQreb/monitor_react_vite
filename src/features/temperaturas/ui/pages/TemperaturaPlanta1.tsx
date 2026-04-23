@@ -3,11 +3,13 @@ import { NoConnection } from "@/components/common/NoConnection/NoConnection"
 import useSocketConnection from "@/shared/hooks/useConnetion"
 import { GraficaTemperaturas } from "../components/GraficaTemperaturas"
 import { useTemperaturasPlanta1 } from "../hooks/useTemperaturasPlanta1";
+import { SkeletonGrafica } from "../components/SkeletonGrafica";
 
 export function TemperaturasPlanta1() {
     const connection = useSocketConnection();
     const temperaturas = useTemperaturasPlanta1();
-
+ 
+    if(temperaturas.isLoading) return <SkeletonGrafica/> 
     if (!connection) return <NoConnection />
 
     return (
