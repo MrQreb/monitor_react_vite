@@ -1,7 +1,7 @@
 import NavBar from "@/components/common/NavBar/NavBar"
 import { NoConnection } from "@/components/common/NoConnection/NoConnection"
 import useSocketConnection from "@/shared/hooks/useConnetion"
-import { useCombustoleoPlanta3 } from "../hooks/useCombustoleo";
+import { useCombustoleoPlanta3 } from "../hooks/useCombustoleos";
 import { GraficaCombustoleo } from "../components/GraficaCombustoleo";
 import { useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
