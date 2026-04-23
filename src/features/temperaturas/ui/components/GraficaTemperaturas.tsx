@@ -191,6 +191,7 @@ export function GraficaTemperaturas({
     [temperaturas]
   )
 
+
   return (
     <Card className={`flex h-full min-w-0 w-full flex-col rounded-[1.5rem] border-0 bg-white shadow-none ${className}`.trim()}>
       <CardContent className="flex min-h-0 flex-1 min-w-0 px-2 pb-3 pt-0 sm:px-4">
@@ -227,8 +228,8 @@ export function GraficaTemperaturas({
                   strokeWidth={3}
                   label={{
                     value: `Límite (${limiteTemperatura}°C)`,
-                    position: "top", 
-                    offset: 12,        
+                    position: "top",
+                    offset: 12,
                     fill: "#ef4444",
                     fontSize: 11,
                     fontWeight: 800,
@@ -237,6 +238,7 @@ export function GraficaTemperaturas({
               )}
 
               <YAxis
+                tickCount={20}
                 tick={{ fill: "#607080", fontSize: 11 }}
                 axisLine={{ stroke: "#9ca3af" }}
                 tickLine={false}

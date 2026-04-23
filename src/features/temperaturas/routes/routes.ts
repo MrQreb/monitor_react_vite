@@ -1,6 +1,6 @@
 import { rootRoute } from "@/app/router/__root";
 import { createRoute } from "@tanstack/react-router";
-import { TemperaturasPlanta1, TemperaturasTunel1Planta3, TemperaturasTunel2Planta3 } from "../ui/pages";
+import { TemperaturasCedis1Page, TemperaturasCedis2Page, TemperaturasPlanta1Page, TemperaturasTunel1Planta3Page, TemperaturasTunel2Planta3Page } from "../ui/pages";
 
 const temperaturasLayout = createRoute({
   getParentRoute: () => rootRoute,
@@ -10,23 +10,37 @@ const temperaturasLayout = createRoute({
 const planta1 = createRoute({
   getParentRoute: () => temperaturasLayout,
   path: "/planta-1",
-  component: () => TemperaturasPlanta1(),
+  component: () => TemperaturasPlanta1Page(),
 });
 
 const tunel1Planta3 = createRoute({
   getParentRoute: () => temperaturasLayout,
   path: "/planta-3/tunel-1",
-  component: () => TemperaturasTunel1Planta3(),
+  component: () => TemperaturasTunel1Planta3Page(),
 });
 
 const tunel2Planta3 = createRoute({
   getParentRoute: () => temperaturasLayout,
   path: "/planta-3/tunel-2",
-  component: () => TemperaturasTunel2Planta3(),
+  component: () => TemperaturasTunel2Planta3Page(),
+});
+
+const cedis1 = createRoute({
+  getParentRoute: () => temperaturasLayout,
+  path: "/cedis-1",
+  component: () => TemperaturasCedis1Page(),
+});
+
+const cedis2 = createRoute({
+  getParentRoute: () => temperaturasLayout,
+  path: "/cedis-2",
+  component: () => TemperaturasCedis2Page(),
 });
 
 export const temperaturasRoutes = temperaturasLayout.addChildren([
   planta1,
   tunel1Planta3,
-  tunel2Planta3
+  tunel2Planta3,
+  cedis1,
+  cedis2
 ]);

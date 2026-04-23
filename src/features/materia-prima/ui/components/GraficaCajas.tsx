@@ -32,7 +32,7 @@ export function GraficaCajas({ cajas }: Props) {
             <BarChart data={cajas} margin={{ top: 8, right: 8, left: 0, bottom: 0 }} barCategoryGap="16%">
               <CartesianGrid strokeDasharray="3 3" stroke="#d4d4d8" />
               <XAxis dataKey="producto" tick={{ fill: '#52525b', fontSize: 10 }} interval={0} />
-              <YAxis tick={{ fill: '#52525b', fontSize: 10 }} domain={[0, 11000]} />
+              <YAxis tickCount={10} tick={{ fill: '#52525b', fontSize: 10 }} domain={[0, 11000]} />
               <Tooltip
                 cursor={{ fill: 'rgba(15, 118, 110, 0.08)' }}
                 contentStyle={{

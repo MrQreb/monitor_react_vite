@@ -5,10 +5,9 @@ import { GraficaTemperaturas } from "../components/GraficaTemperaturas"
 import { useTemperaturasTunel2Planta3 } from "../hooks/useTemperaturasTunel2Planta3";
 import { SkeletonGrafica } from "../components/SkeletonGrafica";
 
-export function TemperaturasTunel2Planta3() {
+export function TemperaturasTunel2Planta3Page() {
     const connection = useSocketConnection();
     const temperaturas = useTemperaturasTunel2Planta3();
-
 
     if (temperaturas.isLoading) return <SkeletonGrafica />
     if (!connection) return <NoConnection />

@@ -1,14 +1,13 @@
-// import { useEffect } from 'react';
 import NavBar from "@/components/common/NavBar/NavBar"
 import { NoConnection } from "@/components/common/NoConnection/NoConnection"
 import useSocketConnection from "@/shared/hooks/useConnetion"
 import { GraficaTemperaturas } from "../components/GraficaTemperaturas"
-import { useTemperaturasPlanta1 } from "../hooks/useTemperaturasPlanta1";
 import { SkeletonGrafica } from "../components/SkeletonGrafica";
+import { useTemperaturasCedis1 } from "../hooks/useTemperaturasCedis1";
 
-export function TemperaturasCedis1() {
+export function TemperaturasCedis1Page() {
     const connection = useSocketConnection();
-    const temperaturas = useTemperaturasPlanta1();
+    const temperaturas = useTemperaturasCedis1();
 
 
     if (temperaturas.isLoading) return <SkeletonGrafica />
@@ -19,7 +18,7 @@ export function TemperaturasCedis1() {
             <NavBar />
             <div className="flex justify-center text-center">
                 <h1 className="text-2xl font-extrabold tracking-tight text-white">
-                    Planta 1
+                    Cedis 1
                 </h1>
             </div>
             <section className="flex min-h-0 w-full flex-1 flex-col gap-4">

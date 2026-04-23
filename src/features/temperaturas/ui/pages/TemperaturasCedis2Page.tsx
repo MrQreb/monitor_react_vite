@@ -2,14 +2,15 @@ import NavBar from "@/components/common/NavBar/NavBar"
 import { NoConnection } from "@/components/common/NoConnection/NoConnection"
 import useSocketConnection from "@/shared/hooks/useConnetion"
 import { GraficaTemperaturas } from "../components/GraficaTemperaturas"
-import { useTemperaturasPlanta1 } from "../hooks/useTemperaturasPlanta1";
 import { SkeletonGrafica } from "../components/SkeletonGrafica";
+import { useTemperaturasCedis2 } from "../hooks/useTemperaturasCedis2";
 
-export function TemperaturasPlanta1Page() {
+export function TemperaturasCedis2Page() {
     const connection = useSocketConnection();
-    const temperaturas = useTemperaturasPlanta1();
- 
-    if(temperaturas.isLoading) return <SkeletonGrafica/> 
+    const temperaturas = useTemperaturasCedis2();
+
+
+    if (temperaturas.isLoading) return <SkeletonGrafica />
     if (!connection) return <NoConnection />
 
     return (
@@ -17,7 +18,7 @@ export function TemperaturasPlanta1Page() {
             <NavBar />
             <div className="flex justify-center text-center">
                 <h1 className="text-2xl font-extrabold tracking-tight text-white">
-                    Planta 1
+                    Cedis 2
                 </h1>
             </div>
             <section className="flex min-h-0 w-full flex-1 flex-col gap-4">
