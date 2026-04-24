@@ -14,32 +14,75 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import type { ProduccionDiariaHoraDto } from "../../api/features/dto"
 import { SummaryCard } from "./SummaryCard"
 
+/**
+ * Props del componente {@link GraficaProduccionHora}.
+ */
 type Props = {
+  /**
+   * Datos crudos de produccion por hora provenientes del backend.
+   */
   datos: ProduccionDiariaHoraDto[]
+
+  /**
+   * Clases adicionales para personalizar el contenedor principal.
+   */
   className?: string
 }
 
+/**
+ * Fila transformada para renderizar la grafica por hora.
+ */
 type ChartRow = {
+  /** Hora del dia. */
   hora: number
+
+  /** Total de libras agrupadas en lineas automaticas (AUT) para esa hora. */
   aut: number
+
+  /** Total de libras agrupadas en lineas IQF para esa hora. */
   iqf: number
 }
 
+/**
+ * Tipado minimo para el tooltip personalizado de Recharts.
+ */
 type TooltipProps = {
+  /** Indica si el tooltip esta activo. */
   active?: boolean
+
+  /** Valores de las series para el punto actualmente enfocado. */
   payload?: Array<{ name?: string; value?: number; color?: string }>
+
+  /** Valor del eje X del punto activo. */
   label?: number
 }
 
+/**
+ * Formateador entero para mostrar libras en ejes, tarjetas y tooltip.
+ */
 const wholeNumberFormatter = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
   minimumFractionDigits: 0,
 })
 
+/**
+ * Normaliza un numero para evitar NaN/Infinity en los calculos de la grafica.
+ *
+ * @param value Numero a validar.
+ * @returns Numero valido o `0` si no es finito.
+ */
 function normalizeNumber(value: number) {
   return Number.isFinite(value) ? value : 0
 }
 
+/**
+ * Formatea valores en notacion compacta para labels encima de los puntos.
+ *
+ * Ejemplos: `980`, `4.2 k`, `17 k`.
+ *
+ * @param value Valor numerico a formatear.
+ * @returns Cadena compacta amigable para UI.
+ */
 function formatCompact(value: number) {
   if (Math.abs(value) < 1000) {
     return wholeNumberFormatter.format(Math.round(value))
@@ -50,6 +93,12 @@ function formatCompact(value: number) {
   return `${compact.toFixed(decimals)} k`
 }
 
+/**
+ * Tooltip visual de la grafica de produccion por hora.
+ *
+ * @param props Props internas de Recharts para tooltips.
+ * @returns Tooltip JSX o `null` cuando no hay estado activo.
+ */
 function CustomTooltip({ active, payload, label }: TooltipProps) {
   if (!active || !payload?.length) {
     return null
@@ -75,7 +124,21 @@ function CustomTooltip({ active, payload, label }: TooltipProps) {
   )
 }
 
+/**
+ * Grafica de lineas para produccion por hora (AUT vs IQF).
+ *
+ * Responsabilidades principales:
+ * - Agrupar registros por hora.
+ * - Calcular totales por bloque (AUT e IQF).
+ * - Mostrar evolucion horaria y resumen superior.
+ *
+ * @param props Props del componente.
+ * @returns Componente JSX listo para dashboard.
+ */
 export function GraficaProduccionHora({ datos, className = "" }: Props) {
+  /**
+   * Normaliza registros del backend y los agrega por hora.
+   */
   const chartData = useMemo<ChartRow[]>(() => {
     const rows = datos
       .map((item) => ({
@@ -110,16 +173,21 @@ export function GraficaProduccionHora({ datos, className = "" }: Props) {
       .sort((a, b) => a.hora - b.hora)
   }, [datos])
 
+  /** Total acumulado de lineas automaticas en el periodo visible. */
   const totalAutomaticas = useMemo(
     () => chartData.reduce((acc, row) => acc + row.aut, 0),
     [chartData],
   )
 
+  /** Total acumulado de lineas IQF en el periodo visible. */
   const totalIqf = useMemo(
     () => chartData.reduce((acc, row) => acc + row.iqf, 0),
     [chartData],
   )
 
+  /**
+   * Limite superior del eje Y con padding para mejorar lectura visual.
+   */
   const yAxisMax = useMemo(() => {
     const maxValue = Math.max(
       ...chartData.flatMap((row) => [row.aut, row.iqf]),
