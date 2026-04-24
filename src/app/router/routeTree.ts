@@ -5,6 +5,7 @@ import { createRoute } from "@tanstack/react-router";
 import { MenuPage } from "@/features/menu/pages/MenuPage";
 import { temperaturasRoutes } from "@/features/temperaturas/routes/routes";
 import { combustoleoRoutes } from "@/features/combustoleo/routes/routes";
+import { produccionDiariaRoutes } from "@/features/app-tags/routes/routes";
 
 /**
  * Arreglo de rutas donde se importan todas las rutas de la aplicacion
@@ -21,5 +22,6 @@ export const routeTree = rootRoute.addChildren([
   materiaPrimaRoutes,
   menuRoute,
   temperaturasRoutes,
-  combustoleoRoutes
+  combustoleoRoutes,
+  produccionDiariaRoutes
 ]);

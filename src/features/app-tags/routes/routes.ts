@@ -1,30 +1,24 @@
 import { rootRoute } from "@/app/router/__root";
 import { createRoute } from "@tanstack/react-router";
-import { CombustoleoPlanta1Page, CombustoleoPlanta3Page } from "../ui/pages";
+import { ProduccionDiariaPage } from "../ui/pages/ProduccionDiariaPage";
 
 /**
  * Url inicial de las temperaturas
  */
-// const combustoleoLayout = createRoute({
-//   getParentRoute: () => rootRoute,
-//   path: "/combustoleo",
-// });
+const appTagsLayout = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/app-tags",
+});
 
-// const planta1 = createRoute({
-//   getParentRoute: () => combustoleoLayout,
-//   path: "/planta-1",
-//   component: () => CombustoleoPlanta1Page(),
-// });
+const produccionDiariaRoute = createRoute({
+  getParentRoute: () => appTagsLayout,
+  path: "/planta-1",
+  component: () => ProduccionDiariaPage(),
+});
 
-// const planta3 = createRoute({
-//   getParentRoute: () => combustoleoLayout,
-//   path: "/planta-3",
-//   component: () => CombustoleoPlanta3Page(),
-// });
 
 
 // /** Rutas a todo lo relacionado de las combustoleo */
-// export const combustoleoRoutes = combustoleoLayout.addChildren([
-//   planta1,
-//   planta3,
-// ]);
+export const produccionDiariaRoutes = appTagsLayout.addChildren([
+  produccionDiariaRoute,
+]);

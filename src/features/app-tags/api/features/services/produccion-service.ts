@@ -18,9 +18,9 @@ export class ProduccionService implements IProduccionService {
   }
 
   getProduccionDiaria(): Promise<ProduccionDiariaDto[]> {
-    return api<ProduccionDiariaDto[]>(`${this.url}/produccion-diaria-por-hora`);
+    return api<ProduccionDiariaDto[]>(`${this.url}/produccion-diaria-por-linea`);
   }
   getProduccionPorHora(): Promise<ProduccionDiariaHoraDto[]> {
-    return api<ProduccionDiariaHoraDto[]>(`${this.url}/produccion-diaria-por-linea`);
+    return api<ProduccionDiariaHoraDto[]>(`${this.url}/produccion-diaria-por-hora`);
   }
 }
