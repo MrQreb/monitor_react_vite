@@ -1,26 +1,96 @@
-// hooks/useTiempoMuertoSocket.ts
-import { useEffect } from "react";
-import { io, Socket } from "socket.io-client";
+import { useEffect, useMemo, useState } from "react"
+import { socket } from "@/shared/hooks/useConnetion"
+import type { ParoTipo } from "../components/CardParo"
 
-export const useTiempoMuertoSocket = () => {
+export interface TiempoMuertoDto {
+  id: number
+  maquina: string
+  categoria: string
+  descripcion: string
+  fechaInicioParo: string
+  fechaFinParo?: string | null
+  enCurso?: boolean
+  duracionSegundos?: number
+  fechaCreacion?: string
+}
+
+export interface ParoUiItem {
+  uiId: string
+  id: string
+  maquina: string
+  motivo: string
+  tipo: ParoTipo
+  inicioEpoch: number
+}
+
+const CATEGORIA_TO_TIPO: Record<string, ParoTipo> = {
+  mantenimiento: "mantenimiento",
+  falla: "falla",
+  material: "material",
+}
+
+function parseTipo(categoria: string): ParoTipo {
+  return CATEGORIA_TO_TIPO[categoria.toLowerCase()] ?? "otro"
+}
+
+function toUiItem(dto: TiempoMuertoDto): ParoUiItem {
+  const startTime = Date.parse(dto.fechaInicioParo)
+  const fallbackStart = Date.now() - (dto.duracionSegundos ?? 0) * 1000
+  const inicioEpoch = Number.isNaN(startTime) ? fallbackStart : startTime
+
+  return {
+    uiId: String(dto.id),
+    id: String(dto.id),
+    maquina: dto.maquina,
+    motivo: dto.descripcion,
+    tipo: parseTipo(dto.categoria),
+    inicioEpoch,
+  }
+}
+
+export function useTiempoMuertoSocket() {
+  const [paros, setParos] = useState<ParoUiItem[]>([])
+
   useEffect(() => {
-    const socket: Socket = io("http://localhost:3000");
+    if (!socket.connected) socket.connect()
 
-    socket.on("connect", () => {
-      console.log("🟢 Conectado:", socket.id);
-    });
+    const onCreado = (data: TiempoMuertoDto) => {
+      const isActive = data.enCurso ?? true
+      if (!isActive) return
 
-    socket.on("tiempo-muerto:creado", (data) => {
-      console.log("CREADO:", data);
-    });
+      const nextParo = toUiItem(data)
+      setParos((current) => {
+        const exists = current.some((paro) => paro.uiId === nextParo.uiId)
+        if (exists) {
+          return current.map((paro) => (paro.uiId === nextParo.uiId ? nextParo : paro))
+        }
+        return [nextParo, ...current]
+      })
+    }
 
-    socket.on("tiempo-muerto:finalizado", (data) => {
-      console.log("FINALIZADO:", data);
-    });
+    const onFinalizado = (data: Pick<TiempoMuertoDto, "id">) => {
+      const id = String(data.id)
+      setParos((current) => current.filter((paro) => paro.uiId !== id))
+    }
+
+    socket.on("tiempo-muerto:creado", onCreado)
+    socket.on("tiempo-muerto:finalizado", onFinalizado)
 
     return () => {
-      socket.disconnect();
-      console.log("🔴 Desconectado");
-    };
-  }, []);
-};
+      socket.off("tiempo-muerto:creado", onCreado)
+      socket.off("tiempo-muerto:finalizado", onFinalizado)
+    }
+  }, [])
+
+  const removeParo = (uiId: string) => {
+    setParos((current) => current.filter((paro) => paro.uiId !== uiId))
+  }
+
+  return useMemo(
+    () => ({
+      paros,
+      removeParo,
+    }),
+    [paros]
+  )
+}

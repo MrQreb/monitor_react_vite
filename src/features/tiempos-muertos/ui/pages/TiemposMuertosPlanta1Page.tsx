@@ -1,26 +1,15 @@
 import NavBar from "@/components/common/NavBar/NavBar"
 import { NoConnection } from "@/components/common/NoConnection/NoConnection"
 import useSocketConnection from "@/shared/hooks/useConnetion"
-import { useState } from "react"
-import { PAROS } from "../data/PAROS";
 import { CardParo } from "../components/CardParo";
 import { useTiempoMuertoSocket } from "../hooks/useTiempos";
 
 export function TiemposMuertosPlanta1Page() {
 
-    const tiempos = useTiempoMuertoSocket();
-
-
-    console.log(tiempos)
+    const { paros, removeParo } = useTiempoMuertoSocket();
 
     
     const connection = useSocketConnection();
-    const [paros, setParos] = useState(() =>
-        PAROS.map((paro, index) => ({
-            ...paro,
-            uiId: `${paro.id}-${index}-${paro.inicioEpoch}`,
-        }))
-    )
 
     if (!connection) return <NoConnection />
 
@@ -53,12 +42,14 @@ export function TiemposMuertosPlanta1Page() {
                             <CardParo
                                 key={uiId}
                                 {...paro}
-                                onDelete={() =>
-                                    setParos((currentParos) => currentParos.filter((item) => item.uiId !== uiId))
-                                }
+                                onDelete={() => removeParo(uiId)}
                             />
                         ))}
                     </div>
+
+                    {paros.length === 0 ? (
+                        <p className="text-sm text-zinc-500">Sin paros activos por el momento.</p>
+                    ) : null}
 
                 </div>
             </main>
