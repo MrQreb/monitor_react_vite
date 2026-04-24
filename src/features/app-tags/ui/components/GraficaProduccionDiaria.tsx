@@ -3,9 +3,9 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  Cell,
   LabelList,
   Legend,
+  Rectangle,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -13,6 +13,7 @@ import {
 } from "recharts"
 import { Card, CardContent, CardHeader  } from "@/components/ui/card"
 import type { ProduccionDiariaDto } from "../../api/features/dto"
+import { SummaryCard } from "./SummaryCard"
 
 /**
  * Props del componente de grafica de produccion diaria.
@@ -111,32 +112,7 @@ function normalizeNumber(value: number) {
   return Number.isFinite(value) ? value : 0
 }
 
-/**
- * Tarjeta de resumen para los indicadores superiores.
- */
-type SummaryCardProps = {
-  title: string
-  amount: number
-  accentColor: string
-  glowColor: string
-}
 
-function SummaryCard({ title, amount, accentColor, glowColor }: SummaryCardProps) {
-  return (
-    <div className="group relative overflow-hidden rounded-2xl border border-zinc-200/90 bg-linear-to-br from-white to-zinc-50 px-4 py-3 shadow-[0_8px_24px_-16px_rgba(15,23,42,0.45)   ] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_26px_-16px_rgba(15,23,42,0.42)]">
-      <span className="absolute inset-y-2 left-0 w-1 rounded-full" style={{ backgroundColor: accentColor }} />
-      <span
-        className="absolute -right-10 -top-10 h-24 w-24 rounded-full blur-2xl"
-        style={{ backgroundColor: glowColor }}
-      />
-      <p className="relative pl-2 text-[0.98rem] font-black tracking-wide text-slate-800">{title}</p>
-      <p className="relative pl-2 text-xs font-semibold text-slate-500">Libras procesadas</p>
-      <p className="relative pl-2 text-right text-[2rem] font-black leading-none text-slate-900">
-        {wholeNumberFormatter.format(Math.round(amount))}
-      </p>
-    </div>
-  )
-}
 
 /**
  * Renderiza la grafica de produccion diaria por linea.
@@ -215,6 +191,20 @@ export function GraficaProduccionDiaria({ datos, className = "" }: Props) {
     return Math.ceil(paddedMax / 5000) * 5000
   }, [chartData])
 
+  /**
+   * Reemplaza el uso de `Cell` (deprecado) para pintar cada barra con su color.
+   */
+  const renderBarShape = (props: any) => {
+    const row = props?.payload as ChartRow | undefined
+    return (
+      <Rectangle
+        {...props}
+        fill={row?.color ?? "#5a8dee"}
+        radius={[10, 10, 0, 0]}
+      />
+    )
+  }
+  
   return (
     <Card
       className={`flex h-full min-w-0 w-full flex-col rounded-[1.2rem] border border-zinc-300/90 bg-linear-to-b from-zinc-100 to-zinc-200/75 shadow-[0_16px_30px_-24px_rgba(15,23,42,0.55)] ${className}`.trim()}
@@ -290,10 +280,8 @@ export function GraficaProduccionDiaria({ datos, className = "" }: Props) {
                 radius={[10, 10, 0, 0]}
                 maxBarSize={62}
                 animationDuration={700}
+                shape={renderBarShape}
               >
-                {chartData.map((item) => (
-                  <Cell key={item.linea} fill={item.color} />
-                ))}
                 <LabelList
                   dataKey="totalCantidad"
                   position="top"
