@@ -1,12 +1,19 @@
 import NavBar from "@/components/common/NavBar/NavBar"
 import { NoConnection } from "@/components/common/NoConnection/NoConnection"
 import useSocketConnection from "@/shared/hooks/useConnetion"
+import { useState } from "react"
 import { PAROS } from "../data/PAROS";
 import { CardParo } from "../components/CardParo";
 
 export function TiemposMuertosPlanta1Page() {
 
     const connection = useSocketConnection();
+    const [paros, setParos] = useState(() =>
+        PAROS.map((paro, index) => ({
+            ...paro,
+            uiId: `${paro.id}-${index}-${paro.inicioEpoch}`,
+        }))
+    )
 
     if (!connection) return <NoConnection />
 
@@ -34,9 +41,15 @@ export function TiemposMuertosPlanta1Page() {
                     </div>
 
                     {/* Grid de cards */}
-                    <div className="flex flex-wrap gap-5">
-                        {PAROS.map((paro) => (
-                            <CardParo key={paro.id} {...paro} />
+                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {paros.map(({ uiId, ...paro }) => (
+                            <CardParo
+                                key={uiId}
+                                {...paro}
+                                onDelete={() =>
+                                    setParos((currentParos) => currentParos.filter((item) => item.uiId !== uiId))
+                                }
+                            />
                         ))}
                     </div>
 
