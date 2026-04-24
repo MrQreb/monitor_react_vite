@@ -112,8 +112,6 @@ function normalizeNumber(value: number) {
   return Number.isFinite(value) ? value : 0
 }
 
-
-
 /**
  * Renderiza la grafica de produccion diaria por linea.
  *
@@ -204,7 +202,7 @@ export function GraficaProduccionDiaria({ datos, className = "" }: Props) {
       />
     )
   }
-  
+
   return (
     <Card
       className={`flex h-full min-w-0 w-full flex-col rounded-[1.2rem] border border-zinc-300/90 bg-linear-to-b from-zinc-100 to-zinc-200/75 shadow-[0_16px_30px_-24px_rgba(15,23,42,0.55)] ${className}`.trim()}

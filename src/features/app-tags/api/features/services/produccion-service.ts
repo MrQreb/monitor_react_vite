@@ -3,6 +3,12 @@ import { api } from "@/shared/services/api";
 import type { IProduccionService } from "../interfaces/i-produccion-service";
 import type { ProduccionDiariaDto, ProduccionDiariaHoraDto } from "../dto";
 
+type ApiEnvelope<T> = {
+  success: boolean
+  statusCode: number
+  data: T
+}
+
 /**
  * Clase encargada de la lógica de app tags
  * Solo llamadas REST
@@ -17,10 +23,13 @@ export class ProduccionService implements IProduccionService {
     this.url = `${baseUrl}/api/v1/apptags`;
   }
 
-  getProduccionDiaria(): Promise<ProduccionDiariaDto[]> {
-    return api<ProduccionDiariaDto[]>(`${this.url}/produccion-diaria-por-linea`);
+  async getProduccionDiaria(): Promise<ProduccionDiariaDto[]> {
+    const response = await api<ApiEnvelope<ProduccionDiariaDto[]>>(`${this.url}/produccion-diaria-por-linea`);
+    return Array.isArray(response?.data) ? response.data : []
   }
-  getProduccionPorHora(): Promise<ProduccionDiariaHoraDto[]> {
-    return api<ProduccionDiariaHoraDto[]>(`${this.url}/produccion-diaria-por-hora`);
+
+  async getProduccionPorHora(): Promise<ProduccionDiariaHoraDto[]> {
+    const response = await api<ApiEnvelope<ProduccionDiariaHoraDto[]>>(`${this.url}/produccion-diaria-por-hora`);
+    return Array.isArray(response?.data) ? response.data : []
   }
 }
