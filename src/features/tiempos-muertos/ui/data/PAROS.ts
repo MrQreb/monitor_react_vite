@@ -1,23 +1,23 @@
-import type { ParoTipo } from "../components/CardParo"
+import type { ParoTipo } from "../components/CardParo";
 
 /**
  * Estructura de un paro de ejemplo para UI local.
  */
 export interface ParoMock {
-  id: string
-  maquina: string
-  motivo: string
-  tipo: ParoTipo
+  id: string;
+  maquina: string;
+  motivo: string;
+  tipo: ParoTipo;
   /**
    * Fecha de inicio en epoch ms.
    */
-  inicioEpoch: number
+  inicioEpoch: number;
 }
 
 /**
  * Devuelve un epoch en milisegundos restando minutos al momento actual.
  */
-const minutesAgo = (minutes: number): number => Date.now() - minutes * 60_000
+const minutesAgo = (minutes: number): number => Date.now() - minutes * 60_000;
 
 /**
  * Datos de ejemplo para visualizar tarjetas de paros.
@@ -61,65 +61,74 @@ export const PAROS: ReadonlyArray<ParoMock> = [
     tipo: "mantenimiento",
     inicioEpoch: minutesAgo(22),
   },
-    {
-    id: "M-005",
-    maquina: "Inyectora Plástico 2",
-    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
-    tipo: "mantenimiento",
-    inicioEpoch: minutesAgo(22),
-  },  {
-    id: "M-005",
-    maquina: "Inyectora Plástico 2",
-    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
-    tipo: "mantenimiento",
-    inicioEpoch: minutesAgo(22),
-  },  {
-    id: "M-005",
-    maquina: "Inyectora Plástico 2",
-    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
-    tipo: "mantenimiento",
-    inicioEpoch: minutesAgo(22),
-  },  {
-    id: "M-005",
-    maquina: "Inyectora Plástico 2",
-    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
-    tipo: "mantenimiento",
-    inicioEpoch: minutesAgo(22),
-  },  {
-    id: "M-005",
-    maquina: "Inyectora Plástico 2",
-    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
-    tipo: "mantenimiento",
-    inicioEpoch: minutesAgo(22),
-  },  {
-    id: "M-005",
-    maquina: "Inyectora Plástico 2",
-    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
-    tipo: "mantenimiento",
-    inicioEpoch: minutesAgo(22),
-  },  {
-    id: "M-005",
-    maquina: "Inyectora Plástico 2",
-    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
-    tipo: "mantenimiento",
-    inicioEpoch: minutesAgo(22),
-  },  {
-    id: "M-005",
-    maquina: "Inyectora Plástico 2",
-    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
-    tipo: "mantenimiento",
-    inicioEpoch: minutesAgo(22),
-  },  {
-    id: "M-005",
-    maquina: "Inyectora Plástico 2",
-    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
-    tipo: "mantenimiento",
-    inicioEpoch: minutesAgo(22),
-  },  {
+  {
     id: "M-005",
     maquina: "Inyectora Plástico 2",
     motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
     tipo: "mantenimiento",
     inicioEpoch: minutesAgo(22),
   },
-]
+  {
+    id: "M-005",
+    maquina: "Inyectora Plástico 2",
+    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
+    tipo: "mantenimiento",
+    inicioEpoch: minutesAgo(22),
+  },
+  {
+    id: "M-005",
+    maquina: "Inyectora Plástico 2",
+    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
+    tipo: "mantenimiento",
+    inicioEpoch: minutesAgo(22),
+  },
+  {
+    id: "M-005",
+    maquina: "Inyectora Plástico 2",
+    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
+    tipo: "mantenimiento",
+    inicioEpoch: minutesAgo(22),
+  },
+  {
+    id: "M-005",
+    maquina: "Inyectora Plástico 2",
+    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
+    tipo: "mantenimiento",
+    inicioEpoch: minutesAgo(22),
+  },
+  {
+    id: "M-005",
+    maquina: "Inyectora Plástico 2",
+    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
+    tipo: "mantenimiento",
+    inicioEpoch: minutesAgo(22),
+  },
+  {
+    id: "M-005",
+    maquina: "Inyectora Plástico 2",
+    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
+    tipo: "mantenimiento",
+    inicioEpoch: minutesAgo(22),
+  },
+  {
+    id: "M-005",
+    maquina: "Inyectora Plástico 2",
+    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
+    tipo: "mantenimiento",
+    inicioEpoch: minutesAgo(22),
+  },
+  {
+    id: "M-005",
+    maquina: "Inyectora Plástico 2",
+    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
+    tipo: "mantenimiento",
+    inicioEpoch: minutesAgo(22),
+  },
+  {
+    id: "M-005",
+    maquina: "Inyectora Plástico 2",
+    motivo: "Mantenimiento correctivo en resistencias de banda calefactora.",
+    tipo: "mantenimiento",
+    inicioEpoch: minutesAgo(22),
+  },
+];
