@@ -1,5 +1,5 @@
 /**
- * Url base la variable de entorno, para la api de App tags y Weps
+ * Url base la variable de entorno para la api del monitor
  * @returns string - url base de la api
  */
 export const baseUrl = import.meta.env.VITE_API_URL;
