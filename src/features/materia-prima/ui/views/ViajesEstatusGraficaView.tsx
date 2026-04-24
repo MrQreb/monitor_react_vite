@@ -12,14 +12,14 @@ type Props = {
   useEstatusHook: () => any;
   useCajasHook: () => any;
 }
- 
+
 export function ViajesEstatusGraficaView({
   title,
   useBoletasHook,
   useEstatusHook,
   useCajasHook
 }: Props) {
-  
+
   const boletas = useBoletasHook();
   const estatus = useEstatusHook();
   const cajas = useCajasHook();
@@ -52,7 +52,6 @@ export function ViajesEstatusGraficaView({
         </div>
 
         <div className="col-span-1 min-h-0 h-full w-full md:col-span-2">
-
           <EstatusViaje viajes={estatus.data ?? []} />
         </div>
 
