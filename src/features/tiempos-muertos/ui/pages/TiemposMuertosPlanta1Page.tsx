@@ -4,9 +4,16 @@ import useSocketConnection from "@/shared/hooks/useConnetion"
 import { useState } from "react"
 import { PAROS } from "../data/PAROS";
 import { CardParo } from "../components/CardParo";
+import { useTiempoMuertoSocket } from "../hooks/useTiempos";
 
 export function TiemposMuertosPlanta1Page() {
 
+    const tiempos = useTiempoMuertoSocket();
+
+
+    console.log(tiempos)
+
+    
     const connection = useSocketConnection();
     const [paros, setParos] = useState(() =>
         PAROS.map((paro, index) => ({
