@@ -181,6 +181,9 @@ export function GraficaCombustoleo({ datos, className = "" }: Props) {
                                 strokeWidth={2.4}
                                 dot={{ r: 2.8, strokeWidth: 1.5, fill: "#ffffff" }}
                                 activeDot={{ r: 4.8, strokeWidth: 0 }}
+                                isAnimationActive
+                                animationDuration={850}
+                                animationEasing="ease-out"
                             />
                         </LineChart>
                     </ResponsiveContainer>

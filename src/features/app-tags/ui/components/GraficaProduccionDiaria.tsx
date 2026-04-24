@@ -277,7 +277,9 @@ export function GraficaProduccionDiaria({ datos, className = "" }: Props) {
                 name="Total de libras"
                 radius={[10, 10, 0, 0]}
                 maxBarSize={62}
+                isAnimationActive
                 animationDuration={700}
+                animationEasing="ease-out"
                 shape={renderBarShape}
               >
                 <LabelList

@@ -281,7 +281,7 @@ export function GraficaTemperaturas({
                 fill="#eff6f6"
                 tickFormatter={() => ""}
               />
-              {series.map((serie) => (
+              {series.map((serie, index) => (
                 <Line
                   key={serie.key}
                   type="monotone"
@@ -291,6 +291,10 @@ export function GraficaTemperaturas({
                   strokeWidth={2.4}
                   dot={{ r: 2.8, strokeWidth: 1.5, fill: "#ffffff" }}
                   activeDot={{ r: 4.8, strokeWidth: 0 }}
+                  isAnimationActive
+                  animationBegin={index * 120}
+                  animationDuration={820}
+                  animationEasing="ease-out"
                 />
               ))}
             </LineChart>

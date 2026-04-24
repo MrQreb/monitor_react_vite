@@ -46,10 +46,27 @@ export function GraficaCajas({ cajas }: Props) {
                 wrapperStyle={{ paddingTop: 4 }}
                 formatter={(value) => <span style={{ color: '#64748b' }}>{value}</span>}
               />
-              <Bar dataKey="estimado" name="estimado" fill="#f97355" radius={[4, 4, 0, 0]}>
+              <Bar
+                dataKey="estimado"
+                name="estimado"
+                fill="#f97355"
+                radius={[4, 4, 0, 0]}
+                isAnimationActive
+                animationDuration={750}
+                animationEasing="ease-out"
+              >
                 <LabelList dataKey="estimado" position="top" fill="#8c6b52" fontSize={10} />
               </Bar>
-              <Bar dataKey="real" name="real" fill="#2fa79a" radius={[4, 4, 0, 0]}>
+              <Bar
+                dataKey="real"
+                name="real"
+                fill="#2fa79a"
+                radius={[4, 4, 0, 0]}
+                isAnimationActive
+                animationBegin={120}
+                animationDuration={820}
+                animationEasing="ease-out"
+              >
                 <LabelList dataKey="real" position="top" fill="#8c6b52" fontSize={10} />
               </Bar>
             </BarChart>
