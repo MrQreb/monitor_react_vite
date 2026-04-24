@@ -1,6 +1,7 @@
 import { rootRoute } from "@/app/router/__root";
 import { createRoute } from "@tanstack/react-router";
 import { ProduccionDiariaPage } from "../ui/pages/ProduccionDiariaPage";
+import { ProduccionHoraPage } from "../ui/pages/ProduccionHoraPage";
 
 /**
  * Url inicial de las temperaturas
@@ -16,9 +17,15 @@ const produccionDiariaRoute = createRoute({
   component: () => ProduccionDiariaPage(),
 });
 
+const produccionHoraRoute = createRoute({
+  getParentRoute: () => appTagsLayout,
+  path: "/planta-1/por-hora",
+  component: () => ProduccionHoraPage(),
+});
 
 
 // /** Rutas a todo lo relacionado de las combustoleo */
 export const produccionDiariaRoutes = appTagsLayout.addChildren([
   produccionDiariaRoute,
+  produccionHoraRoute,
 ]);
