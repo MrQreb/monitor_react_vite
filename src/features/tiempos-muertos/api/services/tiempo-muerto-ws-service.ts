@@ -4,19 +4,14 @@ import type { ITiempoMuertoWSService } from "../interface/i-tiempo-muerto-ws-ser
 
 export class TiempoMuertoWSService implements ITiempoMuertoWSService {
   private socket = SocketClient.getInstance();
-
+  
   onEnCurso = (callback: (data: TiempoMuertoDto[]) => void) => {
-    this.socket.on("tiempo-muerto.creado", callback);
-    return () =>
-      this.socket.off(
-        "tiempo-muerto.creado",
-        callback,
-      );
+    this.socket.on("tiempo-muerto:creado", callback);
+    return () => this.socket.off("tiempo-muerto:creado", callback);
   };
 
   onEnFinilizada = (callback: (data: TiempoMuertoDto[]) => void) => {
-    this.socket.on("tiempo-muerto.finalizado", callback);
-    return () =>
-      this.socket.off("tiempo-muerto.finalizado", callback);
+    this.socket.on("tiempo-muerto:finalizado", callback);
+    return () => this.socket.off("tiempo-muerto:finalizado", callback);
   };
 }

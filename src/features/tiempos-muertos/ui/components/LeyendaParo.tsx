@@ -1,4 +1,7 @@
-
+/**
+ * Los colores de como se muestra las cards de los paros
+ * @returns JSX component
+ */
 export const LeyendaParo = () => {
     return (
         <div className="grid grid-cols-1 gap-3 text-xs text-muted-foreground sm:grid-cols-2 xl:grid-cols-3">
