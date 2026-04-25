@@ -1,18 +1,9 @@
 import { useEffect, useMemo, useState } from "react"
 import { socket } from "@/shared/hooks/useConnetion"
 import type { ParoTipo } from "../components/CardParo"
+import type { TiempoMuertoDto } from "../../api/dto/tiempo-muerto-dto"
 
-export interface TiempoMuertoDto {
-  id: number
-  maquina: string
-  categoria: string
-  descripcion: string
-  fechaInicioParo: string
-  fechaFinParo?: string | null
-  enCurso?: boolean
-  duracionSegundos?: number
-  fechaCreacion?: string
-}
+
 
 export interface ParoUiItem {
   uiId: string

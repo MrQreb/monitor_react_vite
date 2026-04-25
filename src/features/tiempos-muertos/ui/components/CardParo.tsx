@@ -104,7 +104,7 @@ const STATUS_DOT_STYLES: Record<ParoStatus, string> = {
  */
 const STATUS_LABELS: Record<ParoStatus, string> = {
   normal: "En curso",
-  advertencia: "Atención",
+  advertencia: "Atencion",
   critico: "Crítico",
   resuelto: "Resuelto",
 }
@@ -177,27 +177,27 @@ export function CardParo({
   return (
     <Card
       className={cn(
-        "relative w-full min-w-55 max-w-70 gap-3 rounded-2xl border bg-zinc-900 p-5 text-sm transition-all duration-300",
+        "relative w-full min-h-72 min-w-72 max-w-none gap-4 rounded-3xl border bg-linear-to-b from-card to-card/80 p-6 text-base text-card-foreground shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg",
         STATUS_STYLES[status],
         className
       )}
     >
-      <div className="flex items-start justify-between gap-2">
-        <div className="flex min-w-0 items-center gap-2">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-3">
           <div
             className={cn(
-              "flex h-8 w-8 shrink-0 items-center justify-center rounded-xl",
+              "flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl",
               STATUS_ICON_BG[status]
             )}
           >
-            <Icon className="h-4 w-4" />
+            <Icon className="h-5 w-5" />
           </div>
 
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold leading-tight text-white">
+            <p className="truncate text-base font-semibold leading-tight text-foreground">
               {maquina}
             </p>
-            <p className="truncate text-xs leading-tight opacity-60">
+            <p className="truncate text-sm leading-tight text-muted-foreground">
               {tipoLabel}
             </p>
           </div>
@@ -207,7 +207,7 @@ export function CardParo({
           <Badge
             variant="outline"
             className={cn(
-              "gap-1.5 rounded-full px-2 py-1 text-[10px] font-medium uppercase tracking-wide",
+              "gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium uppercase tracking-wide",
               STATUS_STYLES[status]
             )}
           >
@@ -226,7 +226,7 @@ export function CardParo({
               type="button"
               variant="ghost"
               size="icon-xs"
-              className="text-zinc-400 hover:bg-zinc-800 hover:text-rose-400"
+              className="text-muted-foreground hover:bg-muted hover:text-rose-500"
               aria-label={`Eliminar paro ${id}`}
               title="Eliminar"
               onClick={onDelete}
@@ -237,21 +237,21 @@ export function CardParo({
         </div>
       </div>
 
-      <p className="line-clamp-2 text-xs leading-relaxed text-zinc-400">
+      <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
         {motivo}
       </p>
 
-      <Separator className="bg-white/5" />
+      <Separator className="bg-border" />
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1.5 text-zinc-500">
-          <Clock className="h-3.5 w-3.5" />
-          <span className="text-[10px] uppercase tracking-widest">Tiempo parado</span>
+        <div className="flex items-center gap-1.5 text-muted-foreground">
+          <Clock className="h-4 w-4" />
+          <span className="text-xs uppercase tracking-wider">Tiempo parado</span>
         </div>
 
         <span
           className={cn(
-            "font-mono text-lg font-bold tracking-tight tabular-nums",
+            "font-mono text-2xl font-bold tracking-tight tabular-nums",
             STATUS_TIMER_TEXT[status]
           )}
         >
@@ -259,7 +259,7 @@ export function CardParo({
         </span>
       </div>
 
-      <span className="absolute bottom-3 left-5 select-none font-mono text-[9px] text-zinc-700">
+      <span className="absolute bottom-3 left-6 select-none font-mono text-[10px] text-muted-foreground/70">
         #{id}
       </span>
     </Card>
