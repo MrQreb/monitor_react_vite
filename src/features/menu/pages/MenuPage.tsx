@@ -45,23 +45,29 @@ export const MenuPage = () => {
   };
 
   return (
-    <div className="flex w-full h-auto min-w-0 flex-col bg-[#2f2f2f] px-2 pb-2 pt-1 md:px-3">
-      <NavBar />
 
-      <div className="sticky top-0 mt-4 flex items-center justify-center">
-        <TabsMenu value={tab} onChange={handleTabChange} />
+    <section className='h-screen bg-[#2f2f2f]'>
+
+
+      <div className="flex w-full h-auto  min-w-0 flex-col bg-[#2f2f2f] px-2 pb-2 pt-1 md:px-3">
+        <NavBar />
+
+        <div className="sticky top-0 mt-4 flex items-center justify-center">
+          <TabsMenu value={tab} onChange={handleTabChange} />
+        </div>
+
+        <section className="mt-8 grid gap-12 md:grid-cols-2 xl:grid-cols-3">
+          {filteredItems.map((item, index) => (
+            <CardMenu
+              key={index}
+              title={item.title}
+              route={item.route}
+              icon={item.icon}
+            />
+          ))}
+        </section>
       </div>
 
-      <section className="mt-8 grid gap-12 md:grid-cols-2 xl:grid-cols-3">
-        {filteredItems.map((item, index) => (
-          <CardMenu
-            key={index}
-            title={item.title}
-            route={item.route}
-            icon={item.icon}
-          />
-        ))}
-      </section>
-    </div>
+    </section>
   );
 };
