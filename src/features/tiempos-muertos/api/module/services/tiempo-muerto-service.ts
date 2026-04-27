@@ -1,5 +1,5 @@
 import { baseUrl } from "@/config/base-url-env.config";
-import type { TiempoMuertoDto } from "../dto/tiempo-muerto-dto";
+import type { TiempoMuertoDto } from "../../dto/tiempo-muerto-dto";
 import type { ITiempoMuertoService } from "../interface/i-tiempo-muerto-service";
 import { api } from "@/shared/services/api";
 

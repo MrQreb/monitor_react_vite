@@ -1,11 +1,9 @@
+import { useMemo } from "react";
 import NavBar from "@/components/common/NavBar/NavBar";
 import { NoConnection } from "@/components/common/NoConnection/NoConnection";
 import useSocketConnection from "@/shared/hooks/useConnetion";
-import { useMemo } from "react";
-
 import { CardParo, type ParoTipo } from "../components/CardParo";
 import { LeyendaParo } from "../components/LeyendaParo";
-
 import { useTiempoMuertoQuery } from "../hooks/useTiempoMuertoQuery";
 import { useTiempoMuertoSubscription } from "../hooks/useTiempoMuertoSubscription";
 import { EmptyParos } from "../components/EmptyParos";
@@ -59,11 +57,11 @@ export function TiemposMuertosPlanta1Page() {
             <main className="h-screen rounded-2xl border bg-linear-to-b from-muted/50 to-background px-4 py-5 md:px-5 md:py-6 dark:from-zinc-950/60 dark:to-zinc-950/20">
                 <div className="mx-auto max-w-6xl space-y-6">
 
-
+{/* 
                     <div className="sticky">
 
                         <LeyendaParo />
-                    </div>
+                    </div> */}
 
                     <header className="rounded-2xl border bg-card/70 p-4 md:p-5 backdrop-blur-sm">
                         <div className="flex flex-wrap items-center justify-between gap-4">

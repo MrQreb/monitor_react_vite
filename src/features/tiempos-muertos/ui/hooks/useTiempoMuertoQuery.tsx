@@ -1,4 +1,4 @@
-import { tiempoMuertoService } from "../../api/instances/instances";
+import { tiempoMuertoService } from "../../api/module/instances/instances";
 import { useQuery } from "@tanstack/react-query";
 
 export const TIEMPOS_MUERTOS_QUERY_KEY = ["planta-3-tiempos-muertos"];

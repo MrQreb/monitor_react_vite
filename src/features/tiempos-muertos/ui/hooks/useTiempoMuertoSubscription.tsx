@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { tiempoMuertoWsService } from "../../api/instances/instances";
 import { TIEMPOS_MUERTOS_QUERY_KEY } from "./useTiempoMuertoQuery";
 import type { TiempoMuertoDto } from "../../api/dto/tiempo-muerto-dto";
+import { tiempoMuertoWsService } from "../../api/socket/instance/instance";
 
 /**
  * Realiza un merge de los paros actuales con los nuevos,
@@ -21,7 +21,9 @@ function mergeParos(
 ): TiempoMuertoDto[] {
   return [
     ...incoming,
-    ...old.filter((o) => !incoming.some((n) => n.id === o.id)),
+    ...old.filter(
+      (o) => !incoming.some((n) => n.maquinaId === o.maquinaId)
+    ),
   ];
 }
 
@@ -39,8 +41,8 @@ function removeParos(
   old: TiempoMuertoDto[] = [],
   incoming: TiempoMuertoDto[]
 ): TiempoMuertoDto[] {
-  const ids = new Set(incoming.map((p) => p.id));
-  return old.filter((p) => !ids.has(p.id));
+  const ids = new Set(incoming.map((p) => p.maquinaId));
+  return old.filter((p) => !ids.has(p.maquinaId));
 }
 
 /**
@@ -77,6 +79,8 @@ export const useTiempoMuertoSubscription = (enabled: boolean): void => {
      */
     const unsubscribeCreated = tiempoMuertoWsService.onEnCurso((data) => {
       const incoming = Array.isArray(data) ? data : [data];
+
+      console.log(incoming)
       
       queryClient.setQueryData(
         TIEMPOS_MUERTOS_QUERY_KEY,
@@ -89,6 +93,8 @@ export const useTiempoMuertoSubscription = (enabled: boolean): void => {
      */
     const unsubscribeFinished = tiempoMuertoWsService.onEnFinilizada((data) => {
       const incoming = Array.isArray(data) ? data : [data];
+
+      console.log(incoming)
 
       queryClient.setQueryData(
         TIEMPOS_MUERTOS_QUERY_KEY,
