@@ -15,8 +15,8 @@ export class LoginService {
   }
 
   /** Permite iniciar sesion del sistema de usuarios */
-  login(data:LoginDto): Promise<LoginResponseDto> {
-    return api<LoginResponseDto>(`${this.url}/usuario/iniciar-sesion`,{
+  async login(data:LoginDto): Promise<LoginResponseDto> {
+    return await api<LoginResponseDto>(`${this.url}/usuario/iniciar-sesion`,{
         method:"POST",
         body:JSON.stringify(data)
     });
