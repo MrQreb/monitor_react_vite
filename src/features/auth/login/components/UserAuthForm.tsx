@@ -1,4 +1,4 @@
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useState, type HTMLAttributes } from "react";
 import { useLogin } from "../hooks/api/useLogin";
 import { Label } from "@/components/ui/label";
@@ -9,105 +9,116 @@ import { Button } from "@/components/ui/button";
 /**
  * Formulario de login con los inputs
  */
-export function UserAuthForm({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
 
+export function UserAuthForm({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   const { form, isLoading } = useLogin();
 
-
   const [isVisible, setIsVisible] = useState(false);
-
-  const toggleVisibility = () => setIsVisible(!isVisible);
+  const toggleVisibility = () => setIsVisible((v) => !v);
 
   return (
     <section className={cn("w-full", className)} {...props}>
-
-     
       <form
-        className="space-y-8"
+        className="space-y-5"
         onSubmit={(e) => {
           e.preventDefault();
           form.handleSubmit();
         }}
       >
-        <div className="space-y-6">
+        <div className="space-y-4">
+          {/* Usuario */}
           <form.Field
             name="usuario"
             children={(field) => (
-              <div>
-                <Label htmlFor="usuario" className="text-base font-medium text-gray-700 dark:text-gray-200">
+              <div className="space-y-1.5">
+                <Label
+                  htmlFor="usuario"
+                  className="text-xs font-medium tracking-widest uppercase text-muted-foreground"
+                >
                   Usuario
                 </Label>
                 <Input
                   id="usuario"
-                  placeholder="usuario"
+                  placeholder="nombre de usuario"
                   autoCapitalize="none"
-                  autoComplete="usuario"
+                  autoComplete="username"
                   disabled={isLoading}
                   value={field.state.value}
-                  onChange={(event) => field.handleChange(event.target.value)}
+                  onChange={(e) => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
-                  className="mt-2 text-white"
+                  className="h-10 bg-background border-border/60 focus-visible:ring-1 focus-visible:ring-primary/50 placeholder:text-muted-foreground/40 text-sm rounded-md"
                 />
                 {field.state.meta.errors[0] && (
-                  <p className="mt-2 text-sm text-destructive">{field.state.meta.errors[0]}</p>
+                  <p className="text-xs text-destructive mt-1">
+                    {field.state.meta.errors[0]}
+                  </p>
                 )}
               </div>
             )}
           />
 
+          {/* Contraseña */}
           <form.Field
             name="contrasena"
             children={(field) => (
-              <div>
-                <Label htmlFor="contrasena" className="text-base font-medium text-gray-700 dark:text-gray-200">
+              <div className="space-y-1.5">
+                <Label
+                  htmlFor="contrasena"
+                  className="text-xs font-medium tracking-widest uppercase text-muted-foreground"
+                >
                   Contraseña
                 </Label>
-                <div className="relative mt-2">
+                <div className="relative">
                   <Input
                     id="contrasena"
-                    placeholder="••••••••••"
+                    placeholder="••••••••"
                     type={isVisible ? "text" : "password"}
-                    autoComplete="contrasena"
+                    autoComplete="current-password"
                     disabled={isLoading}
                     value={field.state.value}
-                    onChange={(event) => field.handleChange(event.target.value)}
+                    onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
-                    className="pr-10 text-white"
+                    className="h-10 pr-10 bg-background border-border/60 focus-visible:ring-1 focus-visible:ring-primary/50 placeholder:text-muted-foreground/40 text-sm rounded-md"
                   />
                   <button
                     type="button"
                     onClick={toggleVisibility}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-500 hover:text-blue-700"
                     tabIndex={-1}
                     aria-label={isVisible ? "Ocultar contraseña" : "Mostrar contraseña"}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    {isVisible ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {isVisible ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
                   </button>
                 </div>
                 {field.state.meta.errors[0] && (
-                  <p className="mt-2 text-sm text-destructive">{field.state.meta.errors[0]}</p>
+                  <p className="text-xs text-destructive mt-1">
+                    {field.state.meta.errors[0]}
+                  </p>
                 )}
               </div>
             )}
           />
         </div>
+
         <Button
           type="submit"
-          className="w-full"
           disabled={isLoading}
+          className="w-full h-10 text-sm font-medium tracking-wide"
         >
-          {isLoading ? "Validando..." : "Iniciar sesión"}
+          {isLoading ? (
+            <span className="flex items-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Validando...
+            </span>
+          ) : (
+            "Iniciar sesión"
+          )}
         </Button>
-
-        {/* <div className="mt-4 text-center">
-          <Link href="/recuperar-cuenta" className="text-sm text-blue-700 hover:underline dark:text-blue-400">
-            ¿Olvidaste tu contraseña?
-          </Link>
-        </div> */}
-
       </form>
     </section>
-
-
   );
 }

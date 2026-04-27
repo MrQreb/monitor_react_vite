@@ -53,11 +53,11 @@ export function TiemposMuertosPlanta1Page() {
         <div className="flex h-screen w-full flex-col overflow-hidden bg-background text-foreground px-2 pb-2 pt-1 md:px-3">
             <NavBar />
 
- 
+
             <main className="h-screen rounded-2xl border bg-linear-to-b from-muted/50 to-background px-4 py-5 md:px-5 md:py-6 dark:from-zinc-950/60 dark:to-zinc-950/20">
                 <div className="mx-auto max-w-6xl space-y-6">
 
-{/* 
+                    {/* 
                     <div className="sticky">
 
                         <LeyendaParo />
@@ -84,7 +84,6 @@ export function TiemposMuertosPlanta1Page() {
                     </header>
 
                     {/* Grid */}
-
                     {tiemposQuery.isLoading ? (
                         <p className="px-1 text-sm text-muted-foreground">Cargando paros activos...</p>
                     ) : paros.length > 0 ? (
