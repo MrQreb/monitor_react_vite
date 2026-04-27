@@ -18,18 +18,18 @@ export class ConservadorService implements IConservadorService {
     this.url = `${baseUrl}/api/v1`;
   }
 
-  async getCarryOverPlata1(): Promise<CarryOverDto> {
-    return await api<CarryOverDto>(
+  async getCarryOverPlata1(): Promise<CarryOverDto[]> {
+    return await api<CarryOverDto[]>(
       `${this.url}/conservador-planta-1/carry-over`,
     );
   }
-  async getCarryOverPlata3(): Promise<CarryOverDto> {
-    return await api<CarryOverDto>(
+  async getCarryOverPlata3(): Promise<CarryOverDto[]> {
+    return await api<CarryOverDto[]>(
       `${this.url}/conservador-planta-3/carry-over`,
     );
   }
-  async getCarryOverCajasPlanta3(): Promise<CarryOverCajasDto> {
-    return await api<CarryOverCajasDto>(
+  async getCarryOverCajasPlanta3(): Promise<CarryOverCajasDto[]> {
+    return await api<CarryOverCajasDto[]>(
       `${this.url}/conservador-planta-3/cajas`,
     );
   }
