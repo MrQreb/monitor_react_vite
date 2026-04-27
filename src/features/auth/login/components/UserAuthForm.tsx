@@ -28,20 +28,20 @@ export function UserAuthForm({ className, ...props }: HTMLAttributes<HTMLDivElem
         <div className="space-y-4">
           {/* Usuario */}
           <form.Field
-            name="usuario"
+            name="nombreUsuario"
             children={(field) => (
               <div className="space-y-1.5">
                 <Label
-                  htmlFor="usuario"
+                  htmlFor="nombreUsuario"
                   className="text-xs font-medium tracking-widest uppercase text-muted-foreground"
                 >
                   Usuario
                 </Label>
                 <Input
-                  id="usuario"
+                  id="nombreUsuario"
                   placeholder="nombre de usuario"
                   autoCapitalize="none"
-                  autoComplete="username"
+                  autoComplete="nombreUsuario"
                   disabled={isLoading}
                   value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}

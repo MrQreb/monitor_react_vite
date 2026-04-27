@@ -27,7 +27,7 @@ export default function LoginPage() {
         <div className="flex min-h-screen">
 
           {/* ── Left panel ── */}
-          <aside className="hidden lg:flex flex-col justify-between w-[720px] shrink-0 border-r border-border/40 bg-card p-12">
+          <aside className="hidden lg:flex flex-col justify-between w-[920px] shrink-0 border-r border-border/40 bg-card p-12">
 
             {/* Logo / brand */}
             <div className="flex items-center gap-3">

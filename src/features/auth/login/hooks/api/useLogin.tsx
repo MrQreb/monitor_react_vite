@@ -1,20 +1,24 @@
 import { useMutation } from "@tanstack/react-query"
 import { useForm } from "@tanstack/react-form"
 import { toast } from "sonner"
-// import { autenticacionService } from "@/subsystems/usuarios/api/features/autenticacion/instances/autenticacion-instance"
-// import type { LoginDto } from "@/subsystems/usuarios/api/features/autenticacion/dto/login-dto"
 import { useUsuarioStore } from "@/shared/store/usuario.store"
 import { useNavigate } from "@tanstack/react-router"
+import type { LoginDto } from "@/features/auth/api/dto/login-dto"
+import { loginService } from "@/features/auth/api/instances/instance"
 
 export function useLogin() {
   const { setUsuario, setIsAuthenticated } = useUsuarioStore();
   const navigate = useNavigate();
 
   const mutation = useMutation({
-    mutationFn: (data: LoginDto) => autenticacionService.login(data),
+    mutationFn: (data: LoginDto) => loginService.login(data),
     onSuccess: (data) => {
       setUsuario(data);
       setIsAuthenticated(true);
+      navigate({
+        to:'/menu',
+      });
+      toast.success(`Bienvenido`);
     },
     onError: (error: any) => {
       toast.error(error.message || "No se pudo iniciar sesión"); 
@@ -23,7 +27,7 @@ export function useLogin() {
 
   const form = useForm({
     defaultValues: {
-      usuario: "",
+      nombreUsuario: "",
       contrasena: "",
     } satisfies LoginDto,
     onSubmit: async ({ value }) => {
