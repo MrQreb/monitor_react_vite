@@ -1,4 +1,3 @@
-import { loginRoute } from "@/features/auth/login/routes/routes";
 import { rootRoute } from "./__root";
 import { materiaPrimaRoutes } from "@/features/materia-prima/routes/routes";
 import { createRoute } from "@tanstack/react-router";
@@ -7,6 +6,7 @@ import { temperaturasRoutes } from "@/features/temperaturas/routes/routes";
 import { combustoleoRoutes } from "@/features/combustoleo/routes/routes";
 import { produccionDiariaRoutes } from "@/features/app-tags/routes/routes";
 import { tiemposMuertosRoutes } from "@/features/tiempos-muertos/routes/routes";
+import { loginRoute } from "@/features/auth/routes/routes";
 
 /**
  * Arreglo de rutas donde se importan todas las rutas de la aplicacion

@@ -1,6 +1,6 @@
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useState, type HTMLAttributes } from "react";
-import { useLogin } from "../hooks/api/useLogin";
+import { useLogin } from "../hooks/useLogin";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 /**
  * Formulario de login con los inputs
  */
-
 export function UserAuthForm({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   const { form, isLoading } = useLogin();
 
