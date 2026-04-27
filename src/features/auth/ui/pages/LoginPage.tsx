@@ -1,14 +1,15 @@
 import { Separator } from "@/components/ui/separator";
 import { UserAuthForm } from "../components/UserAuthForm";
-import { useState } from "react";
 import { Button } from '@/components/ui/button';
 import { Activity, Moon, Sun } from "lucide-react";
+import { useTheme } from "@/app/providers/ThemeProvider";
 
 export default function LoginPage() {
-  const [dark, setDark] = useState(true);
+  
+  const { setTheme, theme } = useTheme();
 
   return (
-    <div className={dark ? "dark" : ""}>
+    <div className={theme === "dark" ? "dark" : ""}>
       <div className="min-h-screen w-full bg-background text-foreground font-sans antialiased">
 
         {/* Theme toggle — top right */}
@@ -16,11 +17,11 @@ export default function LoginPage() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setDark((d) => !d)}
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             aria-label="Cambiar tema"
             className="rounded-full text-muted-foreground hover:text-foreground"
           >
-            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </Button>
         </div>
 
