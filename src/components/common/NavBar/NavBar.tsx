@@ -2,11 +2,11 @@ import { useNavigate } from "@tanstack/react-router"
 
 //Fecha actual en formato de mexico
 const formatCurrentDate = () =>
-  new Intl.DateTimeFormat('es-MX', {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-  }).format(new Date())
+    new Intl.DateTimeFormat('es-MX', {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+    }).format(new Date())
 
 /**
  * Componente que muestra el NavBar junto a la fecha
@@ -17,14 +17,14 @@ export default function NavBar() {
 
     const handleClick = () => {
         navitate({
-            to:'/menu',
+            to: '/menu',
         })
     }
-    
+
     return (
-        <header className="w-full bg-white px-12 py-2 text-black md:px-4 md:py-2.5">
+        <header className="w-full px-12 py-2 bg-white text-black md:px-4 md:py-2.5">
             <div className="mx-auto flex w-full  items-center justify-between gap-3">
-                <div className="flex min-w-0 items-center gap-2.5">
+                <div className="rounded-xl bg-white px-2 py-1">
                     <img
                         className="h-8 w-auto max-w-36 shrink-0 cursor-pointer object-contain sm:h-9 sm:max-w-44 md:h-10 md:max-w-52"
                         src="/logo.png"
