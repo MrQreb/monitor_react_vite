@@ -105,7 +105,7 @@ type UseAutoScrollProps = {
  */
 export const useAutoScroll = ({
   itemCount,
-  msPerItem = 800,
+  msPerItem = 1500,
   pauseOnEnd = 1500,
   enabled = true,
 }: UseAutoScrollProps) => {

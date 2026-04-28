@@ -1,6 +1,6 @@
 
-import { useBoletasPlanta1 } from '../hooks/useGetBoletasPlanta';
-import { useEstatusPlanta1 } from '../hooks/useGetEstatus';
+import { useBoletasPlanta1 } from '../hooks/useBoletasPlanta';
+import { useEstatusPlanta1 } from '../hooks/useEstatus';
 import { ViajesEstatusView } from "../views/ViajesEstatusView"
 
 export default function ViajesEstatusPlanta1Page() {

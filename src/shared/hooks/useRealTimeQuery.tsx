@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 /**
@@ -76,25 +76,22 @@ export function useRealtimeQuery<T>({
 }: UseRealtimeQueryProps<T>) {
   const queryClient = useQueryClient();
 
+ 
+  const subscribeRef = useRef(subscribe);
+  subscribeRef.current = subscribe;
+
   const query = useQuery({
     queryKey,
     queryFn,
   });
 
   useEffect(() => {
-    /**
-     * Se suscribe al evento en tiempo real.
-     * Cada vez que llegan nuevos datos, se actualiza el cache.
-     */
-    const unsubscribe = subscribe((data) => {
+    const unsubscribe = subscribeRef.current((data) => {
       queryClient.setQueryData(queryKey, data);
     });
 
-    /**
-     * Cleanup: elimina la suscripción al desmontar el componente
-     */
     return unsubscribe;
-  }, [queryClient, subscribe, queryKey]);
+  }, [queryClient]); 
 
   return query;
 }

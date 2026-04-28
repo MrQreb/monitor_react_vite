@@ -19,7 +19,7 @@ export function ViajesProgramados({ viajes }: Props) {
 
   const { containerRef } = useAutoScroll({
     itemCount: viajes.length,
-    msPerItem: 900,
+    msPerItem: 1500,
     enabled: scroll.mode === "auto",
   });
 

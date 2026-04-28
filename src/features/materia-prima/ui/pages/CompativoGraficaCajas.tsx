@@ -1,7 +1,7 @@
 import NavBar from "@/components/common/NavBar/NavBar"
 import useSocketConnection from "@/shared/hooks/useConnetion"
 import { NoConnection } from "@/components/common/NoConnection/NoConnection"
-import { useGetCajasPlanta1, useGetCajasPlanta3 } from "../hooks/useGetCajas"
+import { useGetCajasPlanta1, useGetCajasPlanta3 } from "../hooks/useCajas"
 import { GraficaCajas } from "../components/GraficaCajas"
 import { Label } from '@/components/ui/label';
 

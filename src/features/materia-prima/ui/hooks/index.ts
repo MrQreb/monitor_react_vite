@@ -1,3 +1,3 @@
-export * from './useGetBoletasPlanta';
-export * from './useGetCajas';
-export * from './useGetEstatus';
+export * from './useBoletasPlanta';
+export * from './useCajas';
+export * from './useEstatus';

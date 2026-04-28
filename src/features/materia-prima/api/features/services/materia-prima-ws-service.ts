@@ -17,48 +17,48 @@ export class MateriaPrimaWSService implements IMateriaPrimaWSService {
   onBoletasPlanta1 = (
     callback: (data: ViajeProgramadoDto[]) => void
   ) => {
-    this.socket.on("dashboard:products_plata_1", callback);
+    this.socket.on("dashboard:deliveries_plata_1", callback);
     return () =>
-      this.socket.off("dashboard:products_plata_1", callback);
+      this.socket.off("dashboard:deliveries_plata_1", callback);
   };
 
   onEstatusPlanta1 = (
     callback: (data: ViajeEstatusDto[]) => void
   ) => {
-    this.socket.on("dashboard:deliveries_plata_1", callback);
+    this.socket.on("dashboard:deliveriesStatus_plata_1", callback);
     return () =>
-      this.socket.off("dashboard:deliveries_plata_1", callback);
+      this.socket.off("dashboard:deliveriesStatus_plata_1", callback);
   };
 
   onCajasPlanta1 = (
     callback: (data: CajasEsperadasDto[]) => void
   ) => {
-    this.socket.on("dashboard:deliveries_plata_1", callback);
+    this.socket.on("dashboard:dataBarChart_planta_1", callback);
     return () =>
-      this.socket.off("dashboard:deliveries_plata_1", callback);
+      this.socket.off("dashboard:dataBarChart_planta_1", callback);
   };
 
   onBoletasPlanta3 = (
     callback: (data: ViajeProgramadoDto[]) => void
   ) => {
-    this.socket.on("dashboard:products_plata_3", callback);
+    this.socket.on("dashboard:dashboard:deliveries_plata_3", callback);
     return () =>
-      this.socket.off("dashboard:products_plata_3", callback);
+      this.socket.off("dashboard:dashboard:deliveries_plata_3", callback);
   };
 
   onEstatusPlanta3 = (
     callback: (data: ViajeEstatusDto[]) => void
   ) => {
-    this.socket.on("dashboard:deliveries_plata_3", callback);
+    this.socket.on("dashboard:deliveriesStatus_plata_3", callback);
     return () =>
-      this.socket.off("dashboard:deliveries_plata_3", callback);
+      this.socket.off("dashboard:deliveriesStatus_plata_3", callback);
   };
 
   onCajasPlanta3 = (
     callback: (data: CajasEsperadasDto[]) => void
   ) => {
-    this.socket.on("dashboard:deliveries_plata_3", callback);
+    this.socket.on("dashboard:dataBarChart_planta_3", callback);
     return () =>
-      this.socket.off("dashboard:deliveries_plata_3", callback);
+      this.socket.off("dashboard:dataBarChart_planta_3", callback);
   };
 }

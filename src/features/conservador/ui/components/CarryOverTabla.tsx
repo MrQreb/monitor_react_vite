@@ -3,6 +3,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useAutoScroll } from "@/shared/hooks/useAutoScroll"
 import type { CarryOverDto } from "../../api/dto/carry-over-dto"
 import { useScrollStore } from "@/shared/store/use-scroll-store"
+import { Separator } from '@/components/ui/separator';
 
 type Props = {
   carryOver: CarryOverDto[]
@@ -67,43 +68,38 @@ export function CarryOverTabla({ carryOver }: Props) {
 
   const { containerRef } = useAutoScroll({
     itemCount: carryOver.length,
-    msPerItem: 900,
+    msPerItem: 1400,
     enabled: scroll.mode === "auto",
   });
 
   return (
     <Card className="flex h-full min-w-0 w-full flex-col overflow-hidden rounded-[1.75rem] border-0 bg-white shadow-none">
-      <CardHeader className="pb-1 pt-4 text-center">
-        <CardTitle className="text-[1.15rem] font-extrabold text-cyan-700">
-          Estatus de viajes
-        </CardTitle>
-      </CardHeader>
-
       <CardContent className="min-h-0 min-w-0 px-0 pb-0 pt-0">
         <div ref={containerRef} className="h-full min-h-0 w-full overflow-y-auto">
           <Table className="table-fixed">
             <TableHeader className="sticky top-0 z-10 bg-white [&_tr]:border-b [&_tr]:border-slate-300">
               <TableRow className="hover:bg-transparent">
-                <TableHead className="w-[16%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                <TableHead className="w-[16%] border-b border-slate-300 text-center text-sm font-semibold text-cyan-700 sm:text-base lg:text-lg">
                   Folio
                 </TableHead>
-                <TableHead className="w-[24%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                <TableHead className="w-[24%] border-b border-slate-300 text-center text-sm font-semibold text-cyan-700 sm:text-base lg:text-lg">
                   Ingrediente
                 </TableHead>
-                <TableHead className="w-[18%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                <TableHead className="w-[18%] border-b border-slate-300 text-center text-sm font-semibold text-cyan-700 sm:text-base lg:text-lg">
                   Agricultor
                 </TableHead>
-                <TableHead className="w-[14%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                <TableHead className="w-[14%] border-b border-slate-300 text-center text-sm font-semibold text-cyan-700 sm:text-base lg:text-lg">
                   Fecha
                 </TableHead>
-                <TableHead className="w-[14%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                <TableHead className="w-[14%] border-b border-slate-300 text-center text-sm font-semibold text-cyan-700 sm:text-base lg:text-lg">
                   CarryOver (Kg)
                 </TableHead>
-                <TableHead className="w-[14%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                <TableHead className="w-[14%] border-b border-slate-300 text-center text-sm font-semibold text-cyan-700 sm:text-base lg:text-lg">
                   Kilos Disponibles (Kg)
                 </TableHead>
               </TableRow>
             </TableHeader>
+            <Separator/ >
 
             <TableBody>
               {carryOver.map((item) => {

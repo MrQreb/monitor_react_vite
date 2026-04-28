@@ -7,29 +7,21 @@ export class ConservadorWsService implements IConservadorWsService {
   private socket = SocketClient.getInstance();
 
   onCarryOverPlanta1 = (callback: (data: CarryOverDto[]) => void) => {
-    this.socket.on("dashboard:carry_over_planta_1", callback);
-    return () =>
-      this.socket.off(
-        "dashboard:carry_over_planta_1",
-        callback,
-      );
+    this.socket.on("dashboard:carry_over_planta_1", (data) => {
+      console.log("🔥 SOCKET planta 1", data);
+      callback(data);
+    });
+    return () => this.socket.off("dashboard:carry_over_planta_1", callback);
   };
 
   onCarryOverCajasPlanta3 = (callback: (data: CarryOverCajasDto[]) => void) => {
     this.socket.on("dashboard:calularBonoCajasRecortadas_plata_3", callback);
     return () =>
-      this.socket.off(
-        "dashboard:calularBonoCajasRecortadas_plata_3",
-        callback,
-      );
+      this.socket.off("dashboard:calularBonoCajasRecortadas_plata_3", callback);
   };
 
   onCarryOverPlanta3 = (callback: (data: CarryOverDto[]) => void) => {
     this.socket.on("dashboard:carry_over_planta_3", callback);
-    return () =>
-      this.socket.off(
-        "dashboard:carry_over_planta_3",
-        callback,
-      );
+    return () => this.socket.off("dashboard:carry_over_planta_3", callback);
   };
 }
