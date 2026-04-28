@@ -4,7 +4,8 @@ import { Carrot, ChartColumnBig, Factory, ThermometerSnowflake, Sun, Moon } from
 import { CardMenu } from '../components/CardMenu';
 import { TabsMenu } from '../components/TabsMenu';
 import { Button } from '@/components/ui/button';
-import { useTheme } from '../../../app/providers/ThemeProvider';
+import { NAV_MATERIA_PRIMA } from '@/features/materia-prima/routes/NAV_MATERIA_PRIMA';
+import { useTheme } from '@/app/providers/ThemeProvider';
 
 
 type Tab = 'Ambas' | 'Planta 1' | 'Planta 3' | 'Cedis';
@@ -17,11 +18,11 @@ type MenuItem = {
 };
 
 const menuItems: MenuItem[] = [
-  { title: 'Materia Prima Planta 1', category: 'Planta 1', route: '/', icon: Carrot },
-  { title: 'Seguimiento Planta 1', category: 'Planta 1', route: '/', icon: Factory },
-  { title: 'Materia Prima Planta 3', category: 'Planta 3', route: '/', icon: Carrot },
-  { title: 'Seguimiento Planta 3', category: 'Planta 3', route: '/', icon: Factory },
-  { title: 'Concentrado en Plantas', category: 'Ambas', route: '/', icon: ChartColumnBig },
+  { title: 'Materia Prima Planta 1', category: 'Planta 1', route: NAV_MATERIA_PRIMA.viajesCajasPlanta1, icon: Carrot },
+  { title: 'Seguimiento Planta 1', category: 'Planta 1', route: NAV_MATERIA_PRIMA.viajesPlanta1, icon: Factory },
+  { title: 'Materia Prima Planta 3', category: 'Planta 3', route: NAV_MATERIA_PRIMA.viajesCajasPlanta3, icon: Carrot },
+  { title: 'Seguimiento Planta 3', category: 'Planta 3', route: NAV_MATERIA_PRIMA.viajesPlanta3, icon: Factory },
+  { title: 'Concentrado en Plantas', category: 'Ambas', route: NAV_MATERIA_PRIMA.comparativoCajas, icon: ChartColumnBig },
   { title: 'Tunel Planta 1', category: 'Planta 1', route: '/', icon: ThermometerSnowflake },
   { title: 'Tunel Planta 3', category: 'Planta 3', route: '/', icon: ThermometerSnowflake },
   { title: 'Cedis', category: 'Cedis', route: '/', icon: ThermometerSnowflake },
@@ -38,7 +39,6 @@ export const MenuPage = () => {
 
   const filteredItems = useMemo(() => {
     if (tab === 'Ambas') return menuItems;
-
     return menuItems.filter(item => item.category === tab);
   }, [tab]);
 
