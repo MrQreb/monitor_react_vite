@@ -23,6 +23,12 @@ export const useCarryOverCajasPlanta3 = () =>
 export const useCarryOverPlanta1 = () =>
     useRealtimeQuery({
         queryKey: ["planta-1-conservador-carry-over"],
-        queryFn: () => conservadorService.getCarryOverPlata1(),
-        subscribe: conservadorWsService.onCarryOverPlanta1,
-    });
+        queryFn: async () => {
+            return await conservadorService.getCarryOverPlata1();
+             
+        },
+        subscribe: (cb) =>
+            conservadorWsService.onCarryOverPlanta1((data) => {
+                cb(data);
+            }),
+    });;

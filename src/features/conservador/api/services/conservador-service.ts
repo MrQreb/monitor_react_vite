@@ -19,9 +19,13 @@ export class ConservadorService implements IConservadorService {
   }
 
   async getCarryOverPlata1(): Promise<CarryOverDto[]> {
-    return await api<CarryOverDto[]>(
+    const response =  await api<CarryOverDto[]>(
       `${this.url}/conservador-planta-1/carry-over`,
     );
+
+    console.log(console.log(response))
+
+    return response;
   }
   async getCarryOverPlata3(): Promise<CarryOverDto[]> {
     return await api<CarryOverDto[]>(

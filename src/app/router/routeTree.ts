@@ -7,6 +7,7 @@ import { combustoleoRoutes } from "@/features/combustoleo/routes/routes";
 import { produccionDiariaRoutes } from "@/features/app-tags/routes/routes";
 import { tiemposMuertosRoutes } from "@/features/tiempos-muertos/routes/routes";
 import { loginRoute } from "@/features/auth/routes/routes";
+import { carryOverRoutes } from "@/features/conservador/routes/routes";
 
 /**
  * Arreglo de rutas donde se importan todas las rutas de la aplicacion
@@ -25,5 +26,6 @@ export const routeTree = rootRoute.addChildren([
   temperaturasRoutes,
   combustoleoRoutes,
   produccionDiariaRoutes,
-  tiemposMuertosRoutes
+  tiemposMuertosRoutes,
+  carryOverRoutes
 ]);

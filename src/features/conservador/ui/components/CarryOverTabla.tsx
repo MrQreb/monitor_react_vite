@@ -1,101 +1,131 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useAutoScroll } from "@/shared/hooks/useAutoScroll"
 import type { CarryOverDto } from "../../api/dto/carry-over-dto"
+import { useScrollStore } from "@/shared/store/use-scroll-store"
 
 type Props = {
   carryOver: CarryOverDto[]
 }
 
+type DayColor = "normal" | "warning" | "danger" | "extreme"
+
 const emptyCell = (value: string | null | undefined) => value?.trim() || ""
 
+const calculateDaysDifference = (fecha: string): number => {
+  const fechaDate = new Date(fecha)
+  const hoy = new Date()
+
+  const fechaSinHora = new Date(fechaDate.getFullYear(), fechaDate.getMonth(), fechaDate.getDate())
+  const hoySinHora = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate())
+  const milisegundos = hoySinHora.getTime() - fechaSinHora.getTime()
+
+  return Math.floor(milisegundos / (1000 * 60 * 60 * 24))
+}
+
+const getDayColor = (days: number): DayColor => {
+  if (days >= 4) return "extreme"
+  if (days >= 3) return "danger"
+  if (days >= 2) return "warning"
+  return "normal"
+}
+
+const getRowColorClasses = (dayColor: DayColor) => {
+  switch (dayColor) {
+    case "extreme":
+      return "bg-red-950 text-white hover:bg-red-900"
+    case "danger":
+      return "bg-rose-200 text-rose-950 hover:bg-rose-300"
+    case "warning":
+      return "bg-amber-100 text-amber-950 hover:bg-amber-200"
+    default:
+      return "bg-transparent text-cyan-700 hover:bg-slate-50"
+  }
+}
+
+const getCellClasses = (dayColor: DayColor) => {
+  const base = "px-4 py-5 text-center text-xs leading-tight whitespace-normal sm:px-5 sm:text-sm lg:text-[1.02rem]"
+
+  switch (dayColor) {
+    case "extreme":
+      return `${base} font-bold text-white`
+    case "danger":
+      return `${base} font-medium text-rose-950`
+    case "warning":
+      return `${base} text-amber-950`
+    default:
+      return `${base} text-cyan-700`
+  }
+}
+
+const formatNumber = (value: number) => new Intl.NumberFormat("en-US").format(value)
 
 export function CarryOverTabla({ carryOver }: Props) {
 
+  const scroll = useScrollStore();
+
+
   const { containerRef } = useAutoScroll({
     itemCount: carryOver.length,
-    msPerItem: 700, // ajusta velocidad
+    msPerItem: 900,
+    enabled: scroll.mode === "auto",
   });
 
-
   return (
-    <Card className="flex h-full min-w-0 w-full flex-col rounded-[1.75rem] border-0 bg-white shadow-none">
+    <Card className="flex h-full min-w-0 w-full flex-col overflow-hidden rounded-[1.75rem] border-0 bg-white shadow-none">
       <CardHeader className="pb-1 pt-4 text-center">
         <CardTitle className="text-[1.15rem] font-extrabold text-cyan-700">
           Estatus de viajes
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="min-w-0 px-0 pb-0 pt-0">
-        <ScrollArea className="h-77.5 w-full min-w-0">
-          
-          <Table>
-            <TableHeader className="[&_tr]:sticky [&_tr]:top-0 [&_tr]:z-10 [&_tr]:bg-white">
-              <TableRow className="border-slate-300 hover:bg-transparent">
-                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                  Rancho
+      <CardContent className="min-h-0 min-w-0 px-0 pb-0 pt-0">
+        <div ref={containerRef} className="h-full min-h-0 w-full overflow-y-auto">
+          <Table className="table-fixed">
+            <TableHeader className="sticky top-0 z-10 bg-white [&_tr]:border-b [&_tr]:border-slate-300">
+              <TableRow className="hover:bg-transparent">
+                <TableHead className="w-[16%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Folio
                 </TableHead>
-                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                  Producto
+                <TableHead className="w-[24%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Ingrediente
                 </TableHead>
-                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                  Estatus / Folio
+                <TableHead className="w-[18%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Agricultor
                 </TableHead>
-                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                  Centro
+                <TableHead className="w-[14%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Fecha
                 </TableHead>
-                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                  Hora Pes
+                <TableHead className="w-[14%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  CarryOver (Kg)
                 </TableHead>
-                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                  Hora Eva
-                </TableHead>
-                <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                  Hora Imp
+                <TableHead className="w-[14%] border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
+                  Kilos Disponibles (Kg)
                 </TableHead>
               </TableRow>
             </TableHeader>
 
             <TableBody>
-              {viajes?.map((carryOver, index) => (
-                <TableRow key={`${viaje.rancho}-${viaje.ticket}-${index}`} className="border-slate-300 hover:bg-transparent align-top">
-                  <TableCell className="px-4 py-5 text-left text-xs leading-tight whitespace-normal wrap-break-word text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
-                    {viaje.rancho}
-                  </TableCell>
+              {carryOver.map((item) => {
+                const diasTranscurridos = calculateDaysDifference(item.fechaCreacion.toString())
+                const dayColor = getDayColor(diasTranscurridos)
 
-                  <TableCell className="px-4 py-5 text-left text-xs leading-tight whitespace-normal wrap-break-word text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
-                    {viaje.producto}
-                  </TableCell>
-
-                  <TableCell className="px-4 py-5 text-center text-xs leading-tight text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
-                    <div className="flex flex-col items-center gap-2 sm:gap-3">
-                      <span>{viaje.estatus}</span>
-                      <span className="text-base font-bold sm:text-xl">{emptyCell(viaje.folio)}</span>
-                    </div>
-                  </TableCell>
-
-                  <TableCell className="px-4 py-5 text-center text-xs leading-tight whitespace-normal text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
-                    {emptyCell(viaje.centro_corte)}
-                  </TableCell>
-
-                  <TableCell className="px-4 py-5 text-center text-sm leading-tight text-cyan-700 sm:text-lg">
-                    {emptyCell(viaje.hora_pesaje)}
-                  </TableCell>
-
-                  <TableCell className="px-4 py-5 text-center text-sm leading-tight text-cyan-700 sm:text-lg">
-                    {emptyCell(viaje.hora_evaluacion)}
-                  </TableCell>
-
-                  <TableCell className="px-4 py-5 text-center text-sm leading-tight text-cyan-700 sm:text-lg">
-                    {emptyCell(viaje.hora_impresion)}
-                  </TableCell>
-                </TableRow>
-              ))}
+                return (
+                  <TableRow key={item.idGlobal} className={`${getRowColorClasses(dayColor)} border-slate-300 align-top`}>
+                    <TableCell className={getCellClasses(dayColor)}>{emptyCell(item.folio)}</TableCell>
+                    <TableCell className={getCellClasses(dayColor)}>{emptyCell(item.ingredienteNombre)}</TableCell>
+                    <TableCell className={getCellClasses(dayColor)}>{emptyCell(item.agricultor)}</TableCell>
+                    <TableCell className={getCellClasses(dayColor)}>
+                      {new Date(item.fechaCreacion).toLocaleDateString("es-MX")}
+                    </TableCell>
+                    <TableCell className={getCellClasses(dayColor)}>{formatNumber(item.kilosTotalesCarryOver)}</TableCell>
+                    <TableCell className={getCellClasses(dayColor)}>{formatNumber(item.kilosDisponibles)}</TableCell>
+                  </TableRow>
+                )
+              })}
             </TableBody>
           </Table>
-          <ScrollBar orientation="vertical" />
-        </ScrollArea>
+        </div>
       </CardContent>
     </Card>
   )
