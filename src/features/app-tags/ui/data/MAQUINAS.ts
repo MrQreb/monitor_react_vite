@@ -1,0 +1,383 @@
+/** Colores de los objetivos */
+export const colores = {
+  presupuesto: "oklch(90.5% 0.182 98.111)",
+  objetivo: "#155dfc",
+  goal: "oklch(62.7% 0.194 149.214)",
+  default: "#d1d5dc",
+};
+
+type RegistroHora = {
+  hora: number;
+  presupuesto: number;
+  objetivo: number;
+  gol: number;
+};
+
+type MaquinaConfig = {
+  nombre: string;
+  datos: RegistroHora[];
+};
+
+/** Data del exel de Fransico cano */
+export const MAQUINAS: Record<string, MaquinaConfig> = {
+  AUT01: {
+    nombre: "AUTO01",
+    datos: [
+      { hora: 8, presupuesto: 2077, objetivo: 2348, gol: 2709 },
+      { hora: 9, presupuesto: 4154, objetivo: 4695, gol: 5418 },
+      { hora: 10, presupuesto: 6230, objetivo: 7043, gol: 8126 },
+      { hora: 11, presupuesto: 8307, objetivo: 9391, gol: 10835 },
+      { hora: 12, presupuesto: 10384, objetivo: 11738, gol: 13544 },
+      { hora: 13, presupuesto: 12461, objetivo: 14086, gol: 16253 },
+      { hora: 14, presupuesto: 14537, objetivo: 16433, gol: 18961 },
+      { hora: 15, presupuesto: 16614, objetivo: 18781, gol: 21670 },
+
+      { hora: 16, presupuesto: 2077, objetivo: 2348, gol: 2709 },
+      { hora: 17, presupuesto: 4154, objetivo: 4695, gol: 5418 },
+      { hora: 18, presupuesto: 6230, objetivo: 7043, gol: 8126 },
+      { hora: 19, presupuesto: 8307, objetivo: 9391, gol: 10835 },
+      { hora: 20, presupuesto: 10384, objetivo: 11738, gol: 13544 },
+      { hora: 21, presupuesto: 12461, objetivo: 14086, gol: 16253 },
+      { hora: 22, presupuesto: 14537, objetivo: 16433, gol: 18961 },
+      { hora: 23, presupuesto: 16614, objetivo: 18781, gol: 21670 },
+    ],
+  },
+
+  AUT02: {
+    nombre: "AUTO02",
+    datos: [
+      { hora: 8, presupuesto: 1938, objetivo: 2228, gol: 2897 },
+      { hora: 9, presupuesto: 3875, objetivo: 4456, gol: 5793 },
+      { hora: 10, presupuesto: 5813, objetivo: 6684, gol: 8690 },
+      { hora: 11, presupuesto: 7750, objetivo: 8913, gol: 11586 },
+      { hora: 12, presupuesto: 9688, objetivo: 11141, gol: 14483 },
+      { hora: 13, presupuesto: 11625, objetivo: 13369, gol: 17379 },
+      { hora: 14, presupuesto: 13563, objetivo: 15597, gol: 20276 },
+      { hora: 15, presupuesto: 15500, objetivo: 17825, gol: 23172 },
+
+      { hora: 16, presupuesto: 1938, objetivo: 2228, gol: 2897 },
+      { hora: 17, presupuesto: 3875, objetivo: 4456, gol: 5793 },
+      { hora: 18, presupuesto: 5813, objetivo: 6684, gol: 8690 },
+      { hora: 19, presupuesto: 7750, objetivo: 8913, gol: 11586 },
+      { hora: 20, presupuesto: 9688, objetivo: 11141, gol: 14483 },
+      { hora: 21, presupuesto: 11625, objetivo: 13369, gol: 17379 },
+      { hora: 22, presupuesto: 13563, objetivo: 15597, gol: 20276 },
+      { hora: 23, presupuesto: 15500, objetivo: 17825, gol: 23172 },
+    ],
+  },
+
+  AUT03: {
+    nombre: "AUTO03",
+    datos: [
+      { hora: 8, presupuesto: 1938, objetivo: 2228, gol: 2897 },
+      { hora: 9, presupuesto: 3875, objetivo: 4456, gol: 5793 },
+      { hora: 10, presupuesto: 5813, objetivo: 6684, gol: 8690 },
+      { hora: 11, presupuesto: 7750, objetivo: 8913, gol: 11586 },
+      { hora: 12, presupuesto: 9688, objetivo: 11141, gol: 14483 },
+      { hora: 13, presupuesto: 11625, objetivo: 13369, gol: 17379 },
+      { hora: 14, presupuesto: 13563, objetivo: 15597, gol: 20276 },
+      { hora: 15, presupuesto: 15500, objetivo: 17825, gol: 23172 },
+
+      { hora: 16, presupuesto: 1938, objetivo: 2228, gol: 2897 },
+      { hora: 17, presupuesto: 3875, objetivo: 4456, gol: 5793 },
+      { hora: 18, presupuesto: 5813, objetivo: 6684, gol: 8690 },
+      { hora: 19, presupuesto: 7750, objetivo: 8913, gol: 11586 },
+      { hora: 20, presupuesto: 9688, objetivo: 11141, gol: 14483 },
+      { hora: 21, presupuesto: 11625, objetivo: 13369, gol: 17379 },
+      { hora: 22, presupuesto: 13563, objetivo: 15597, gol: 20276 },
+      { hora: 23, presupuesto: 15500, objetivo: 17825, gol: 23172 },
+    ],
+  },
+  AUT04: {
+    nombre: "AUTO04",
+    datos: [
+      { hora: 8, presupuesto: 1938, objetivo: 2228, gol: 2897 },
+      { hora: 9, presupuesto: 3875, objetivo: 4456, gol: 5793 },
+      { hora: 10, presupuesto: 5813, objetivo: 6684, gol: 8690 },
+      { hora: 11, presupuesto: 7750, objetivo: 8913, gol: 11586 },
+      { hora: 12, presupuesto: 9688, objetivo: 11141, gol: 14483 },
+      { hora: 13, presupuesto: 11625, objetivo: 13369, gol: 17379 },
+      { hora: 14, presupuesto: 13563, objetivo: 15597, gol: 20276 },
+      { hora: 15, presupuesto: 15500, objetivo: 17825, gol: 23172 },
+
+      { hora: 16, presupuesto: 1938, objetivo: 2228, gol: 2897 },
+      { hora: 17, presupuesto: 3875, objetivo: 4456, gol: 5793 },
+      { hora: 18, presupuesto: 5813, objetivo: 6684, gol: 8690 },
+      { hora: 19, presupuesto: 7750, objetivo: 8913, gol: 11586 },
+      { hora: 20, presupuesto: 9688, objetivo: 11141, gol: 14483 },
+      { hora: 21, presupuesto: 11625, objetivo: 13369, gol: 17379 },
+      { hora: 22, presupuesto: 13563, objetivo: 15597, gol: 20276 },
+      { hora: 23, presupuesto: 15500, objetivo: 17825, gol: 23172 },
+    ],
+  },
+  AUT05: {
+    nombre: "AUTO05",
+    datos: [
+      { hora: 8, presupuesto: 2188, objetivo: 2516, gol: 3270 },
+      { hora: 9, presupuesto: 4375, objetivo: 5031, gol: 6541 },
+      { hora: 10, presupuesto: 6563, objetivo: 7547, gol: 9811 },
+      { hora: 11, presupuesto: 8750, objetivo: 10063, gol: 13081 },
+      { hora: 12, presupuesto: 10938, objetivo: 12578, gol: 16351 },
+      { hora: 13, presupuesto: 13125, objetivo: 15094, gol: 19622 },
+      { hora: 14, presupuesto: 15313, objetivo: 17609, gol: 22892 },
+      { hora: 15, presupuesto: 17500, objetivo: 20125, gol: 26162 },
+
+      { hora: 16, presupuesto: 2188, objetivo: 2516, gol: 3270 },
+      { hora: 17, presupuesto: 4375, objetivo: 5031, gol: 6541 },
+      { hora: 18, presupuesto: 6563, objetivo: 7547, gol: 9811 },
+      { hora: 19, presupuesto: 8750, objetivo: 10063, gol: 13081 },
+      { hora: 20, presupuesto: 10938, objetivo: 12578, gol: 16351 },
+      { hora: 21, presupuesto: 13125, objetivo: 15094, gol: 19622 },
+      { hora: 22, presupuesto: 15313, objetivo: 17609, gol: 22892 },
+      { hora: 23, presupuesto: 17500, objetivo: 20125, gol: 26162 },
+    ],
+  },
+
+  AUT06: {
+    nombre: "AUTO06",
+    datos: [
+      { hora: 8, presupuesto: 2188, objetivo: 2516, gol: 3270 },
+      { hora: 9, presupuesto: 4375, objetivo: 5031, gol: 6541 },
+      { hora: 10, presupuesto: 6563, objetivo: 7547, gol: 9811 },
+      { hora: 11, presupuesto: 8750, objetivo: 10063, gol: 13081 },
+      { hora: 12, presupuesto: 10938, objetivo: 12578, gol: 16351 },
+      { hora: 13, presupuesto: 13125, objetivo: 15094, gol: 19622 },
+      { hora: 14, presupuesto: 15313, objetivo: 17609, gol: 22892 },
+      { hora: 15, presupuesto: 17500, objetivo: 20125, gol: 26162 },
+
+      { hora: 16, presupuesto: 2188, objetivo: 2516, gol: 3270 },
+      { hora: 17, presupuesto: 4375, objetivo: 5031, gol: 6541 },
+      { hora: 18, presupuesto: 6563, objetivo: 7547, gol: 9811 },
+      { hora: 19, presupuesto: 8750, objetivo: 10063, gol: 13081 },
+      { hora: 20, presupuesto: 10938, objetivo: 12578, gol: 16351 },
+      { hora: 21, presupuesto: 13125, objetivo: 15094, gol: 19622 },
+      { hora: 22, presupuesto: 15313, objetivo: 17609, gol: 22892 },
+      { hora: 23, presupuesto: 17500, objetivo: 20125, gol: 26162 },
+    ],
+  },
+
+  AUT07: {
+    nombre: "AUTO07",
+    datos: [
+      { hora: 8, presupuesto: 2188, objetivo: 2516, gol: 3270 },
+      { hora: 9, presupuesto: 4375, objetivo: 5031, gol: 6541 },
+      { hora: 10, presupuesto: 6563, objetivo: 7547, gol: 9811 },
+      { hora: 11, presupuesto: 8750, objetivo: 10063, gol: 13081 },
+      { hora: 12, presupuesto: 10938, objetivo: 12578, gol: 16351 },
+      { hora: 13, presupuesto: 13125, objetivo: 15094, gol: 19622 },
+      { hora: 14, presupuesto: 15313, objetivo: 17609, gol: 22892 },
+      { hora: 15, presupuesto: 17500, objetivo: 20125, gol: 26162 },
+
+      { hora: 16, presupuesto: 2188, objetivo: 2516, gol: 3270 },
+      { hora: 17, presupuesto: 4375, objetivo: 5031, gol: 6541 },
+      { hora: 18, presupuesto: 6563, objetivo: 7547, gol: 9811 },
+      { hora: 19, presupuesto: 8750, objetivo: 10063, gol: 13081 },
+      { hora: 20, presupuesto: 10938, objetivo: 12578, gol: 16351 },
+      { hora: 21, presupuesto: 13125, objetivo: 15094, gol: 19622 },
+      { hora: 22, presupuesto: 15313, objetivo: 17609, gol: 22892 },
+      { hora: 23, presupuesto: 17500, objetivo: 20125, gol: 26162 },
+    ],
+  },
+  AUT08: {
+    nombre: "AUT08",
+    datos: [
+      { hora: 8, presupuesto: 2045, objetivo: 2352, gol: 3058 },
+      { hora: 9, presupuesto: 4091, objetivo: 4704, gol: 6115 },
+      { hora: 10, presupuesto: 6136, objetivo: 7056, gol: 9173 },
+      { hora: 11, presupuesto: 8181, objetivo: 9408, gol: 12231 },
+      { hora: 12, presupuesto: 10226, objetivo: 11760, gol: 15288 },
+      { hora: 13, presupuesto: 12272, objetivo: 14112, gol: 18346 },
+      { hora: 14, presupuesto: 14317, objetivo: 16464, gol: 21403 },
+      { hora: 15, presupuesto: 16362, objetivo: 18816, gol: 24461 },
+
+      { hora: 16, presupuesto: 2045, objetivo: 2352, gol: 3058 },
+      { hora: 17, presupuesto: 4091, objetivo: 4704, gol: 6115 },
+      { hora: 18, presupuesto: 6136, objetivo: 7056, gol: 9173 },
+      { hora: 19, presupuesto: 8181, objetivo: 9408, gol: 12231 },
+      { hora: 20, presupuesto: 10226, objetivo: 11760, gol: 15288 },
+      { hora: 21, presupuesto: 12272, objetivo: 14112, gol: 18346 },
+      { hora: 22, presupuesto: 14317, objetivo: 16464, gol: 21403 },
+      { hora: 23, presupuesto: 16362, objetivo: 18816, gol: 24461 },
+    ],
+  },
+
+  AUT09: {
+    nombre: "AUTO09",
+    datos: [
+      { hora: 8, presupuesto: 2188, objetivo: 2516, gol: 3270 },
+      { hora: 9, presupuesto: 4375, objetivo: 5031, gol: 6541 },
+      { hora: 10, presupuesto: 6563, objetivo: 7547, gol: 9811 },
+      { hora: 11, presupuesto: 8750, objetivo: 10063, gol: 13081 },
+      { hora: 12, presupuesto: 10938, objetivo: 12578, gol: 16351 },
+      { hora: 13, presupuesto: 13125, objetivo: 15094, gol: 19622 },
+      { hora: 14, presupuesto: 15313, objetivo: 17609, gol: 22892 },
+      { hora: 15, presupuesto: 17500, objetivo: 20125, gol: 26162 },
+
+      { hora: 16, presupuesto: 2188, objetivo: 2516, gol: 3270 },
+      { hora: 17, presupuesto: 4375, objetivo: 5031, gol: 6541 },
+      { hora: 18, presupuesto: 6563, objetivo: 7547, gol: 9811 },
+      { hora: 19, presupuesto: 8750, objetivo: 10063, gol: 13081 },
+      { hora: 20, presupuesto: 10938, objetivo: 12578, gol: 16351 },
+      { hora: 21, presupuesto: 13125, objetivo: 15094, gol: 19622 },
+      { hora: 22, presupuesto: 15313, objetivo: 17609, gol: 22892 },
+      { hora: 23, presupuesto: 17500, objetivo: 20125, gol: 26162 },
+    ],
+  },
+  AUT10: {
+    nombre: "AUTO10",
+    datos: [
+      { hora: 8, presupuesto: 2188, objetivo: 2516, gol: 3270 },
+      { hora: 9, presupuesto: 4375, objetivo: 5031, gol: 6541 },
+      { hora: 10, presupuesto: 6563, objetivo: 7547, gol: 9811 },
+      { hora: 11, presupuesto: 8750, objetivo: 10063, gol: 13081 },
+      { hora: 12, presupuesto: 10938, objetivo: 12578, gol: 16351 },
+      { hora: 13, presupuesto: 13125, objetivo: 15094, gol: 19622 },
+      { hora: 14, presupuesto: 15313, objetivo: 17609, gol: 22892 },
+      { hora: 15, presupuesto: 17500, objetivo: 20125, gol: 26162 },
+
+      { hora: 16, presupuesto: 2188, objetivo: 2516, gol: 3270 },
+      { hora: 17, presupuesto: 4375, objetivo: 5031, gol: 6541 },
+      { hora: 18, presupuesto: 6563, objetivo: 7547, gol: 9811 },
+      { hora: 19, presupuesto: 8750, objetivo: 10063, gol: 13081 },
+      { hora: 20, presupuesto: 10938, objetivo: 12578, gol: 16351 },
+      { hora: 21, presupuesto: 13125, objetivo: 15094, gol: 19622 },
+      { hora: 22, presupuesto: 15313, objetivo: 17609, gol: 22892 },
+      { hora: 23, presupuesto: 17500, objetivo: 20125, gol: 26162 },
+    ],
+  },
+  AUT11: {
+    nombre: "AUT11",
+    datos: [
+      { hora: 8, presupuesto: 2813, objetivo: 3234, gol: 4205 },
+      { hora: 9, presupuesto: 5625, objetivo: 6469, gol: 8409 },
+      { hora: 10, presupuesto: 8438, objetivo: 9703, gol: 12614 },
+      { hora: 11, presupuesto: 11250, objetivo: 12938, gol: 16819 },
+      { hora: 12, presupuesto: 14063, objetivo: 16172, gol: 21023 },
+      { hora: 13, presupuesto: 16875, objetivo: 19406, gol: 25228 },
+      { hora: 14, presupuesto: 19688, objetivo: 22641, gol: 29432 },
+      { hora: 15, presupuesto: 22500, objetivo: 25875, gol: 33637 },
+
+      { hora: 16, presupuesto: 2813, objetivo: 3234, gol: 4205 },
+      { hora: 17, presupuesto: 5625, objetivo: 6469, gol: 8409 },
+      { hora: 18, presupuesto: 8438, objetivo: 9703, gol: 12614 },
+      { hora: 19, presupuesto: 11250, objetivo: 12938, gol: 16819 },
+      { hora: 20, presupuesto: 14063, objetivo: 16172, gol: 21023 },
+      { hora: 21, presupuesto: 16875, objetivo: 19406, gol: 25228 },
+      { hora: 22, presupuesto: 19688, objetivo: 22641, gol: 29432 },
+      { hora: 23, presupuesto: 22500, objetivo: 25875, gol: 33637 },
+    ],
+  },
+
+  AUT12: {
+    nombre: "AUTO12",
+    datos: [
+      { hora: 8, presupuesto: 1971, objetivo: 2266, gol: 2946 },
+      { hora: 9, presupuesto: 3942, objetivo: 4533, gol: 5893 },
+      { hora: 10, presupuesto: 5912, objetivo: 6799, gol: 8839 },
+      { hora: 11, presupuesto: 7883, objetivo: 9066, gol: 11785 },
+      { hora: 12, presupuesto: 9854, objetivo: 11332, gol: 14731 },
+      { hora: 13, presupuesto: 11825, objetivo: 13598, gol: 17678 },
+      { hora: 14, presupuesto: 13795, objetivo: 15865, gol: 20624 },
+      { hora: 15, presupuesto: 15766, objetivo: 18131, gol: 23570 },
+
+      { hora: 16, presupuesto: 1971, objetivo: 2266, gol: 2946 },
+      { hora: 17, presupuesto: 3942, objetivo: 4533, gol: 5893 },
+      { hora: 18, presupuesto: 5912, objetivo: 6799, gol: 8839 },
+      { hora: 19, presupuesto: 7883, objetivo: 9066, gol: 11785 },
+      { hora: 20, presupuesto: 9854, objetivo: 11332, gol: 14731 },
+      { hora: 21, presupuesto: 11825, objetivo: 13598, gol: 17678 },
+      { hora: 22, presupuesto: 13795, objetivo: 15865, gol: 20624 },
+      { hora: 23, presupuesto: 15766, objetivo: 18131, gol: 23570 },
+    ],
+  },
+
+  MEZCL: {
+    nombre: "MEZCL",
+    datos: [
+      { hora: 8, presupuesto: 8625, objetivo: 9750, gol: 11250 },
+      { hora: 9, presupuesto: 17250, objetivo: 19500, gol: 22500 },
+      { hora: 10, presupuesto: 25875, objetivo: 29250, gol: 33750 },
+      { hora: 11, presupuesto: 34500, objetivo: 39000, gol: 45000 },
+      { hora: 12, presupuesto: 43125, objetivo: 48750, gol: 56250 },
+      { hora: 13, presupuesto: 51750, objetivo: 58500, gol: 67500 },
+      { hora: 14, presupuesto: 60375, objetivo: 68250, gol: 78750 },
+      { hora: 15, presupuesto: 69000, objetivo: 78000, gol: 90000 },
+
+      { hora: 16, presupuesto: 8625, objetivo: 9750, gol: 11250 },
+      { hora: 17, presupuesto: 17250, objetivo: 19500, gol: 22500 },
+      { hora: 18, presupuesto: 25875, objetivo: 29250, gol: 33750 },
+      { hora: 19, presupuesto: 34500, objetivo: 39000, gol: 45000 },
+      { hora: 20, presupuesto: 43125, objetivo: 48750, gol: 56250 },
+      { hora: 21, presupuesto: 51750, objetivo: 58500, gol: 67500 },
+      { hora: 22, presupuesto: 60375, objetivo: 68250, gol: 78750 },
+      { hora: 23, presupuesto: 69000, objetivo: 78000, gol: 90000 },
+    ],
+  },
+  GRA01: {
+    nombre: "GRA01",
+    datos: [
+      { hora: 8, presupuesto: 3450, objetivo: 3900, gol: 4500 },
+      { hora: 9, presupuesto: 6900, objetivo: 7800, gol: 9000 },
+      { hora: 10, presupuesto: 10350, objetivo: 11700, gol: 13500 },
+      { hora: 11, presupuesto: 13800, objetivo: 15600, gol: 18000 },
+      { hora: 12, presupuesto: 17250, objetivo: 19500, gol: 22500 },
+      { hora: 13, presupuesto: 20700, objetivo: 23400, gol: 27000 },
+      { hora: 14, presupuesto: 24150, objetivo: 27300, gol: 31500 },
+      { hora: 15, presupuesto: 27600, objetivo: 31200, gol: 36000 },
+
+      { hora: 16, presupuesto: 3450, objetivo: 3900, gol: 4500 },
+      { hora: 17, presupuesto: 6900, objetivo: 7800, gol: 9000 },
+      { hora: 18, presupuesto: 10350, objetivo: 11700, gol: 13500 },
+      { hora: 19, presupuesto: 13800, objetivo: 15600, gol: 18000 },
+      { hora: 20, presupuesto: 17250, objetivo: 19500, gol: 22500 },
+      { hora: 21, presupuesto: 20700, objetivo: 23400, gol: 27000 },
+      { hora: 22, presupuesto: 24150, objetivo: 27300, gol: 31500 },
+      { hora: 23, presupuesto: 27600, objetivo: 31200, gol: 36000 },
+    ],
+  },
+  MAN01: {
+    nombre: "MAN01",
+    datos: [
+      { hora: 8, presupuesto: 2013, objetivo: 2275, gol: 2625 },
+      { hora: 9, presupuesto: 4025, objetivo: 4550, gol: 5250 },
+      { hora: 10, presupuesto: 6038, objetivo: 6825, gol: 7875 },
+      { hora: 11, presupuesto: 8050, objetivo: 9100, gol: 10500 },
+      { hora: 12, presupuesto: 10063, objetivo: 11375, gol: 13125 },
+      { hora: 13, presupuesto: 12075, objetivo: 13650, gol: 15750 },
+      { hora: 14, presupuesto: 14088, objetivo: 15925, gol: 18375 },
+      { hora: 15, presupuesto: 16100, objetivo: 18200, gol: 21000 },
+
+      { hora: 16, presupuesto: 2013, objetivo: 2275, gol: 2625 },
+      { hora: 17, presupuesto: 4025, objetivo: 4550, gol: 5250 },
+      { hora: 18, presupuesto: 6038, objetivo: 6825, gol: 7875 },
+      { hora: 19, presupuesto: 8050, objetivo: 9100, gol: 10500 },
+      { hora: 20, presupuesto: 10063, objetivo: 11375, gol: 13125 },
+      { hora: 21, presupuesto: 12075, objetivo: 13650, gol: 15750 },
+      { hora: 22, presupuesto: 14088, objetivo: 15925, gol: 18375 },
+      { hora: 23, presupuesto: 16100, objetivo: 18200, gol: 21000 },
+    ],
+  },
+
+  LSELE: {
+    nombre: "LSELE",
+    datos: [
+      { hora: 8, presupuesto: 2013, objetivo: 2275, gol: 2625 },
+      { hora: 9, presupuesto: 4025, objetivo: 4550, gol: 5250 },
+      { hora: 10, presupuesto: 6038, objetivo: 6825, gol: 7875 },
+      { hora: 11, presupuesto: 8050, objetivo: 9100, gol: 10500 },
+      { hora: 12, presupuesto: 10063, objetivo: 11375, gol: 13125 },
+      { hora: 13, presupuesto: 12075, objetivo: 13650, gol: 15750 },
+      { hora: 14, presupuesto: 14088, objetivo: 15925, gol: 18375 },
+      { hora: 15, presupuesto: 16100, objetivo: 18200, gol: 21000 },
+
+      { hora: 16, presupuesto: 2013, objetivo: 2275, gol: 2625 },
+      { hora: 17, presupuesto: 4025, objetivo: 4550, gol: 5250 },
+      { hora: 18, presupuesto: 6038, objetivo: 6825, gol: 7875 },
+      { hora: 19, presupuesto: 8050, objetivo: 9100, gol: 10500 },
+      { hora: 20, presupuesto: 10063, objetivo: 11375, gol: 13125 },
+      { hora: 21, presupuesto: 12075, objetivo: 13650, gol: 15750 },
+      { hora: 22, presupuesto: 14088, objetivo: 15925, gol: 18375 },
+      { hora: 23, presupuesto: 16100, objetivo: 18200, gol: 21000 },
+    ],
+  },
+};
