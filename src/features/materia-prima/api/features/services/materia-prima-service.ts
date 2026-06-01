@@ -1,4 +1,4 @@
-import { baseUrl } from "@/config/base-url-env.config";
+import { baseUrlRESTNest } from "@/config/base-url-env.config";
 import { api } from "@/shared/services/api";
 import type { IMateriaService } from "../interfaces/i-materia-prima-service";
 import type {
@@ -15,10 +15,10 @@ export class MateriaPrimaService implements IMateriaService {
   private readonly url: string;
 
   constructor() {
-    if (!baseUrl) {
+    if (!baseUrlRESTNest) {
       throw new Error("La variable de entorno no está inicializada");
     }
-    this.url = `${baseUrl}/api/v1`;
+    this.url = `${baseUrlRESTNest}/api/v1`;
   }
 
   async getBoletasPlanta1(): Promise<ViajeProgramadoDto[]> {

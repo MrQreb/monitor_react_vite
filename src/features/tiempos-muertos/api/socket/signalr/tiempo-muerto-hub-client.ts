@@ -1,4 +1,4 @@
-import { baseUrlMonitor, baseUrlSocketMonitor } from "@/config/base-url-env.config";
+import { baseUrlRESTMonitorASP, baseUrlSocketMonitorASP } from "@/config/base-url-env.config";
 import {
   HubConnection,
   HubConnectionBuilder,
@@ -26,18 +26,18 @@ type ConnectionListener = (connected: boolean) => void;
  * ```
  */
 function getHubUrl(): string {
-  const explicit = `${baseUrlSocketMonitor}/tiempo-muerto`;
+  const explicit = `${baseUrlSocketMonitorASP}/tiempo-muerto`;
 
   if (explicit) return explicit;
 
-  if (!baseUrlMonitor) {
+  if (!baseUrlRESTMonitorASP) {
     throw new Error(
-      "VITE_API_URL_MONITOR no está inicializada (baseUrlMonitor)"
+      "VITE_API_URL_MONITOR no está inicializada (baseUrlRESTMonitorASP)"
     );
   }
 
   // Default convencional (puedes sobreescribir con VITE_TIEMPOS_MUERTOS_HUB_URL)
-  return `${baseUrlMonitor}/hubs/tiempos-muertos`;
+  return `${baseUrlRESTMonitorASP}/hubs/tiempos-muertos`;
 }
 
 /**

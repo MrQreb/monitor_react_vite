@@ -1,4 +1,4 @@
-import { baseUrl } from "@/config/base-url-env.config";
+import { baseUrlRESTNest } from "@/config/base-url-env.config";
 import type { CarryOverCajasDto } from "../dto/carry-over-cajas-dto";
 import type { CarryOverDto } from "../dto/carry-over-dto";
 import type { IConservadorService } from "../interfaces/i-conservador-service";
@@ -12,10 +12,10 @@ export class ConservadorService implements IConservadorService {
   private readonly url: string;
 
   constructor() {
-    if (!baseUrl) {
+    if (!baseUrlRESTNest) {
       throw new Error("La variable de entorno no está inicializada");
     }
-    this.url = `${baseUrl}/api/v1`;
+    this.url = `${baseUrlRESTNest}/api/v1`;
   }
 
   async getCarryOverPlata1(): Promise<CarryOverDto[]> {

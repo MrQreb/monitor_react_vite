@@ -1,9 +1,8 @@
-import { baseUrl } from '@/config/base-url-env.config';
+import { baseUrlRESTNest } from '@/config/base-url-env.config';
 import { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 
-
-export const socket = io(baseUrl,{
+export const socket = io(baseUrlRESTNest,{
     autoConnect:true,
 });
 

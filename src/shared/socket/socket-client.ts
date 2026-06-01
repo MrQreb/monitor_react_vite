@@ -1,4 +1,4 @@
-import { baseUrl } from "@/config/base-url-env.config";
+import { baseUrlRESTNest } from "@/config/base-url-env.config";
 import { io, Socket } from "socket.io-client";
 
 /**
@@ -35,7 +35,7 @@ export class SocketClient<Events extends Record<string, any>> {
    * Usa `getInstance()` para obtener el cliente.
    */
   private constructor() {
-    const URL = baseUrl;
+    const URL = baseUrlRESTNest;
 
     this.socket = io(URL, {
       autoConnect: true,

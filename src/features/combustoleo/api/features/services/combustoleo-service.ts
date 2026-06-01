@@ -1,4 +1,4 @@
-import { baseUrl } from "@/config/base-url-env.config";
+import { baseUrlRESTNest } from "@/config/base-url-env.config";
 
 import { api } from "@/shared/services/api";
 import type { ICombustoleoService } from "../interfaces/i-combustoleo-service";
@@ -12,10 +12,10 @@ export class CombustoleoService implements ICombustoleoService {
   private readonly url: string;
 
   constructor() {
-    if (!baseUrl) {
+    if (!baseUrlRESTNest) {
       throw new Error("La variable de entorno no está inicializada");
     }
-    this.url = `${baseUrl}/api/v1`;
+    this.url = `${baseUrlRESTNest}/api/v1`;
   }
   getCombustoleoPlanta1(): Promise<CombustoleoDto[]> {
     return api<CombustoleoDto[]>(`${this.url}/combustolio/planta-1`);

@@ -1,4 +1,4 @@
-import { baseUrl } from "@/config/base-url-env.config";
+import { baseUrlRESTNest } from "@/config/base-url-env.config";
 import { api } from "@/shared/services/api";
 import type { IProduccionService } from "../interfaces/i-produccion-service";
 import type { ProduccionDiariaDto, ProduccionDiariaHoraDto } from "../dto";
@@ -17,10 +17,10 @@ export class ProduccionService implements IProduccionService {
   private readonly url: string;
 
   constructor() {
-    if (!baseUrl) {
+    if (!baseUrlRESTNest) {
       throw new Error("La variable de entorno no está inicializada");
     }
-    this.url = `${baseUrl}/api/v1/apptags`;
+    this.url = `${baseUrlRESTNest}/api/v1/apptags`;
   }
 
   async getProduccionDiaria(): Promise<ProduccionDiariaDto[]> {

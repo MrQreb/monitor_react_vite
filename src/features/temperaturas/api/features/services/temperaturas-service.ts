@@ -1,4 +1,4 @@
-import { baseUrl } from "@/config/base-url-env.config";
+import { baseUrlRESTNest } from "@/config/base-url-env.config";
 import type { ITemperaturasService } from "../interfaces/i-temperaturas-service";
 import type { TemperaturasDto, TemperaturasCedisDto } from "../dto";
 import { api } from "@/shared/services/api";
@@ -11,10 +11,10 @@ export class TemeperaturasService implements ITemperaturasService {
   private readonly url: string;
 
   constructor() {
-    if (!baseUrl) {
+    if (!baseUrlRESTNest) {
       throw new Error("La variable de entorno no está inicializada");
     }
-    this.url = `${baseUrl}/api/v1`;
+    this.url = `${baseUrlRESTNest}/api/v1`;
   }
 
   getTemperaturasPlanta1(): Promise<TemperaturasDto[]> {
