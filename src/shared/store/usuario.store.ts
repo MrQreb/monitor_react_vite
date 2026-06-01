@@ -1,10 +1,9 @@
-import type { AuthResponseDto } from '@/subsystems/usuarios/api/features/autenticacion/dto/auth-response-dto';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 
 type UsuarioStore = {
-    usuario: AuthResponseDto | null;
-    setUsuario: (usuario: AuthResponseDto | null) => void;
+    usuario: any | null;
+    setUsuario: (usuario: any | null) => void;
     clearUsuario: () => void;
     isAuthenticated:boolean;
     setIsAuthenticated: (authenticated:boolean) => void;

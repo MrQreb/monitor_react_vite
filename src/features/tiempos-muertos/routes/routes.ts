@@ -1,6 +1,6 @@
 import { rootRoute } from "@/app/router/__root";
 import { createRoute } from "@tanstack/react-router";
-import { TiemposMuertosPlanta1Page } from "../ui/pages/TiemposMuertosPlanta1Page";
+import { TiemposMuertosPlanta3Page } from "../ui/pages/TiemposMuertosPlanta3Page";
 
 /**
  * Url inicial de las temperaturas
@@ -12,8 +12,8 @@ const tiemposMuertosLayout = createRoute({
 
 const planta1 = createRoute({
   getParentRoute: () => tiemposMuertosLayout,
-  path: "/planta-1",
-  component:TiemposMuertosPlanta1Page,
+  path: "/planta-3",
+  component:TiemposMuertosPlanta3Page,
 });
 
 /** Rutas a todo lo relacionado de las combustoleo */

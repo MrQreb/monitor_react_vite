@@ -281,7 +281,7 @@ export function GraficaTemperaturas({
                 fill="#eff6f6"
                 tickFormatter={() => ""}
               />
-              {series.map((serie, index) => (
+              {series.map((serie) => (
                 <Line
                   key={serie.key}
                   type="monotone"

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import NavBar from '@/components/common/NavBar/NavBar';
-import { Carrot, ChartColumnBig, Factory, ThermometerSnowflake, Sun, Moon } from 'lucide-react';
+import { Carrot, ChartColumnBig, Factory, ThermometerSnowflake, Sun, Moon, MonitorStop } from 'lucide-react';
 import { CardMenu } from '../components/CardMenu';
 import { TabsMenu } from '../components/TabsMenu';
 import { Button } from '@/components/ui/button';
@@ -32,6 +32,7 @@ const menuItems: MenuItem[] = [
   { title: 'Corte Planta 3', category: 'Planta 3', route: '/', icon: ThermometerSnowflake },
   { title: 'Carry Over Planta 1', category: 'Planta 1', route: '/', icon: ThermometerSnowflake },
   { title: 'Grafica Carry Over Planta 1', category: 'Planta 1', route: '/', icon: ThermometerSnowflake },
+  { title: 'Monitoreo Tiempos Muertos', category: 'Planta 3', route: '/tiempos-muertos/planta-3', icon: MonitorStop  },
 ];
 
 export const MenuPage = () => {

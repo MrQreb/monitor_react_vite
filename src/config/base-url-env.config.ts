@@ -3,3 +3,4 @@
  * @returns string - url base de la api
  */
 export const baseUrl = import.meta.env.VITE_API_URL;
+export const baseUrlMonitor = import.meta.env.VITE_API_URL_MONITOR;
