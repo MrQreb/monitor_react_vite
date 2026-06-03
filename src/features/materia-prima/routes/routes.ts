@@ -4,6 +4,7 @@ import ViajesEstatusPlanta1Page from "../ui/pages/ViajesEstatusPlanta1Page";
 import ViajesEstatusGraficaPlanta3Page from "../ui/pages/ViajesEstatusGraficaPlanta3Page";
 import ViajesEstatusGraficaPlanta1Page from "../ui/pages/ViajesEstatusGraficaPlanta1Page";
 import { CompativoGraficaCajas } from "../ui/pages/CompativoGraficaCajas";
+import { DashboardMateriaPrimaPlanta1Page } from "../ui/pages";
 
 
 const materiaPrimaLayout = createRoute({
@@ -43,10 +44,18 @@ const compativoCajas = createRoute({
     component: CompativoGraficaCajas,
 });
 
+
+const dashboardPlanta1 = createRoute({
+    getParentRoute: () => materiaPrimaLayout,
+    path: "/planta-1/dashboard",
+    component: DashboardMateriaPrimaPlanta1Page,
+});
+
 export const materiaPrimaRoutes = materiaPrimaLayout.addChildren([
     viajesProgramadosPlanta1,
     viajesProgramadosPlanta3,
     viajesCajasPlanta1,
     viajesCajasPlanta3,
-    compativoCajas
+    compativoCajas,
+    dashboardPlanta1
 ]);

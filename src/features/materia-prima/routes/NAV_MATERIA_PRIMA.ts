@@ -4,4 +4,5 @@ export const NAV_MATERIA_PRIMA ={
     viajesCajasPlanta3:"/materia-prima/planta-3/viajes-cajas",
     viajesPlanta3:"/materia-prima/planta-1/viajes",
     comparativoCajas:"/materia-prima/compartivo-cajas",
+    dashboardPlanta1:"/materia-prima/planta-1/dashboard",
 }

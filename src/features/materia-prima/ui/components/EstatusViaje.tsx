@@ -4,8 +4,6 @@ import type { ViajeEstatusDto } from "../../api/features/dto"
 import { useAutoScroll } from "@/shared/hooks/useAutoScroll"
 import { useScrollStore } from "@/shared/store/use-scroll-store"
 
-
-
 type Props = {
   viajes: ViajeEstatusDto[]
 }
