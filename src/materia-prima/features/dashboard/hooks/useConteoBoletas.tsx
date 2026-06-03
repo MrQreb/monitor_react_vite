@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import type { RangoFechasMateriaPrimaDto } from "../../api/shared/dto/rangoFechasMateriaPrimaDto.dto";
-import { materiaPrimaPlanta1CountService } from "../../api/planta1/instances/materiaPrimaInstancesService";
+import type { RangoFechasMateriaPrimaDto } from "../../../api/shared/dto/rangoFechasMateriaPrimaDto.dto";
+import { materiaPrimaPlanta1CountService } from "../../../api/planta1/instances/materiaPrimaInstancesService";
 
 interface Props {
     rangoFechasMateriaPrimaDto?: RangoFechasMateriaPrimaDto;

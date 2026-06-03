@@ -9,65 +9,188 @@ import {
   XAxis,
   YAxis,
 } from "recharts"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+import { cn } from "@/lib/utils"
+import { useTheme } from "@/app/providers/ThemeProvider"
+
 import type { CajasEsperadasDto } from "../../api/features/dto"
 
-
 type Props = {
-  cajas: CajasEsperadasDto[] 
+  cajas: CajasEsperadasDto[]
 }
 
 export function GraficaCajas({ cajas }: Props) {
+  const { theme } = useTheme()
+
+  const isDark =
+    theme === "dark" ||
+    (theme === "system" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+
+  const valorMaximo =
+    cajas.length > 0
+      ? Math.max(
+        ...cajas.flatMap((caja) => [
+          caja.estimado,
+          caja.real,
+        ])
+      )
+      : 100
+
+  const colores = {
+    titulo: isDark ? "#e4e4e7" : "#18181b",
+
+    cuadricula: isDark ? "#27272a" : "#e4e4e7",
+
+    texto: isDark ? "#a1a1aa" : "#52525b",
+
+    etiqueta: isDark ? "#fafafa" : "#18181b",
+
+    tooltipFondo: isDark ? "#18181b" : "#ffffff",
+
+    tooltipBorde: isDark ? "#3f3f46" : "#e4e4e7",
+
+    leyenda: isDark ? "#d4d4d8" : "#64748b",
+    
+    estimado: isDark ? "#60a5fa" : "#2563eb",
+
+    real: isDark ? "#34d399" : "#059669",
+  }
+
   return (
-    <Card className="flex h-full min-w-0 w-full flex-col rounded-[1.5rem] border-0 bg-white shadow-none">
-      <CardHeader className="pb-0 pt-3 text-center">
-        <CardTitle className="text-sm font-extrabold text-cyan-700 sm:text-base">
+    <Card
+      className={cn(
+        "flex h-full w-full min-w-0 flex-col",
+        "rounded-3xl",
+        "border border-border/20"
+      )}
+    >
+      <CardHeader className="pb-0 pt-4">
+        <CardTitle
+          className="text-center text-base font-bold"
+          style={{ color: colores.titulo }}
+        >
           Estimado y Real
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="flex min-h-0 flex-1 min-w-0 px-2 pb-3 pt-0 sm:px-3">
-        <div className="min-h-0 h-full w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={cajas} margin={{ top: 8, right: 8, left: 0, bottom: 0 }} barCategoryGap="16%">
-              <CartesianGrid strokeDasharray="3 3" stroke="#d4d4d8" />
-              <XAxis dataKey="producto" tick={{ fill: '#52525b', fontSize: 10 }} interval={0} />
-              <YAxis tickCount={10} tick={{ fill: '#52525b', fontSize: 10 }} domain={[0, 11000]} />
-              <Tooltip
-                cursor={{ fill: 'rgba(15, 118, 110, 0.08)' }}
-                contentStyle={{
-                  borderRadius: '12px',
-                  border: '1px solid #e4e4e7',
+      <CardContent className="flex min-h-0 flex-1 px-3 pb-4 pt-0">
+        <div className="h-full min-h-0 w-full">
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
+          >
+            <BarChart
+              data={cajas}
+              margin={{
+                top: 20,
+                right: 10,
+                left: 0,
+                bottom: 10,
+              }}
+              barCategoryGap="18%"
+            >
+              <CartesianGrid
+                vertical={false}
+                strokeDasharray="3 3"
+                stroke={colores.cuadricula}
+              />
+
+              <XAxis
+                dataKey="producto"
+                interval={0}
+                tick={{
+                  fill: colores.texto,
+                  fontSize: 11,
+                }}
+                tickLine={false}
+                axisLine={{
+                  stroke: colores.cuadricula,
                 }}
               />
+
+              <YAxis
+                domain={[
+                  0,
+                  Math.ceil(valorMaximo * 1.15),
+                ]}
+                tick={{
+                  fill: colores.texto,
+                  fontSize: 11,
+                }}
+                tickLine={false}
+                axisLine={{
+                  stroke: colores.cuadricula,
+                }}
+              />
+
+              <Tooltip
+                cursor={{
+                  fill: isDark
+                    ? "rgba(255,255,255,0.04)"
+                    : "rgba(0,0,0,0.04)",
+                }}
+                contentStyle={{
+                  backgroundColor:
+                    colores.tooltipFondo,
+                  border: `1px solid ${colores.tooltipBorde}`,
+                  borderRadius: "12px",
+                  color: colores.texto,
+                  boxShadow:
+                    "0 4px 12px rgba(0,0,0,0.15)",
+                }}
+              />
+
               <Legend
                 verticalAlign="bottom"
-                height={24}
-                wrapperStyle={{ paddingTop: 4 }}
-                formatter={(value) => <span style={{ color: '#64748b' }}>{value}</span>}
+                height={32}
+                formatter={(value) => (
+                  <span
+                    style={{
+                      color: colores.leyenda,
+                      fontWeight: 500,
+                    }}
+                  >
+                    {value}
+                  </span>
+                )}
               />
+
               <Bar
                 dataKey="estimado"
-                name="estimado"
-                fill="#f97355"
-                radius={[4, 4, 0, 0]}
-                isAnimationActive
-                animationDuration={750}
-                animationEasing="ease-out"
+                name="Estimado"
+                fill={colores.estimado}
+                radius={[8, 8, 0, 0]}
               >
-                <LabelList dataKey="estimado" position="top" fill="#8c6b52" fontSize={10} />
+                <LabelList
+                  dataKey="estimado"
+                  position="top"
+                  fill={colores.etiqueta}
+                  fontSize={11}
+                  fontWeight={600}
+                />
               </Bar>
+
               <Bar
                 dataKey="real"
-                name="real"
-                fill="#2fa79a"
-                radius={[4, 4, 0, 0]}
-                isAnimationActive
-                animationBegin={120}
-                animationDuration={820}
-                animationEasing="ease-out"
+                name="Real"
+                fill={colores.real}
+                radius={[8, 8, 0, 0]}
               >
-                <LabelList dataKey="real" position="top" fill="#8c6b52" fontSize={10} />
+                <LabelList
+                  dataKey="real"
+                  position="top"
+                  fill={colores.etiqueta}
+                  fontSize={11}
+                  fontWeight={600}
+                />
               </Bar>
             </BarChart>
           </ResponsiveContainer>

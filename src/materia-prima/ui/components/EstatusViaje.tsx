@@ -1,106 +1,169 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
 import type { ViajeEstatusDto } from "../../api/features/dto"
 import { useAutoScroll } from "@/shared/hooks/useAutoScroll"
 import { useScrollStore } from "@/shared/store/use-scroll-store"
+import { useTheme } from "@/app/providers/ThemeProvider"
+import { cn } from "@/lib/utils"
 
 type Props = {
   viajes: ViajeEstatusDto[]
 }
 
-const emptyCell = (value: string | null | undefined) => value?.trim() || ""
-
+const emptyCell = (value: string | null | undefined) =>
+  value?.trim() || ""
 
 export function EstatusViaje({ viajes }: Props) {
+  const scroll = useScrollStore()
+  const { theme } = useTheme()
 
-  const scroll = useScrollStore();
+  const isDark =
+    theme === "dark" ||
+    (theme === "system" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+
+  const colores = {
+    titulo: isDark ? "#e4e4e7" : "#18181b",
+    texto: isDark ? "#a1a1aa" : "#52525b",
+    encabezado: isDark ? "#d4d4d8" : "#64748b",
+    borde: isDark ? "#27272a" : "#e4e4e7",
+    fondo: isDark ? "#18181b" : "#ffffff",
+    hover: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.03)",
+  }
 
   const { containerRef } = useAutoScroll({
     itemCount: viajes.length,
     msPerItem: 1500,
     enabled: scroll.mode === "auto",
-  });
-
-
+  })
 
   return (
-    <Card className="flex h-full min-w-0 w-full flex-col rounded-[1.75rem] border-0 bg-white shadow-none">
+    <Card
+      className={cn(
+        "flex h-full w-full min-w-0 flex-col",
+        "rounded-3xl border",
+        isDark ? "border-zinc-800 bg-zinc-950" : "border-zinc-200 bg-white",
+        "shadow-none"
+      )}
+    >
       <CardHeader className="pb-1 pt-4 text-center">
-        <CardTitle className="text-[1.15rem] font-extrabold text-cyan-700">
+        <CardTitle
+          className="text-[1.15rem] font-extrabold"
+          style={{ color: colores.titulo }}
+        >
           Estatus de viajes
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="flex min-h-0 flex-1 flex-col px-0 pb-0 pt-0">
-
-          <div ref={containerRef} className="flex-1 overflow-auto h-0">
-
-            <Table>
-              <TableHeader className="[&_tr]:sticky [&_tr]:top-0 [&_tr]:z-10 [&_tr]:bg-white">
-                <TableRow className="border-slate-300 hover:bg-transparent">
-                  <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                    Rancho
+      <CardContent className="flex min-h-0 flex-1 flex-col px-0 pt-0 pb-0">
+        <div ref={containerRef} className="h-0 flex-1 overflow-auto">
+          <Table>
+            <TableHeader>
+              <TableRow
+                className="border-b"
+                style={{ borderColor: colores.borde }}
+              >
+                {[
+                  "Rancho",
+                  "Producto",
+                  "Estatus / Folio",
+                  "Centro",
+                  "Hora Pes",
+                  "Hora Eva",
+                  "Hora Imp",
+                ].map((h) => (
+                  <TableHead
+                    key={h}
+                    className="text-center text-sm font-medium sm:text-base lg:text-lg"
+                    style={{ color: colores.encabezado }}
+                  >
+                    {h}
                   </TableHead>
-                  <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                    Producto
-                  </TableHead>
-                  <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                    Estatus / Folio
-                  </TableHead>
-                  <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                    Centro
-                  </TableHead>
-                  <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                    Hora Pes
-                  </TableHead>
-                  <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                    Hora Eva
-                  </TableHead>
-                  <TableHead className="border-b border-slate-300 text-center text-sm font-normal text-slate-600 sm:text-base lg:text-lg">
-                    Hora Imp
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-
-              <TableBody>
-                {viajes?.map((viaje, index) => (
-                  <TableRow key={`${viaje.rancho}-${viaje.ticket}-${index}`} className="border-slate-300 hover:bg-transparent align-top">
-                    <TableCell className="px-4 py-5 text-left text-xs leading-tight whitespace-normal wrap-break-word text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
-                      {viaje.rancho}
-                    </TableCell>
-
-                    <TableCell className="px-4 py-5 text-left text-xs leading-tight whitespace-normal wrap-break-word text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
-                      {viaje.producto}
-                    </TableCell>
-
-                    <TableCell className="px-4 py-5 text-center text-xs leading-tight text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
-                      <div className="flex flex-col items-center gap-2 sm:gap-3">
-                        <span>{viaje.estatus}</span>
-                        <span className="text-base font-bold sm:text-xl">{emptyCell(viaje.folio)}</span>
-                      </div>
-                    </TableCell>
-
-                    <TableCell className="px-4 py-5 text-center text-xs leading-tight whitespace-normal text-cyan-700 sm:px-5 sm:text-sm lg:text-[1.02rem]">
-                      {emptyCell(viaje.centro_corte)}
-                    </TableCell>
-
-                    <TableCell className="px-4 py-5 text-center text-sm leading-tight text-cyan-700 sm:text-lg">
-                      {emptyCell(viaje.hora_pesaje)}
-                    </TableCell>
-
-                    <TableCell className="px-4 py-5 text-center text-sm leading-tight text-cyan-700 sm:text-lg">
-                      {emptyCell(viaje.hora_evaluacion)}
-                    </TableCell>
-
-                    <TableCell className="px-4 py-5 text-center text-sm leading-tight text-cyan-700 sm:text-lg">
-                      {emptyCell(viaje.hora_impresion)}
-                    </TableCell>
-                  </TableRow>
                 ))}
-              </TableBody>
-            </Table>
+              </TableRow>
+            </TableHeader>
 
-          </div>
+            <TableBody>
+              {viajes?.map((viaje, index) => (
+                <TableRow
+                  key={`${viaje.rancho}-${viaje.ticket}-${index}`}
+                  className="align-top transition-colors"
+                  style={{
+                    borderColor: colores.borde,
+                  }}
+                >
+                  <TableCell
+                    className="px-4 py-5 text-left text-xs sm:text-sm lg:text-[1.02rem]"
+                    style={{ color: colores.texto }}
+                  >
+                    {viaje.rancho}
+                  </TableCell>
+
+                  <TableCell
+                    className="px-4 py-5 text-left text-xs sm:text-sm lg:text-[1.02rem]"
+                    style={{ color: colores.texto }}
+                  >
+                    {viaje.producto}
+                  </TableCell>
+
+                  <TableCell
+                    className="px-4 py-5 text-center text-xs sm:text-sm lg:text-[1.02rem]"
+                    style={{ color: colores.texto }}
+                  >
+                    <div className="flex flex-col items-center gap-1">
+                      <span>{viaje.estatus}</span>
+                      <span className="text-base font-bold sm:text-xl">
+                        {emptyCell(viaje.folio)}
+                      </span>
+                    </div>
+                  </TableCell>
+
+                  <TableCell
+                    className="px-4 py-5 text-center text-xs sm:text-sm lg:text-[1.02rem]"
+                    style={{ color: colores.texto }}
+                  >
+                    {emptyCell(viaje.centro_corte)}
+                  </TableCell>
+
+                  <TableCell
+                    className="px-4 py-5 text-center text-sm sm:text-lg"
+                    style={{ color: colores.texto }}
+                  >
+                    {emptyCell(viaje.hora_pesaje)}
+                  </TableCell>
+
+                  <TableCell
+                    className="px-4 py-5 text-center text-sm sm:text-lg"
+                    style={{ color: colores.texto }}
+                  >
+                    {emptyCell(viaje.hora_evaluacion)}
+                  </TableCell>
+
+                  <TableCell
+                    className="px-4 py-5 text-center text-sm sm:text-lg"
+                    style={{ color: colores.texto }}
+                  >
+                    {emptyCell(viaje.hora_impresion)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </CardContent>
     </Card>
   )

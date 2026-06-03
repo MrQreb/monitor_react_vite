@@ -1,11 +1,10 @@
 import { useMemo, useState } from 'react';
 import NavBar from '@/components/common/NavBar/NavBar';
-import { Carrot, ChartColumnBig, Factory, ThermometerSnowflake, Sun, Moon, MonitorStop, ChartBar } from 'lucide-react';
+import { Carrot, ChartColumnBig, Factory, ThermometerSnowflake, MonitorStop, ChartBar } from 'lucide-react';
 import { CardMenu } from '../components/CardMenu';
 import { TabsMenu } from '../components/TabsMenu';
-import { Button } from '@/components/ui/button';
-import { useTheme } from '@/app/providers/ThemeProvider';
 import { NAV_MATERIA_PRIMA } from '@/materia-prima/routes/NAV_MATERIA_PRIMA';
+import { ThemeButton } from '../components/ThemeButton';
 
 
 type Tab = 'Ambas' | 'Planta 1' | 'Planta 3' | 'Cedis';
@@ -48,7 +47,6 @@ export const MenuPage = () => {
     setTab(value as Tab);
   };
 
-  const { setTheme, theme} = useTheme();
 
   return (
 
@@ -67,14 +65,7 @@ export const MenuPage = () => {
 
 
           <div className="col-start-11">
-            <Button
-              size="icon"
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              aria-label="Cambiar tema"
-              className="rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
-            >
-              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            </Button>
+            <ThemeButton/>
           </div>
 
 
