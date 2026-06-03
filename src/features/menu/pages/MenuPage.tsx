@@ -4,8 +4,8 @@ import { Carrot, ChartColumnBig, Factory, ThermometerSnowflake, Sun, Moon, Monit
 import { CardMenu } from '../components/CardMenu';
 import { TabsMenu } from '../components/TabsMenu';
 import { Button } from '@/components/ui/button';
-import { NAV_MATERIA_PRIMA } from '@/features/materia-prima/routes/NAV_MATERIA_PRIMA';
 import { useTheme } from '@/app/providers/ThemeProvider';
+import { NAV_MATERIA_PRIMA } from '@/materia-prima/routes/NAV_MATERIA_PRIMA';
 
 
 type Tab = 'Ambas' | 'Planta 1' | 'Planta 3' | 'Cedis';
