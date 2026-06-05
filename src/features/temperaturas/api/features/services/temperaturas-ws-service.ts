@@ -1,4 +1,4 @@
-import { SocketClient } from "@/shared/socket/socket-client";
+import { SocketClientNestjs } from "@/shared/socket/socket-client-nestjs";
 import type { TemperaturasCedisDto, TemperaturasDto } from "../dto";
 import type { ITemperaturasWSService } from "../interfaces/i-temperaturas-ws-service";
 
@@ -6,7 +6,7 @@ import type { ITemperaturasWSService } from "../interfaces/i-temperaturas-ws-ser
  * Service de WebSockets para temperaturas
  */
 export class TemperaturasWSService implements ITemperaturasWSService {
-  private socket = SocketClient.getInstance();
+  private socket = SocketClientNestjs.getInstance();
 
   onTemperaturasPlanta1 = (
     callback: (data: TemperaturasDto[]) => void

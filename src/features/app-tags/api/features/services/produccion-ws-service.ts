@@ -1,4 +1,4 @@
-import { SocketClient } from "@/shared/socket/socket-client";
+import { SocketClientNestjs } from "@/shared/socket/socket-client-nestjs";
 import type { IProduccionWSService } from "../interfaces/i-produccionws-service";
 import type { ProduccionDiariaDto, ProduccionDiariaHoraDto } from "../dto";
 
@@ -8,7 +8,7 @@ import type { ProduccionDiariaDto, ProduccionDiariaHoraDto } from "../dto";
 export class ProduccionWSService implements IProduccionWSService {
   
 
-  private socket = SocketClient.getInstance();
+  private socket = SocketClientNestjs.getInstance();
 
   onProduccionDiaria = (
     callback: (data: ProduccionDiariaDto[]) => void

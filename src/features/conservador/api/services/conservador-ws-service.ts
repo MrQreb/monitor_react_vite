@@ -1,10 +1,10 @@
 import type { CarryOverCajasDto } from "../dto/carry-over-cajas-dto";
 import type { CarryOverDto } from "../dto/carry-over-dto";
-import { SocketClient } from "@/shared/socket/socket-client";
+import { SocketClientNestjs } from "@/shared/socket/socket-client-nestjs";
 import type { IConservadorWsService } from "../interfaces/i-conservador-ws-service";
 
 export class ConservadorWsService implements IConservadorWsService {
-  private socket = SocketClient.getInstance();
+  private socket = SocketClientNestjs.getInstance();
 
   onCarryOverPlanta1 = (callback: (data: CarryOverDto[]) => void) => {
     this.socket.on("dashboard:carry_over_planta_1", (data) => {

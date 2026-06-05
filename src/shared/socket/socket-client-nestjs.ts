@@ -10,7 +10,7 @@ import { io, Socket } from "socket.io-client";
  *   "user:created": { id: string; name: string };
  * }
  *
- * const socket = SocketClient.getInstance<MyEvents>();
+ * const socket = SocketClientNestjs.getInstance<MyEvents>();
  *
  * socket.on("user:created", (data) => {
  *   console.log(data.name); // tipado correctamente
@@ -22,10 +22,10 @@ import { io, Socket } from "socket.io-client";
  * - Usa `transports: ["websocket"]` para forzar WebSocket (evita polling)
  * - La URL se obtiene desde `VITE_SOCKET_URL`
  */
-export class SocketClient<Events extends Record<string, any>> {
+export class SocketClientNestjs<Events extends Record<string, any>> {
   
     /** Instancia única del cliente (Singleton) */
-  private static instance: SocketClient<any>;
+  private static instance: SocketClientNestjs<any>;
 
   /** Instancia interna de Socket.IO */
   private socket: Socket;
@@ -47,18 +47,18 @@ export class SocketClient<Events extends Record<string, any>> {
    * Obtiene la instancia única del cliente Socket.
    *
    * @template T Mapa de eventos a tipar
-   * @returns {SocketClient<T>} Instancia singleton tipada
+   * @returns {SocketClientNestjs<T>} Instancia singleton tipada
    *
    * @example
    * ```ts
-   * const socket = SocketClient.getInstance<MyEvents>();
+   * const socket = SocketClientNestjs.getInstance<MyEvents>();
    * ```
    */
   static getInstance<T extends Record<string, any>>() {
-    if (!SocketClient.instance) {
-      SocketClient.instance = new SocketClient<T>();
+    if (!SocketClientNestjs.instance) {
+      SocketClientNestjs.instance = new SocketClientNestjs<T>();
     }
-    return SocketClient.instance as SocketClient<T>;
+    return SocketClientNestjs.instance as SocketClientNestjs<T>;
   }
 
   /**

@@ -1,5 +1,5 @@
 
-import { SocketClient } from "@/shared/socket/socket-client";
+import { SocketClientNestjs } from "@/shared/socket/socket-client-nestjs";
 import type {
   ViajeProgramadoDto,
   ViajeEstatusDto,
@@ -12,7 +12,7 @@ import type { IMateriaPrimaWSService } from "../interfaces/i-materia-prima-ws-se
  * Solo llamadas de WebSockets
  */
 export class MateriaPrimaWSService implements IMateriaPrimaWSService {
-  private socket = SocketClient.getInstance();
+  private socket = SocketClientNestjs.getInstance();
 
   onBoletasPlanta1 = (
     callback: (data: ViajeProgramadoDto[]) => void

@@ -1,4 +1,4 @@
-import { SocketClient } from "@/shared/socket/socket-client";
+import { SocketClientNestjs } from "@/shared/socket/socket-client-nestjs";
 import type { ICombustoleoWSService } from "../interfaces/i-combustoleo-ws-service";
 import type { CombustoleoDto } from "../dto/combustoleo-dto";
 
@@ -7,7 +7,7 @@ import type { CombustoleoDto } from "../dto/combustoleo-dto";
  */
 export class CombustoleoWSService implements ICombustoleoWSService {
 
-  private socket = SocketClient.getInstance();
+  private socket = SocketClientNestjs.getInstance();
 
   onCombustoleoPlanta1 = (
     callback: (data: CombustoleoDto[]) => void
