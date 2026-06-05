@@ -1,10 +1,32 @@
-import { tiempoMuertoService } from "../../api/module/instances/instances";
 import { useQuery } from "@tanstack/react-query";
 
-export const TIEMPOS_MUERTOS_QUERY_KEY = ["planta-3-tiempos-muertos"];
+import { tiempoMuertoService }
+from "../../api/module/instances/instances";
 
-export const useTiempoMuertoQuery = () =>
-    useQuery({
-        queryKey: TIEMPOS_MUERTOS_QUERY_KEY,
-        queryFn: () => tiempoMuertoService.getTiemposCurso(),
-    });
+import { useTiempoMuertoRealtime }
+from "./useTiempoMuertoRealtime";
+
+/**
+ * Query principal de tiempos muertos activos.
+ *
+ * Obtiene la carga inicial por REST y posteriormente
+ * mantiene la información sincronizada mediante SignalR.
+ */
+export const TIEMPOS_MUERTOS_KEY = [
+  "tiempos-muertos",
+] as const;
+
+export function useTiempoMuertoQuery() {
+
+  const query = useQuery({
+    queryKey: TIEMPOS_MUERTOS_KEY,
+    queryFn: () =>
+      tiempoMuertoService.getTiemposCurso(),
+  });
+
+  useTiempoMuertoRealtime(
+    query.isSuccess
+  );
+
+  return query;
+}

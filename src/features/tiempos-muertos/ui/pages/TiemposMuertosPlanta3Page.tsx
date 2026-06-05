@@ -2,9 +2,7 @@ import { useMemo } from "react";
 import NavBar from "@/components/common/NavBar/NavBar";
 import { CardParo, type ParoTipo } from "../components/CardParo";
 import { EmptyParos } from "../components/EmptyParos";
-import { useTiempoMuertoSubscription } from "../hooks/useTiempoMuertoSubscription";
 import { useTiempoMuertoQuery } from "../hooks/useTiempoMuertoQuery";
-import { useTiempoMuertoHubConnection } from "../hooks/useTiempoMuertoHubConnection";
 
 const CATEGORIA_TO_TIPO: Record<string, ParoTipo> = {
     mantenimiento: "mantenimiento",
@@ -17,10 +15,8 @@ function parseTipo(categoria: string): ParoTipo {
 }
 
 export function TiemposMuertosPlanta3Page() {
+    
     const tiemposQuery = useTiempoMuertoQuery();
-    const connection = useTiempoMuertoHubConnection();
-
-    useTiempoMuertoSubscription(connection && tiemposQuery.isSuccess);
 
     const paros = useMemo(() => {
         const rawParos = Array.isArray(tiemposQuery.data)
