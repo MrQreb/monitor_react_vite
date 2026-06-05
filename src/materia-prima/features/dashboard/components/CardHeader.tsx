@@ -1,52 +1,71 @@
 import { Card, CardContent } from "@/components/ui/card"
+import { Spinner } from "@/components/ui/spinner";
 import type { LucideProps } from "lucide-react"
 
 interface Props {
-  value: string
-  icon: React.ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> &
-      React.RefAttributes<SVGSVGElement>
-  >
-  text: string
-  sizeIcon?: number
-  className?: string
+    /** Valor del texto de la tarjeta */
+    value: string;
+    /** Icono de Lucide Icons */
+    icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
+    /** Texto de la tarjeta */
+    text: string;
+    /** tamano del icono */
+    sizeIcon?: number;
+    /** clases de tailwind */
+    className?: string;
+    /** estado de carga de la feching de la data */
+    isLoading?: boolean;
 }
 
 export const CardHeader = ({
-  icon,
-  text,
-  value,
-  sizeIcon = 20,
-  className,
+    icon,
+    text,
+    value,
+    sizeIcon = 20,
+    className,
+    isLoading = false
 }: Props) => {
-  const Icon = icon
+    const Icon = icon
 
-  return (
-    <Card
-      className={`
+    return (
+        <Card
+            className={`
         border-border
         bg-card
         text-card-foreground
         shadow-sm
         ${className ?? ""}
       `}
-    >
-      <CardContent className="flex h-full flex-col justify-between p-5">
-        <div className="flex items-center justify-between">
-          <span className="text-sm text-muted-foreground">
-            {text}
-          </span>
+        >
+            <CardContent className="flex h-full flex-col justify-between p-5">
+                <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">
+                        {text}
+                    </span>
 
-          <Icon
-            size={sizeIcon}
-            className="text-muted-foreground"
-          />
-        </div>
+                    <Icon
+                        size={sizeIcon}
+                        className="text-muted-foreground"
+                    />
+                </div>
 
-        <div className="text-4xl font-bold tracking-tight text-foreground">
-          {value}
-        </div>
-      </CardContent>
-    </Card>
-  )
+                {!isLoading &&
+                    (
+                        <div className="text-4xl font-bold tracking-tight text-foreground">
+                            {value}
+                        </div>
+                    )
+                }
+
+                {isLoading &&
+                    (
+                        <div className="text-4xl font-bold tracking-tight text-foreground">
+                            <Spinner />
+                        </div>
+                    )
+                }
+
+            </CardContent>
+        </Card>
+    )
 }

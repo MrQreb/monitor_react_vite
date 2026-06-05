@@ -20,7 +20,6 @@ import { Badge } from '@/components/ui/badge';
 import { ButtonCalendar } from "../components/ButtonCalendar";
 import { useMateriaPrimaResumen } from "../hooks/useMateriaPrimaResumen";
 import { GraficaCajas } from "@/materia-prima/ui/components/GraficaCajas";
-import { ModeToggle } from "@/components/common/ModeTogle/ModeTogle";
 import { ThemeButton } from "@/features/menu/components/ThemeButton";
 
 export function DashboardMateriaPrimaPlanta1Page() {
@@ -123,6 +122,7 @@ export function DashboardMateriaPrimaPlanta1Page() {
                     {/* Tarjetas con datos */}
                     <div className="col-span-2 row-span-2">
                         <CardHeader
+                            isLoading={contarBoletas.isLoading}
                             text="Boletas"
                             value={String(totalBoletas)}
                             icon={FileText}
@@ -131,6 +131,7 @@ export function DashboardMateriaPrimaPlanta1Page() {
 
                     <div className="col-span-2 row-span-2">
                         <CardHeader
+                            isLoading={resumenMateriaPrima.isLoading}
                             text="Cajas Recibidas"
                             value={String(cajasRecibidas?.toString())}
                             icon={Package2}
@@ -139,6 +140,7 @@ export function DashboardMateriaPrimaPlanta1Page() {
 
                     <div className="col-span-2 row-span-2">
                         <CardHeader
+                            isLoading={resumenMateriaPrima.isLoading}
                             text="Cajas Estimadas"
                             value={String(cajasEstimadas)}
                             icon={PackageOpen}

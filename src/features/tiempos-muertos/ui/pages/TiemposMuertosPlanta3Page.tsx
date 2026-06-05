@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import NavBar from "@/components/common/NavBar/NavBar";
-import { NoConnection } from "@/components/common/NoConnection/NoConnection";
 import { CardParo, type ParoTipo } from "../components/CardParo";
 import { EmptyParos } from "../components/EmptyParos";
 import { useTiempoMuertoSubscription } from "../hooks/useTiempoMuertoSubscription";
@@ -45,7 +44,7 @@ export function TiemposMuertosPlanta3Page() {
         });
     }, [tiemposQuery.data]);
 
-    if (!connection) return <NoConnection />;
+    // if (!connection) return <NoConnection />;
 
 
     return (
