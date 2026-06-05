@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
-import type { ISignalRClient } from "../interface/i-signalr-client";
 
-
+import type { ISignalRClient }
+from "../interface/i-signalr-client";
 
 /**
- * Hook que expone el estado actual
- * de una conexión SignalR.
+ * Expone el estado actual de conexión
+ * de un cliente SignalR.
  *
  * @param client
  * Cliente SignalR a monitorear.
+ * @example
+ *    const hub = TiempoMuertoHub.getInstance(); => //instancia del evento que llaman
+ *    const connected = useSignalRConnection(hub); => //hook para ver la conexion
  */
-export function useSignalRConnection(
-  client: ISignalRClient<any>,
+export function useSignalRConnection<
+  Events
+>(
+  client: ISignalRClient<Events>,
 ) {
+
   const [connected, setConnected] =
     useState(
       client.isConnected()

@@ -3,6 +3,9 @@ import NavBar from "@/components/common/NavBar/NavBar";
 import { CardParo, type ParoTipo } from "../components/CardParo";
 import { EmptyParos } from "../components/EmptyParos";
 import { useTiempoMuertoQuery } from "../hooks/useTiempoMuertoQuery";
+import { useSignalRConnection } from "@/core/singalR/hooks/useCheckConnectionSignalR";
+import { TiempoMuertoHub } from "../../api/socket/hub/tiempo-muerto-hub";
+import { NoConnection } from "@/components/common/NoConnection/NoConnection";
 
 const CATEGORIA_TO_TIPO: Record<string, ParoTipo> = {
     mantenimiento: "mantenimiento",
@@ -15,7 +18,9 @@ function parseTipo(categoria: string): ParoTipo {
 }
 
 export function TiemposMuertosPlanta3Page() {
-    
+
+    const hub = TiempoMuertoHub.getInstance();
+    const connection = useSignalRConnection(hub);
     const tiemposQuery = useTiempoMuertoQuery();
 
     const paros = useMemo(() => {
@@ -40,7 +45,7 @@ export function TiemposMuertosPlanta3Page() {
         });
     }, [tiemposQuery.data]);
 
-    // if (!connection) return <NoConnection />;
+    if (!connection) return <NoConnection />;
 
 
     return (
