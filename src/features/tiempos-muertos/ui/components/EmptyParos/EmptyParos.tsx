@@ -11,7 +11,7 @@ import {
 /** Card cuando no hay paros */
 export function EmptyParos() {
   return (
-    <Empty className="mx-auto w-full max-w-2xl bg-card rounded-2xl border border-border/70  px-6 py-9 shadow-xs">
+    <Empty className="w-full h-full  bg-card rounded-2xl border border-border/70  px-6 py-9 shadow-xs">
       <EmptyHeader className="gap-2.5">
         <EmptyMedia
           variant="icon"

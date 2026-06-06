@@ -5,8 +5,15 @@ import { EmptyParos } from "../components/EmptyParos/EmptyParos";
 import { useTiempoMuertoQuery } from "../hooks/useTiempoMuertoQuery";
 import { useSignalRConnection } from "@/core/singalR/hooks/useCheckConnectionSignalR";
 import { TiempoMuertoHub } from "../../api/socket/hub/tiempo-muerto-hub";
-import { HeaderParos } from '../components/HeaderParo/HeaderParo';
+import { HeaderParos } from "../components/HeaderParo/HeaderParo";
 
+/**
+ * Página principal de monitoreo de tiempos muertos.
+ *
+ * Diseñada para pantallas industriales de visualización continua.
+ * No utiliza scroll y adapta automáticamente la cantidad de columnas
+ * según el número de tiempos muertos activos.
+ */
 export function TiemposMuertosPlanta3Page() {
     const hub = TiempoMuertoHub.getInstance();
 
@@ -20,36 +27,60 @@ export function TiemposMuertosPlanta3Page() {
         return <NoConnection />;
     }
 
+    const columns =
+        tiemposMuertos.length <= 6
+            ? 3
+            : tiemposMuertos.length <= 12
+                ? 6
+                : tiemposMuertos.length <= 18
+                    ? 8
+                    : tiemposMuertos.length <= 24
+                        ? 10
+                        : 12;
+
+    const compact = tiemposMuertos.length > 12;
+
     return (
-        <div className="flex h-screen w-full flex-col overflow-hidden bg-background px-2 pb-2 pt-1 text-foreground md:px-3">
+        <div className="flex h-screen w-full flex-col overflow-hidden bg-background px-2 pb-2 pt-1 text-foreground">
             <NavBar />
 
-            <main className="h-screen rounded-2xl border bg-linear-to-b from-muted/50 to-background px-4 py-5 dark:from-zinc-950/60 dark:to-zinc-950/20 md:px-5 md:py-6">
-                <div className="mx-auto max-w-6xl space-y-6">
-
-
-                    <HeaderParos tiemposMuertos={tiemposMuertos}/>
+            <main className="flex-1 rounded-2xl border bg-linear-to-b from-muted/50 to-background p-4 dark:from-zinc-950/60 dark:to-zinc-950/20">
+                <div className="flex h-full flex-col gap-4">
+                    <HeaderParos tiemposMuertos={tiemposMuertos} />
 
                     {tiemposQuery.isLoading && (
-                        <p className="px-1 text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground">
                             Cargando paros activos...
                         </p>
                     )}
 
-                    {!tiemposQuery.isLoading && tiemposMuertos.length === 0 && (
-                        <EmptyParos />
-                    )}
 
-                    {!tiemposQuery.isLoading && tiemposMuertos.length > 0 && (
-                        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
-                            {tiemposMuertos.map((tiemposMuertos) => (
-                                <CardParo
-                                    key={tiemposMuertos.id}
-                                    tiempoMuerto={tiemposMuertos}
-                                />
-                            ))}
-                        </div>
-                    )}
+                    {
+                        tiemposMuertos.length === 0 && (
+                            <div className="w-[50%] h-[50%] m-auto">
+
+                                <EmptyParos />
+                            </div>
+                        )
+                    }
+
+                    {
+                        tiemposMuertos.length > 0 && (
+                            <div
+                                className="grid flex-1 gap-3"
+                                style={{
+                                    gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+                                }}
+                            >
+                                {tiemposMuertos.map((tiempoMuerto) => (
+                                    <CardParo
+                                        key={tiempoMuerto.id}
+                                        tiempoMuerto={tiempoMuerto}
+                                        compact={compact}
+                                    />
+                                ))}
+                            </div>
+                        )}
                 </div>
             </main>
         </div>

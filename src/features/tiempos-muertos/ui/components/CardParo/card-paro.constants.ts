@@ -1,54 +1,7 @@
-import {
-    AlertTriangle,
-    Package,
-    Wrench,
-    Zap,
-} from "lucide-react";
-
 import type {
     ParoStatus,
-    ParoTipo,
 } from "./card-paro.types";
 
-/**
- * Configuración visual asociada a un tipo de paro.
- */
-export interface TipoConfig {
-    /**
-     * Texto mostrado al usuario.
-     */
-    label: string;
-
-    /**
-     * Icono representativo del tipo.
-     */
-    Icon: React.ElementType;
-}
-
-/**
- * Configuración de icono y etiqueta por categoría.
- */
-export const TIPO_CONFIG: Record<
-    ParoTipo,
-    TipoConfig
-> = {
-    mantenimiento: {
-        label: "Mantenimiento",
-        Icon: Wrench,
-    },
-    falla: {
-        label: "Falla",
-        Icon: Zap,
-    },
-    material: {
-        label: "Material",
-        Icon: Package,
-    },
-    otro: {
-        label: "Otro",
-        Icon: AlertTriangle,
-    },
-};
 
 /**
  * Estilos del badge según el estado.
@@ -79,17 +32,6 @@ export const STATUS_DOT_STYLES: Record<
     critico: "bg-rose-400",
 };
 
-/**
- * Fondo del icono principal.
- */
-export const STATUS_ICON_BG: Record<
-    ParoStatus,
-    string
-> = {
-    normal: "bg-emerald-500/20",
-    advertencia: "bg-amber-500/20",
-    critico: "bg-rose-500/20",
-};
 
 /**
  * Color del temporizador.

@@ -1,74 +1,115 @@
-import { cn } from "@/lib/utils";
-import { useParoTimer } from "./useParoTimer";
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Clock, Trash2 } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
+import { Clock, Trash2 } from "lucide-react";
+
 import type { TiempoMuertoDto } from "@/features/tiempos-muertos/api/dto/tiempo-muerto-dto";
-import { parseTipo } from "./card-paro-utils";
-import { STATUS_DOT_STYLES, STATUS_ICON_BG, STATUS_LABELS, STATUS_STYLES, STATUS_TIMER_TEXT, TIPO_CONFIG } from "./card-paro.constants";
+
+import { useParoTimer } from "./useParoTimer";
+
+import {
+    STATUS_DOT_STYLES,
+    STATUS_LABELS,
+    STATUS_STYLES,
+    STATUS_TIMER_TEXT,
+} from "./card-paro.constants";
 
 export interface Props {
     tiempoMuerto: TiempoMuertoDto;
     className?: string;
     onDelete?: () => void;
+
+    /**
+     * Modo compacto utilizado cuando existen
+     * muchos tiempos muertos simultáneamente.
+     */
+    compact?: boolean;
 }
 
-/** Tarjeta del teimpo muerto
- * @returns Tsx component
- * @param Props 
+/**
+ * Tarjeta que representa un tiempo muerto activo.
+ *
+ * Muestra:
+ * - Máquina afectada.
+ * - Estado actual del paro.
+ * - Descripción.
+ * - Área.
+ * - Tiempo transcurrido.
+ *
+ * @param tiempoMuerto Información del tiempo muerto.
+ * @param className Clases CSS adicionales.
+ * @param onDelete Acción opcional para eliminar el elemento.
+ * @param compact Reduce tamaños para dashboards con muchos elementos.
  */
 export function CardParo({
     tiempoMuerto,
     className,
     onDelete,
+    compact = false,
 }: Props) {
-    const { elapsedSeconds, status, timeText } = useParoTimer(
+    const { status, timeText } = useParoTimer(
         tiempoMuerto.fechaInicioParo
     );
 
-    const tipo = parseTipo(tiempoMuerto.categoria);
+    /**
+     * Configuración visual dependiente
+     * del modo compacto.
+     */
+    const cardClass = compact
+        ? "min-h-[140px] p-2"
+        : "min-h-[190px] p-4";
 
-    const {
-        Icon,
-        label: tipoLabel,
-    } = TIPO_CONFIG[tipo];
+    const titleClass = compact
+        ? "text-sm"
+        : "text-lg";
+
+    const descriptionClass = compact
+        ? "line-clamp-1 text-xs"
+        : "line-clamp-2 text-sm";
+
+    const areaBadgeClass = compact
+        ? "text-[10px]"
+        : "";
+
+    const timerLabelClass = compact
+        ? "text-[10px]"
+        : "text-xs";
+
+    const timerValueClass = compact
+        ? "text-xl"
+        : "text-3xl";
+
+    const statusLabel = compact
+        ? STATUS_LABELS[status].replace("En curso", "Curso")
+        : STATUS_LABELS[status];
 
     return (
         <Card
             className={cn(
-                "relative min-h-72 w-full gap-4 rounded-3xl border p-6",
+                "flex flex-col rounded-xl border",
+                cardClass,
                 STATUS_STYLES[status],
                 className
             )}
         >
-            <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                    <div
-                        className={cn(
-                            "flex h-11 w-11 items-center justify-center rounded-2xl",
-                            STATUS_ICON_BG[status]
-                        )}
-                    >
-                        <Icon className="size-5" />
-                    </div>
+            {/* Header */}
+            <section className="flex items-start justify-between gap-2">
+                <h3
+                    className={cn(
+                        "truncate font-bold",
+                        titleClass
+                    )}
+                >
+                    {tiempoMuerto.maquina}
+                </h3>
 
-                    <div>
-                        <h3 className="font-semibold">
-                            {tiempoMuerto.maquina}
-                        </h3>
-
-                        <p className="text-sm text-muted-foreground">
-                            {tipoLabel}
-                        </p>
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
                     <Badge
                         variant="outline"
                         className={cn(
+                            "gap-1 whitespace-nowrap",
                             STATUS_STYLES[status]
                         )}
                     >
@@ -79,7 +120,7 @@ export function CardParo({
                             )}
                         />
 
-                        {STATUS_LABELS[status]}
+                        {statusLabel}
                     </Badge>
 
                     {onDelete && (
@@ -88,42 +129,61 @@ export function CardParo({
                             size="icon-xs"
                             onClick={onDelete}
                         >
-                            <Trash2 className="size-4" />
+                            <Trash2 className="size-3" />
                         </Button>
                     )}
                 </div>
-            </div>
+            </section>
 
-            <div>
-                <p className="text-sm text-muted-foreground">
+            {/* Descripción */}
+            <section className="mt-2 flex-1">
+                <p
+                    className={cn(
+                        "text-muted-foreground",
+                        descriptionClass
+                    )}
+                >
                     {tiempoMuerto.descripcion}
                 </p>
-            </div>
+            </section>
 
-            <Separator />
+            {/* Área */}
+            <section className="mt-2 flex items-center justify-between">
+                <Badge
+                    variant="secondary"
+                    className={areaBadgeClass}
+                >
+                    {tiempoMuerto.area}
+                </Badge>
+            </section>
 
-            <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                    <Clock className="size-4" />
-                    <span className="text-xs uppercase">
+            <Separator className="my-2" />
+
+            {/* Tiempo transcurrido */}
+            <section>
+                <div className="mb-1 flex items-center gap-2 text-muted-foreground">
+                    <Clock className="size-3" />
+
+                    <span
+                        className={cn(
+                            "uppercase tracking-wider",
+                            timerLabelClass
+                        )}
+                    >
                         Tiempo parado
                     </span>
                 </div>
 
-                <span
+                <div
                     className={cn(
-                        "font-mono text-2xl font-bold",
+                        "font-mono font-bold tabular-nums text-center",
+                        timerValueClass,
                         STATUS_TIMER_TEXT[status]
                     )}
                 >
                     {timeText}
-                </span>
-            </div>
-
-            <div className="flex justify-between text-xs text-muted-foreground">
-                <span>Área: {tiempoMuerto.area}</span>
-                <span>#{tiempoMuerto.id}</span>
-            </div>
+                </div>
+            </section>
         </Card>
     );
 }

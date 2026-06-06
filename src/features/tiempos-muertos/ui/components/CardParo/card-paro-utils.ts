@@ -1,32 +1,7 @@
 import type {
     ParoStatus,
-    ParoTipo,
 } from "./card-paro.types";
 
-/**
- * Convierte una categoría proveniente de la API
- * al tipo utilizado por la interfaz.
- *
- * @param categoria Categoría recibida desde el backend.
- * @returns Tipo de paro reconocido.
- */
-export function parseTipo(
-    categoria: string
-): ParoTipo {
-    switch (categoria.toLowerCase()) {
-        case "mantenimiento":
-            return "mantenimiento";
-
-        case "falla":
-            return "falla";
-
-        case "material":
-            return "material";
-
-        default:
-            return "otro";
-    }
-}
 
 /**
  * Determina el estado visual de un paro
