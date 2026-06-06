@@ -10,10 +10,12 @@ interface Props{
  */
 export const HeaderParos = ({ tiemposMuertos }:Props) => {
     return (
-        <header className="rounded-2xl border bg-card/70 p-4 md:p-5 backdrop-blur-sm">
+        <header className="rounded-2xl border bg-card/70 p-4 md:p-5 backdrop-blur-sm w-full h-full">
+            
             <div className="flex flex-wrap items-center justify-between gap-4">
+                
                 <div className="space-y-1">
-                    <h1 className="text-xl font-semibold tracking-tight md:text-2xl">
+                    <h1 className="text-base font-semibold tracking-tight">
                         Tiempos muertos Planta 3
                     </h1>
                     <p className="text-sm text-muted-foreground">

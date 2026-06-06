@@ -16,16 +16,18 @@ import {
     STATUS_TIMER_TEXT,
 } from "./card-paro.constants";
 
+import { SIZE_CONFIG } from "./SIZE-CONFIG";
+import type { CardSize } from "./CardSize.type";
+
 export interface Props {
     tiempoMuerto: TiempoMuertoDto;
     className?: string;
     onDelete?: () => void;
 
     /**
-     * Modo compacto utilizado cuando existen
-     * muchos tiempos muertos simultáneamente.
+     * Tamaño visual de la tarjeta.
      */
-    compact?: boolean;
+    size?: CardSize;
 }
 
 /**
@@ -41,55 +43,25 @@ export interface Props {
  * @param tiempoMuerto Información del tiempo muerto.
  * @param className Clases CSS adicionales.
  * @param onDelete Acción opcional para eliminar el elemento.
- * @param compact Reduce tamaños para dashboards con muchos elementos.
+ * @param size Tamaño visual utilizado por el dashboard.
  */
 export function CardParo({
     tiempoMuerto,
     className,
     onDelete,
-    compact = false,
+    size = "large",
 }: Props) {
     const { status, timeText } = useParoTimer(
         tiempoMuerto.fechaInicioParo
     );
 
-    /**
-     * Configuración visual dependiente
-     * del modo compacto.
-     */
-    const cardClass = compact
-        ? "min-h-[140px] p-2"
-        : "min-h-[190px] p-4";
-
-    const titleClass = compact
-        ? "text-sm"
-        : "text-lg";
-
-    const descriptionClass = compact
-        ? "line-clamp-1 text-xs"
-        : "line-clamp-2 text-sm";
-
-    const areaBadgeClass = compact
-        ? "text-[10px]"
-        : "";
-
-    const timerLabelClass = compact
-        ? "text-[10px]"
-        : "text-xs";
-
-    const timerValueClass = compact
-        ? "text-xl"
-        : "text-3xl";
-
-    const statusLabel = compact
-        ? STATUS_LABELS[status].replace("En curso", "Curso")
-        : STATUS_LABELS[status];
+    const styles = SIZE_CONFIG[size];
 
     return (
         <Card
             className={cn(
                 "flex flex-col rounded-xl border",
-                cardClass,
+                styles.card,
                 STATUS_STYLES[status],
                 className
             )}
@@ -99,7 +71,7 @@ export function CardParo({
                 <h3
                     className={cn(
                         "truncate font-bold",
-                        titleClass
+                        styles.title
                     )}
                 >
                     {tiempoMuerto.maquina}
@@ -110,17 +82,19 @@ export function CardParo({
                         variant="outline"
                         className={cn(
                             "gap-1 whitespace-nowrap",
+                            styles.badge,
                             STATUS_STYLES[status]
                         )}
                     >
                         <span
                             className={cn(
-                                "h-2 w-2 rounded-full animate-pulse",
+                                "rounded-full animate-pulse",
+                                styles.dot,
                                 STATUS_DOT_STYLES[status]
                             )}
                         />
 
-                        {statusLabel}
+                        {STATUS_LABELS[status]}
                     </Badge>
 
                     {onDelete && (
@@ -129,7 +103,7 @@ export function CardParo({
                             size="icon-xs"
                             onClick={onDelete}
                         >
-                            <Trash2 className="size-3" />
+                            <Trash2 className={styles.icon} />
                         </Button>
                     )}
                 </div>
@@ -140,7 +114,7 @@ export function CardParo({
                 <p
                     className={cn(
                         "text-muted-foreground",
-                        descriptionClass
+                        styles.description
                     )}
                 >
                     {tiempoMuerto.descripcion}
@@ -151,23 +125,34 @@ export function CardParo({
             <section className="mt-2 flex items-center justify-between">
                 <Badge
                     variant="secondary"
-                    className={areaBadgeClass}
+                    className={styles.area}
                 >
                     {tiempoMuerto.area}
                 </Badge>
+
+                {size === "large" && (
+                    <span className="text-xs text-muted-foreground">
+                        #{tiempoMuerto.id}
+                    </span>
+                )}
             </section>
 
-            <Separator className="my-2" />
+            <Separator className={styles.separator} />
 
             {/* Tiempo transcurrido */}
             <section>
-                <div className="mb-1 flex items-center gap-2 text-muted-foreground">
-                    <Clock className="size-3" />
+                <div
+                    className={cn(
+                        "flex items-center gap-2 text-muted-foreground",
+                        styles.timerHeader
+                    )}
+                >
+                    <Clock className={styles.icon} />
 
                     <span
                         className={cn(
                             "uppercase tracking-wider",
-                            timerLabelClass
+                            styles.timerLabel
                         )}
                     >
                         Tiempo parado
@@ -177,7 +162,7 @@ export function CardParo({
                 <div
                     className={cn(
                         "font-mono font-bold tabular-nums text-center",
-                        timerValueClass,
+                        styles.timer,
                         STATUS_TIMER_TEXT[status]
                     )}
                 >
