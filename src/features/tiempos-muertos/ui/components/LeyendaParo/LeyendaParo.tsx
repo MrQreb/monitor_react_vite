@@ -1,6 +1,6 @@
 /**
  * Los colores de como se muestra las cards de los paros
- * @returns JSX component
+ * @returns Tsx component
  */
 export const LeyendaParo = () => {
     return (

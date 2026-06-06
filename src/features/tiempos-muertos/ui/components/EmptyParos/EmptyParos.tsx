@@ -8,7 +8,7 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty"
 
-/** Card de paros vacio */
+/** Card cuando no hay paros */
 export function EmptyParos() {
   return (
     <Empty className="mx-auto w-full max-w-2xl bg-card rounded-2xl border border-border/70  px-6 py-9 shadow-xs">
