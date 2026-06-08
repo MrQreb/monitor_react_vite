@@ -2,11 +2,11 @@ import NavBar from "@/components/common/NavBar/NavBar";
 import { NoConnection } from "@/components/common/NoConnection/NoConnection";
 import { CardParo } from "../components/CardParo/CardParo";
 import { EmptyParos } from "../components/EmptyParos/EmptyParos";
-import { useTiempoMuertoQuery } from "../hooks/useTiempoMuertoQuery";
 import { useSignalRConnection } from "@/core/singalR/hooks/useCheckConnectionSignalR";
 import { HeaderParos } from "../components/HeaderParo/HeaderParo";
-import { TiempoMuertoHub } from "../../api/socket/hub/tiempo-muerto-hub";
-import { LoadingTiempos } from "../components/LoadingTiempos/LoadingTiempos";
+import { TiempoMuertoIQFHub } from "../../api/socket/hub/tiempo-muerto-hub-iqf";
+import { useTiempoMuertoByAreaIdQuery } from "../hooks/useTiempoMuertoByAreaIdQuery";
+import { LoadingTiempos } from "../components";
 import { GridLayoutCalculator } from "../../helpers/GridLayoutCalculator";
 
 /**
@@ -16,11 +16,13 @@ import { GridLayoutCalculator } from "../../helpers/GridLayoutCalculator";
  * No utiliza scroll y adapta automáticamente la cantidad de columnas
  * según el número de tiempos muertos activos.
  */
-export function TiemposMuertosPlanta3Page() {
-    const hub = TiempoMuertoHub.getInstance();
+export function TiemposMuertosPlanta3IQFPage() {
+
+    const hub = TiempoMuertoIQFHub.getInstance();
+
     const connection = useSignalRConnection(hub);
 
-    const tiemposQuery = useTiempoMuertoQuery();
+    const tiemposQuery = useTiempoMuertoByAreaIdQuery(1);
 
     const tiemposMuertos = tiemposQuery.data ?? [];
 
@@ -28,8 +30,9 @@ export function TiemposMuertosPlanta3Page() {
         return <NoConnection />;
     }
 
-     const columns = GridLayoutCalculator.getColumnsGrid(tiemposMuertos);
+    const columns = GridLayoutCalculator.getColumnsGrid(tiemposMuertos);
     const cardSize = GridLayoutCalculator.getSizeCard(columns);
+
     return (
         <div className="flex h-screen w-full flex-col overflow-hidden bg-background px-2 pb-2 pt-1 text-foreground">
             <NavBar />
@@ -39,14 +42,14 @@ export function TiemposMuertosPlanta3Page() {
 
                     <div className="w-full">
                         <HeaderParos
-                            title="Tiempos muertos IQF 1 Planta 3"
-                            description="Monitoreo en tiempo real de eventos en línea de producción."
+                            title="Tiempos muertos Planta 3"
+                            description="Monitoreo de máquinas de IQF 1."
                             tiemposMuertos={tiemposMuertos}
                         />
                     </div>
 
                     {tiemposQuery.isLoading && (
-                       <LoadingTiempos/>
+                        <LoadingTiempos />
                     )}
 
 

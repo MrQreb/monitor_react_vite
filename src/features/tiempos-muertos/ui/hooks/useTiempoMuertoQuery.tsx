@@ -21,7 +21,7 @@ export function useTiempoMuertoQuery() {
   const query = useQuery({
     queryKey: TIEMPOS_MUERTOS_KEY,
     queryFn: () =>
-      tiempoMuertoService.getTiemposCurso(),
+      tiempoMuertoService.getTiemposCursoAsync(),
   });
 
   useTiempoMuertoRealtime(

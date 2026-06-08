@@ -13,11 +13,15 @@ export class TiempoMuertoService implements ITiempoMuertoService {
     }
     this.url = `${baseUrlRESTMonitorASP}/api/v1/tiempos-muertos`;
   }
-
-  async getTiemposCurso(): Promise<TiempoMuertoDto[]> {
-    return api<TiempoMuertoDto[]>(`${this.url}/en-curso`);
+  
+  async getTiemposCursoByAreaIdAsync(idArea: number): Promise<TiempoMuertoDto[]> {
+     return api<TiempoMuertoDto[]>(`${this.url}/en-curso-por-area/${idArea}`);
   }
-  async getTiemposFinalizados(): Promise<TiempoMuertoDto[]> {
+
+  async getTiemposCursoAsync(): Promise<TiempoMuertoDto[]> {
+    return api<TiempoMuertoDto[]>(`${this.url}/en-curso`);
+  } 
+  async getTiemposFinalizadosAsync(): Promise<TiempoMuertoDto[]> {
     return api<TiempoMuertoDto[]>(`${this.url}/finalizados`);
   }
 }
