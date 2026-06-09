@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react';
 import NavBar from '@/components/common/NavBar/NavBar';
-import { Carrot, ChartColumnBig, Factory, ThermometerSnowflake, MonitorStop, ChartBar } from 'lucide-react';
+import { Carrot, ChartColumnBig, Factory, ThermometerSnowflake, MonitorStop, ChartBar, Monitor, PocketKnife, ShoppingBag } from 'lucide-react';
 import { CardMenu } from '../components/CardMenu';
 import { TabsMenu } from '../components/TabsMenu';
 import { NAV_MATERIA_PRIMA } from '@/materia-prima/routes/NAV_MATERIA_PRIMA';
 import { ThemeButton } from '../components/ThemeButton';
+import { NAV_ROUTES_TIEMPOS_MUERTOS } from '@/features/tiempos-muertos/routes/NAV_ROUTES_TIEMPOS_MUERTOS';
+import { tiemposMuertosPlanta3 } from '@/features/tiempos-muertos/routes/routes';
 
 
 type Tab = 'Ambas' | 'Planta 1' | 'Planta 3' | 'Cedis';
@@ -32,8 +34,11 @@ const menuItems: MenuItem[] = [
   { title: 'Corte Planta 3', category: 'Planta 3', route: '/', icon: ThermometerSnowflake },
   { title: 'Carry Over Planta 1', category: 'Planta 1', route: '/', icon: ThermometerSnowflake },
   { title: 'Grafica Carry Over Planta 1', category: 'Planta 1', route: '/', icon: ThermometerSnowflake },
-  { title: 'Monitoreo Tiempos Muertos', category: 'Planta 3', route: '/tiempos-muertos/planta-3', icon: MonitorStop  },
-  { title: 'Monitoreo IQF', category: 'Planta 3', route: '/tiempos-muertos/planta-3', icon: MonitorStop  },
+
+  { title: 'Monitoreo Tiempos Muertos', category: 'Planta 3', route: tiemposMuertosPlanta3.path, icon: Monitor },
+  { title: 'Monitoreo IQF', category: 'Planta 3', route: NAV_ROUTES_TIEMPOS_MUERTOS.tiemposMuertosPlanta3IQF.fullPath, icon: MonitorStop },
+  { title: 'Monitoreo Corte', category: 'Planta 3', route: NAV_ROUTES_TIEMPOS_MUERTOS.tiemposMuertosPlanta3Corte.fullPath, icon: PocketKnife },
+  { title: 'Monitoreo Embolsado', category: 'Planta 3', route: NAV_ROUTES_TIEMPOS_MUERTOS.tiemposMuertosPlanta3Embolsado.fullPath, icon: ShoppingBag  },
 ];
 
 export const MenuPage = () => {
@@ -66,7 +71,7 @@ export const MenuPage = () => {
 
 
           <div className="col-start-11">
-            <ThemeButton/>
+            <ThemeButton />
           </div>
 
 
@@ -80,7 +85,7 @@ export const MenuPage = () => {
               key={index}
               title={item.title}
               route={item.route}
-              icon={item.icon} 
+              icon={item.icon}
             />
           ))}
         </section>

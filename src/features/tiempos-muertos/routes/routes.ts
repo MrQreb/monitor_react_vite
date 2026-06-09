@@ -10,30 +10,30 @@ import {
 /**
  * Url inicial de las temperaturas
  */
-const tiemposMuertosLayout = createRoute({
+export const tiemposMuertosLayout = createRoute({
   getParentRoute: () => rootRoute,
   path: "/tiempos-muertos",
 });
 
-const planta1 = createRoute({
+export const tiemposMuertosPlanta3 = createRoute({
   getParentRoute: () => tiemposMuertosLayout,
   path: "/planta-3",
   component: TiemposMuertosPlanta3Page,
 });
 
-const planta3IQF = createRoute({
+export const tiemposMuertosPlanta3IQF = createRoute({
   getParentRoute: () => tiemposMuertosLayout,
   path: "/planta-3-iqf",
   component: TiemposMuertosPlanta3IQFPage,
 });
 
-const planta3Embolsado = createRoute({
+export const tiemposMuertosPlanta3Embolsado = createRoute({
   getParentRoute: () => tiemposMuertosLayout,
   path: "/planta-3-embolsado",
   component: TiemposMuertosPlanta3EmbolsadoPage,
 });
 
-const planta3Corte = createRoute({
+export const tiemposMuertosPlanta3Corte = createRoute({
   getParentRoute: () => tiemposMuertosLayout,
   path: "/planta-3-corte",
   component: TiemposMuertosPlanta3CortePage,
@@ -41,8 +41,8 @@ const planta3Corte = createRoute({
 
 /** Rutas a todo lo relacionado de las combustoleo */
 export const tiemposMuertosRoutes = tiemposMuertosLayout.addChildren([
-  planta1,
-  planta3IQF,
-  planta3Embolsado,
-  planta3Corte,
+  tiemposMuertosPlanta3,
+  tiemposMuertosPlanta3IQF,
+  tiemposMuertosPlanta3Embolsado,
+  tiemposMuertosPlanta3Corte,
 ]);

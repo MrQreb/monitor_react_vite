@@ -27,6 +27,14 @@ type Props = {
 }
 
 export function GraficaCajas({ cajas }: Props) {
+
+  /** Permite  formatear las cantidades con formato por separación de  comillas.
+   * @param quantity:number
+   * @example 1000 => 1,000.
+   */
+  const quantityFormatter = (quantity: number) => quantity.toLocaleString("en-US");
+
+
   const { theme } = useTheme()
 
   const isDark =
@@ -58,7 +66,7 @@ export function GraficaCajas({ cajas }: Props) {
     tooltipBorde: isDark ? "#3f3f46" : "#e4e4e7",
 
     leyenda: isDark ? "#d4d4d8" : "#64748b",
-    
+
     estimado: isDark ? "#60a5fa" : "#2563eb",
 
     real: isDark ? "#34d399" : "#059669",
@@ -175,6 +183,9 @@ export function GraficaCajas({ cajas }: Props) {
                   fill={colores.etiqueta}
                   fontSize={11}
                   fontWeight={600}
+                  formatter={(value) =>
+                    quantityFormatter(Number(value ?? 0))
+                  }
                 />
               </Bar>
 
