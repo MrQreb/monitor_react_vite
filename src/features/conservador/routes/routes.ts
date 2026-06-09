@@ -1,7 +1,6 @@
 import { rootRoute } from "@/app/router/__root";
 import { createRoute } from "@tanstack/react-router";
-import { CarryOverPlanta1Page } from "../ui/pages/CarryOverPlanta1PAge";
-
+import { CarryOverPlanta1Page } from "../ui/pages/CarryOverPlanta1Page";
 
 /**
  * Url inicial de las temperaturas

@@ -3,8 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import NavBar from "@/components/common/NavBar/NavBar";
 import useSocketConnection from "@/shared/hooks/useConnetion";
 import { NoConnection } from "@/components/common/NoConnection/NoConnection";
-import { useBoletasPlanta1 } from "../../../ui/hooks/useBoletasPlanta";
-import { useEstatusPlanta1, useGetCajasPlanta1 } from "../../../ui/hooks";
+// import { useBoletasPlanta1 } from "../../../ui/hooks/useBoletasPlanta";
+// import { useEstatusPlanta1, useGetCajasPlanta1 } from "../../../ui/hooks";
 import { useBoletasCount } from "../hooks/useConteoBoletas";
 import type { RangoFechasMateriaPrimaDto } from "../../../api/shared/dto/rangoFechasMateriaPrimaDto.dto";
 import {
@@ -21,6 +21,7 @@ import { ButtonCalendar } from "../components/ButtonCalendar";
 import { useMateriaPrimaResumen } from "../hooks/useMateriaPrimaResumen";
 import { GraficaCajas } from "@/materia-prima/ui/components/GraficaCajas";
 import { ThemeButton } from "@/features/menu/components/ThemeButton";
+import { useGetCajasPlanta1 } from "@/materia-prima/ui/hooks";
 
 export function DashboardMateriaPrimaPlanta1Page() {
 
@@ -53,8 +54,8 @@ export function DashboardMateriaPrimaPlanta1Page() {
     }
 
     /** Custoom hooks que implementan websockets */
-    const boletas = useBoletasPlanta1();
-    const estatus = useEstatusPlanta1();
+    // const boletas = useBoletasPlanta1();
+    // const estatus = useEstatusPlanta1();
     const cajas = useGetCajasPlanta1();
 
     const connection = useSocketConnection();
@@ -69,7 +70,7 @@ export function DashboardMateriaPrimaPlanta1Page() {
     });
 
     const totalBoletas = formatText(contarBoletas.data ?? 0);
-    const totalCajas = formatText(cajas.data?.length ?? 0);
+    // const totalCajas = formatText(cajas.data?.length ?? 0);
     const cajasEstimadas = formatText(resumenMateriaPrima.data?.estimado ?? 0);
     const cajasRecibidas = formatText(resumenMateriaPrima.data?.real ?? 0);
 

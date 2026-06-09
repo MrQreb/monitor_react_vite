@@ -3,8 +3,6 @@ import { ArrowRight } from "lucide-react"
 import { Link } from "@tanstack/react-router"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ro } from "date-fns/locale";
-import { rootRoute } from "@/app/router/__root";
 
 type CardMenuProps = {
   title: string
