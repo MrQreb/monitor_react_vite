@@ -4,10 +4,10 @@ import { CardParo } from "../components/CardParo/CardParo";
 import { EmptyParos } from "../components/EmptyParos/EmptyParos";
 import { useSignalRConnection } from "@/core/singalR/hooks/useCheckConnectionSignalR";
 import { HeaderParos } from "../components/HeaderParo/HeaderParo";
-import { TiempoMuertoIQFHub } from "../../api/socket/hub/tiempo-muerto-hub-iqf";
 import { LoadingTiempos } from "../components";
 import { GridLayoutCalculator } from "../../helpers/GridLayoutCalculator";
 import { useTiempoMuertoIQF } from "../hooks/queries/useTiempoMuertoIQF";
+import { TiempoMuertoHub } from "../../api/socket/hub/tiempo-muerto-hub";
 
 /**
  * Página principal de monitoreo de tiempos muertos.
@@ -18,7 +18,7 @@ import { useTiempoMuertoIQF } from "../hooks/queries/useTiempoMuertoIQF";
  */
 export function TiemposMuertosPlanta3IQFPage() {
 
-    const hub = TiempoMuertoIQFHub.getInstance();
+    const hub = TiempoMuertoHub.getInstance();
 
     const connection = useSignalRConnection(hub);
     

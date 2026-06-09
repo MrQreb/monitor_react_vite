@@ -21,7 +21,7 @@ export class TiempoMuertoHub {
     if (!this.instance) {
 
       //Url base del socket de tiempo muerto
-      this.instance =  new SignalRClient<TiempoMuertoEvents>(
+      this.instance =  new SignalRClient(
           `${baseUrlSocketMonitorASP}/tiempo-muerto`,
       );
     }

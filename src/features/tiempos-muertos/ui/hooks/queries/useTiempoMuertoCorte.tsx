@@ -8,18 +8,18 @@ import { useTiempoMuertoRealtime } from "../sockets/useTiempoMuertoRealtime";
  * Obtiene la carga inicial por REST y posteriormente
  * mantiene la información sincronizada mediante SignalR.
  */
-export const TIEMPOS_MUERTOS_IQF_KEY = "tiempos-muertos-IQF";
+export const TIEMPOS_MUERTOS_CORTE_KEY = "tiempos-muertos-corte";
 
-export function useTiempoMuertoIQF() {
+export function useTiempoMuertoCorte() {
 
   const query = useTiempoMuertoByAreaIdQuery(
-    AreasTiempoMuertoEnum.IQF,
-    TIEMPOS_MUERTOS_IQF_KEY,
+    AreasTiempoMuertoEnum.Corte,
+    TIEMPOS_MUERTOS_CORTE_KEY,
   );
 
   useTiempoMuertoRealtime(
-    AreasTiempoMuertoEnum.IQF,
-    TIEMPOS_MUERTOS_IQF_KEY,
+    AreasTiempoMuertoEnum.Corte,
+    TIEMPOS_MUERTOS_CORTE_KEY,
     query.isSuccess,
   );
 
