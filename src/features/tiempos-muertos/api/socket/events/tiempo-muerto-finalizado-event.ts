@@ -3,4 +3,6 @@ export type TiempoMuertoFinalizadoEvent = {
   maquinaId: number;
   fechaFinParo: string;
   duracionSegundos: number;
+  areaId: number;
+  area: string;
 };

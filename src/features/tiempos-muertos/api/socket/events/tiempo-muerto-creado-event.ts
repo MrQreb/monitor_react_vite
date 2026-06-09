@@ -6,4 +6,6 @@ export type TiempoMuertoCreadoEvent = {
   categoria: string;
   descripcion: string;
   fechaInicioParo: string;
+  areaId: number;
+  area: string;
 };
