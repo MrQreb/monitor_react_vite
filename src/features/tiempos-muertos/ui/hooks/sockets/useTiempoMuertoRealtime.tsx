@@ -2,12 +2,11 @@ import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import type { TiempoMuertoDto }
-from "../../api/dto/tiempo-muerto-dto";
+from "../../../api/dto/tiempo-muerto-dto";
 
 import { TIEMPOS_MUERTOS_KEY }
-from "./useTiempoMuertoQuery";
-import { TiempoMuertoHub } from "../../api/socket/hub/tiempo-muerto-hub";
-
+from "../queries/useTiempoMuertoQuery";
+import { TiempoMuertoHub } from "../../../api/socket/hub/tiempo-muerto-hub";
 
 
 /**

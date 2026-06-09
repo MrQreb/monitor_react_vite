@@ -33,6 +33,7 @@ const menuItems: MenuItem[] = [
   { title: 'Carry Over Planta 1', category: 'Planta 1', route: '/', icon: ThermometerSnowflake },
   { title: 'Grafica Carry Over Planta 1', category: 'Planta 1', route: '/', icon: ThermometerSnowflake },
   { title: 'Monitoreo Tiempos Muertos', category: 'Planta 3', route: '/tiempos-muertos/planta-3', icon: MonitorStop  },
+  { title: 'Monitoreo IQF', category: 'Planta 3', route: '/tiempos-muertos/planta-3', icon: MonitorStop  },
 ];
 
 export const MenuPage = () => {

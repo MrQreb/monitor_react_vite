@@ -2,12 +2,14 @@ import NavBar from "@/components/common/NavBar/NavBar";
 import { NoConnection } from "@/components/common/NoConnection/NoConnection";
 import { CardParo } from "../components/CardParo/CardParo";
 import { EmptyParos } from "../components/EmptyParos/EmptyParos";
-import { useTiempoMuertoQuery } from "../hooks/queries/useTiempoMuertoQuery";
 import { useSignalRConnection } from "@/core/singalR/hooks/useCheckConnectionSignalR";
 import { HeaderParos } from "../components/HeaderParo/HeaderParo";
-import { TiempoMuertoHub } from "../../api/socket/hub/tiempo-muerto-hub";
-import { LoadingTiempos } from "../components/LoadingTiempos/LoadingTiempos";
+import { TiempoMuertoIQFHub } from "../../api/socket/hub/tiempo-muerto-hub-iqf";
+import { LoadingTiempos } from "../components";
 import { GridLayoutCalculator } from "../../helpers/GridLayoutCalculator";
+import { useTiempoMuertoIQF } from "../hooks/queries/useTiempoMuertoIQF";
+import { TiempoMuertoEmbolsadorasHub } from "../../api/socket/hub/tiempo-muerto-hub-embolsadoras";
+import { useTiempoMuertoEmbolsado } from "../hooks/queries/useTiempoMuertoEmbolsado";
 
 /**
  * Página principal de monitoreo de tiempos muertos.
@@ -16,20 +18,22 @@ import { GridLayoutCalculator } from "../../helpers/GridLayoutCalculator";
  * No utiliza scroll y adapta automáticamente la cantidad de columnas
  * según el número de tiempos muertos activos.
  */
-export function TiemposMuertosPlanta3Page() {
-    const hub = TiempoMuertoHub.getInstance();
+export function TiemposMuertosPlanta3EmbolsadoPage() {
+
+    const hub = TiempoMuertoEmbolsadorasHub.getInstance();
+
     const connection = useSignalRConnection(hub);
+    
 
-    const tiemposQuery = useTiempoMuertoQuery();
-
-    const tiemposMuertos = tiemposQuery.data ?? [];
+    const { data: tiemposMuertos = [], isLoading } = useTiempoMuertoEmbolsado();
 
     if (!connection) {
         return <NoConnection />;
     }
 
-     const columns = GridLayoutCalculator.getColumnsGrid(tiemposMuertos);
+    const columns = GridLayoutCalculator.getColumnsGrid(tiemposMuertos);
     const cardSize = GridLayoutCalculator.getSizeCard(columns);
+
     return (
         <div className="flex h-screen w-full flex-col overflow-hidden bg-background px-2 pb-2 pt-1 text-foreground">
             <NavBar />
@@ -39,14 +43,14 @@ export function TiemposMuertosPlanta3Page() {
 
                     <div className="w-full">
                         <HeaderParos
-                            title="Tiempos muertosPlanta 3"
-                            description="Monitoreo en tiempo real de las máquinas"
+                            title="Tiempos muertos de Embolsado Planta 3"
+                            description="Monitoreo de máquinas de Embolsado."
                             tiemposMuertos={tiemposMuertos}
                         />
                     </div>
 
-                    {tiemposQuery.isLoading && (
-                       <LoadingTiempos/>
+                    {isLoading && (
+                        <LoadingTiempos />
                     )}
 
 

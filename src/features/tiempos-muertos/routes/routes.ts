@@ -1,7 +1,6 @@
 import { rootRoute } from "@/app/router/__root";
 import { createRoute } from "@tanstack/react-router";
-import { TiemposMuertosPlanta3Page } from "../ui/pages/TiemposMuertosPlanta3Page";
-import { TiemposMuertosPlanta3IQFPage } from "../ui/pages/TiemposMuertosPlanta3IQFPage";
+import { TiemposMuertosPlanta3EmbolsadoPage, TiemposMuertosPlanta3IQFPage, TiemposMuertosPlanta3Page } from "../ui/pages";
 
 /**
  * Url inicial de las temperaturas
@@ -23,8 +22,16 @@ const planta3IQF = createRoute({
   component:TiemposMuertosPlanta3IQFPage,
 });
 
+const planta3Embolsado = createRoute({
+  getParentRoute: () => tiemposMuertosLayout,
+  path: "/planta-3-embolsado",
+  component:TiemposMuertosPlanta3EmbolsadoPage,
+});
+
+
 /** Rutas a todo lo relacionado de las combustoleo */
 export const tiemposMuertosRoutes = tiemposMuertosLayout.addChildren([
   planta1,
-  planta3IQF
+  planta3IQF,
+  planta3Embolsado
 ]);

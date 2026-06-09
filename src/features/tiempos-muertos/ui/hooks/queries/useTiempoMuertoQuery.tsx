@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { tiempoMuertoService }
-from "../../api/module/instances/instances";
+from "../../../api/module/instances/instances";
 
 import { useTiempoMuertoRealtime }
-from "./useTiempoMuertoRealtime";
+from "../sockets/useTiempoMuertoRealtime";
 
 /**
  * Query principal de tiempos muertos activos.

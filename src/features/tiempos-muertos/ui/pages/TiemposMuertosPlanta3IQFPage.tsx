@@ -5,9 +5,9 @@ import { EmptyParos } from "../components/EmptyParos/EmptyParos";
 import { useSignalRConnection } from "@/core/singalR/hooks/useCheckConnectionSignalR";
 import { HeaderParos } from "../components/HeaderParo/HeaderParo";
 import { TiempoMuertoIQFHub } from "../../api/socket/hub/tiempo-muerto-hub-iqf";
-import { useTiempoMuertoByAreaIdQuery } from "../hooks/useTiempoMuertoByAreaIdQuery";
 import { LoadingTiempos } from "../components";
 import { GridLayoutCalculator } from "../../helpers/GridLayoutCalculator";
+import { useTiempoMuertoIQF } from "../hooks/queries/useTiempoMuertoIQF";
 
 /**
  * Página principal de monitoreo de tiempos muertos.
@@ -21,10 +21,9 @@ export function TiemposMuertosPlanta3IQFPage() {
     const hub = TiempoMuertoIQFHub.getInstance();
 
     const connection = useSignalRConnection(hub);
+    
 
-    const tiemposQuery = useTiempoMuertoByAreaIdQuery(1);
-
-    const tiemposMuertos = tiemposQuery.data ?? [];
+    const { data: tiemposMuertos = [], isLoading } = useTiempoMuertoIQF();
 
     if (!connection) {
         return <NoConnection />;
@@ -42,13 +41,13 @@ export function TiemposMuertosPlanta3IQFPage() {
 
                     <div className="w-full">
                         <HeaderParos
-                            title="Tiempos muertos Planta 3"
+                            title="Tiempos muertos de IQF1 Planta 3"
                             description="Monitoreo de máquinas de IQF 1."
                             tiemposMuertos={tiemposMuertos}
                         />
                     </div>
 
-                    {tiemposQuery.isLoading && (
+                    {isLoading && (
                         <LoadingTiempos />
                     )}
 
