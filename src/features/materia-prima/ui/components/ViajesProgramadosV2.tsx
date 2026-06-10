@@ -4,7 +4,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
 import {
   Table,
   TableBody,
@@ -18,7 +17,7 @@ import { useScrollStore } from "@/shared/store/use-scroll-store"
 import { useTheme } from "@/app/providers/ThemeProvider"
 import { cn } from "@/lib/utils"
 import { ViajesProgramadosSkeleton } from "./ViajesProgramadosSkeleton";
-import type { GetEstatusBoletasPlantaResponse } from "../../api/shared/responses/getEstatusBoletasPlantasResponse.responserespoonse";
+import type { GetEstatusBoletasPlantaResponse } from "../../api/queries/responses/getEstatusBoletasPlantasResponse.response";
 
 /**
  * Propiedades del componente ViajesProgramadosV2.

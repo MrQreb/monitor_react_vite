@@ -1,5 +1,5 @@
 /** Respuesta de las boletas de la api rest de asp net */
-export interface GetEstatusBoletasPlantaResponse{
+export interface BoletasCamionesResponse{
     /** Nombre del agricultor y rancho*/
     agricultor:string;
     /** Nombre del producto*/

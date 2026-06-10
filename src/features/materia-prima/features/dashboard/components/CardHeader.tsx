@@ -17,6 +17,7 @@ interface Props {
     isLoading?: boolean;
 }
 
+/** Tarjeta metricas del dashboard de materia prima */
 export const CardHeader = ({
     icon,
     text,

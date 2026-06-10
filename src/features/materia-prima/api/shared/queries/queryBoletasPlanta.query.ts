@@ -1,4 +1,4 @@
-export interface GetEstatusBoletasPlantaQuery {
+export interface QueryBoletasPlanta {
     fechaBusqueda?:EstatusBoletasFechas;
     planta:number;
 

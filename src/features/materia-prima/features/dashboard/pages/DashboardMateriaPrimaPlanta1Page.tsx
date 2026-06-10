@@ -1,197 +1,267 @@
-import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useEffect, useState } from "react";
 import NavBar from "@/components/common/NavBar/NavBar";
-import useSocketConnection from "@/shared/hooks/useConnetion";
-import { NoConnection } from "@/components/common/NoConnection/NoConnection";
-// import { useBoletasPlanta1 } from "../../../ui/hooks/useBoletasPlanta";
-// import { useEstatusPlanta1, useGetCajasPlanta1 } from "../../../ui/hooks";
-import { useBoletasCount } from "../hooks/useConteoBoletas";
 import type { RangoFechasMateriaPrimaDto } from "../../../api/shared/dto/rangoFechasMateriaPrimaDto.dto";
+import { CardHeader } from '../components/CardHeader';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { useGetBoletas } from "../hooks/useGetBoletas";
+import { ButtonCalendar } from "../components/ButtonCalendar";
+import { ViajesProgramadosV2 } from '../../../ui/components/ViajesProgramadosV2';
+import { useMateriaPrimaResumen } from "../hooks/useMateriaPrimaResumen";
+import { ThemeButton } from "@/features/menu/components/ThemeButton";
+import { GraficaCajas } from "@/features/materia-prima/ui/components/GraficaCajas";
+import { useGetCajasPlanta1 } from "@/features/materia-prima/ui/hooks";
 import {
     FileText,
     Trash2,
     Calendar1,
     PackageOpen,
     Package2,
+    Truck,
 } from "lucide-react";
-import { CardHeader } from '../components/CardHeader';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { ButtonCalendar } from "../components/ButtonCalendar";
-import { useMateriaPrimaResumen } from "../hooks/useMateriaPrimaResumen";
-import { ThemeButton } from "@/features/menu/components/ThemeButton";
-import { useGetBoletas } from "../hooks/useGetBoletas";
-import { ViajesProgramadosV2 } from '../../../ui/components/ViajesProgramadosV2';
-import { GraficaCajas } from "@/features/materia-prima/ui/components/GraficaCajas";
-import { useGetCajasPlanta1 } from "@/features/materia-prima/ui/hooks";
+import { useQueryCajas } from "../hooks/useQueryCajas";
+import { CLICK_TRIGGER_IDENTIFIER } from "@base-ui/react/internals/constants";
+import { useBoletasCount } from "../hooks/useBoletasCount";
+import { GraficaCajasV2 } from "@/features/materia-prima/ui/components/GraficaCajasV2";
+// import useSocketConnection from "@/shared/hooks/useConnetion";
+// import { NoConnection } from "@/components/common/NoConnection/NoConnection";
+// import { useBoletasPlanta1 } from "../../../ui/hooks/useBoletasPlanta";
+// import { useEstatusPlanta1, useGetCajasPlanta1 } from "../../../ui/hooks";
 
 export function DashboardMateriaPrimaPlanta1Page() {
 
-    /** Formatea de string para que parezca cantidad.
-     * @example 20000 => 20,0000
-     * @returns string
-     */
-    const formatText = (value: string | number) => {
-        const formattedText = String(value.toLocaleString("es-MX"));
-        return formattedText;
-    }
+    /** Fecha actual utilizada como valor por defecto */
+    const today = new Date().toISOString().split("T")[0];
 
-    /** Estado que maneja el rango de busquedas de fecha */
+    /** Estado que maneja el rango de búsqueda de fechas */
     const [rangoFechas, setRangoFechas] =
-        useState<RangoFechasMateriaPrimaDto>(
-            {
-                fechaInicio: null,
-                fechaFin: null,
-            }
-        );
+        useState<RangoFechasMateriaPrimaDto>({
+            fechaInicio: null,
+            fechaFin: null,
+        });
 
-    /** Resetea el rango de fechas */
-    const handleRestFecha = (): void => {
-        setRangoFechas(
-            {
-                fechaFin: null,
-                fechaInicio: null
-            }
-        );
-    }
+    /** Resetea el filtro de fechas */
+    const handleResetFecha = (): void => {
+        setRangoFechas({
+            fechaInicio: null,
+            fechaFin: null,
+        });
+    };
 
-    /** Custoom hooks que implementan websockets */
-    // const boletas = useBoletasPlanta1();
-    // const estatus = useEstatusPlanta1();
+    //Queries
+    /** Obtiene la distribución de cajas por estatus */
     const cajas = useGetCajasPlanta1();
 
+    /** Obtiene las boletas del rango seleccionado */
     const boletas = useGetBoletas({
         fechaBusqueda: {
-            fechaInicio: rangoFechas.fechaInicio ?? new Date().toISOString().split("T")[0],
-            fechaFin: rangoFechas.fechaFin ?? new Date().toISOString().split("T")[0],
+            fechaInicio: rangoFechas.fechaInicio ?? today,
+            fechaFin: rangoFechas.fechaFin ?? today,
         },
-        planta: 1
+        planta: 1,
     });
 
+    /** Obtiene las boletas del rango seleccionado */
+    const cajasComparativa = useQueryCajas({
+        fechaBusqueda: {
+            fechaInicio: rangoFechas.fechaInicio ?? today,
+            fechaFin: rangoFechas.fechaFin ?? today,
+        },
+        planta: 1,
+    });
 
-    /** Hooks de use query para datos */
+ 
+
+
+
+    /** Obtiene el total de boletas registradas */
     const contarBoletas = useBoletasCount({
         rangoFechasMateriaPrimaDto: rangoFechas,
     });
 
+    /** Obtiene el resumen general de materia prima */
     const resumenMateriaPrima = useMateriaPrimaResumen({
         rangoFechasMateriaPrimaDto: rangoFechas,
     });
 
+    /** Cantidad total de boletas */
     const totalBoletas = formatText(contarBoletas.data ?? 0);
-    // const totalCajas = formatText(cajas.data?.length ?? 0);
-    const cajasEstimadas = formatText(resumenMateriaPrima.data?.estimado ?? 0);
-    const cajasRecibidas = formatText(resumenMateriaPrima.data?.real ?? 0);
+
+    /** Total de cajas estimadas */
+    const cajasEstimadas = formatText(
+        resumenMateriaPrima.data?.estimado ?? 0
+    );
+
+    /** Viajes estimados de materia prima */
+    const viajesEsperados = formatText(boletas.data?.length ?? 0);
+
+    /** Total de cajas recibidas */
+    const cajasRecibidas = formatText(
+        resumenMateriaPrima.data?.real ?? 0
+    );
+
+    /** Configuración de tarjetas */
+    const cards = [
+        {
+            text: "Boletas",
+            value: totalBoletas,
+            icon: FileText,
+            loading: contarBoletas.isLoading,
+        },
+        {
+            text: "Cajas Recibidas",
+            value: cajasRecibidas,
+            icon: Package2,
+            loading: resumenMateriaPrima.isLoading,
+        },
+        {
+            text: "Cajas Estimadas",
+            value: cajasEstimadas,
+            icon: PackageOpen,
+            loading: resumenMateriaPrima.isLoading,
+        },
+        {
+            text: "Viajes esperados",
+            value: String(viajesEsperados),
+            icon: Truck,
+            loading: resumenMateriaPrima.isLoading,
+        },
+    ];
 
     return (
-        <div className="flex min-h-screen flex-col  dark:bg-zinc-950 md:h-screen md:px-3">
+        <section className="flex h-screen flex-col overflow-hidden bg-background px-3">
+
             <NavBar />
 
-            <section className="mt-4 flex-1 overflow-hidden">
-                <div className="grid h-full grid-cols-10 grid-rows-10 gap-4">
+            <main className="flex flex-1 flex-col gap-4 py-4 overflow-hidden">
 
-                    {/* HEADER */}
-                    <section className="col-span-7 flex items-center">
+                {/* HEADER */}
 
-                        <div className="flex flex-row gap-4">
+                <section className="flex flex-wrap items-center justify-between gap-4">
 
-                            <h1 className="text-3xl font-bold dark:text-white">
-                                Materia Prima Planta 1
-                            </h1>
-                            <Badge variant={'secondary'} className="flex items-center gap-2">
-                                <Calendar1 size={14} />
-                                {rangoFechas.fechaInicio && rangoFechas.fechaFin
+                    <div className="flex items-center gap-3">
+
+                        <h1 className="text-2xl font-bold">
+                            Materia Prima Planta 1
+                        </h1>
+
+                        <Badge
+                            variant="secondary"
+                            className="flex items-center gap-2"
+                        >
+                            <Calendar1 size={14} />
+
+                            {
+                                rangoFechas.fechaInicio &&
+                                    rangoFechas.fechaFin
                                     ? `${rangoFechas.fechaInicio} - ${rangoFechas.fechaFin}`
-                                    : new Date().toISOString().split("T")[0]
-                                }
-                            </Badge>
+                                    : today
+                            }
+                        </Badge>
 
-                        </div>
+                    </div>
 
-                    </section>
+                    <div className="flex items-center gap-2">
 
-                    <div className="col-span-2 flex justify-end">
-                        <div className="flex gap-4">
-                            <ButtonCalendar
-                                value={rangoFechas}
-                                onChange={setRangoFechas}
+                        <ButtonCalendar
+                            value={rangoFechas}
+                            onChange={setRangoFechas}
+                        />
+
+                        <Button
+                            size="icon"
+                            variant="destructive"
+                            onClick={handleResetFecha}
+                        >
+                            <Trash2 size={16} />
+                        </Button>
+
+                        <ThemeButton />
+
+                    </div>
+
+                </section>
+
+                {/* KPIS */}
+
+                <section
+                    className="
+                    grid
+                    gap-4
+                    grid-cols-1
+                    sm:grid-cols-2
+                    xl:grid-cols-4
+                "
+                >
+                    {
+                        cards.map((card) => (
+                            <CardHeader
+                                key={card.text}
+                                text={card.text}
+                                value={card.value}
+                                icon={card.icon}
+                                isLoading={card.loading}
                             />
-                            <Button
-                                variant={'destructive'}
-                                onClick={handleRestFecha}
-                            >
-                                <Trash2 />
-                            </Button>
-                            <ThemeButton />
+                        ))
+                    }
+                </section>
+
+                {/* CONTENIDO PRINCIPAL */}
+
+                <section
+                    className="
+                    grid
+                    flex-1
+                    gap-4
+                    min-h-0
+                    xl:grid-cols-12
+                "
+                >
+
+                    {/* GRAFICA */}
+
+                    <div className="xl:col-span-8 overflow-hidden">
+
+                        <CardContent className="h-full p-4">
+
+                            <GraficaCajasV2
+                                cajas={cajasComparativa.data ?? []}
+                            />
+
+                        </CardContent>
+
+                    </div>
+
+                    {/* VIAJES */}
+
+                    <div className="xl:col-span-4 overflow-hidden">
+
+                        <div className="h-full p-0">
+
+                            <ViajesProgramadosV2
+                                isLoading={boletas.isLoading}
+                                viajes={boletas.data ?? []}
+                            />
+
                         </div>
 
                     </div>
 
-                    {/* Tarjetas con datos */}
-                    <div className="col-span-2 row-span-2">
-                        <CardHeader
-                            isLoading={contarBoletas.isLoading}
-                            text="Boletas"
-                            value={String(totalBoletas)}
-                            icon={FileText}
-                        />
-                    </div>
+                </section>
 
-                    <div className="col-span-2 row-span-2">
-                        <CardHeader
-                            isLoading={resumenMateriaPrima.isLoading}
-                            text="Cajas Recibidas"
-                            value={String(cajasRecibidas?.toString())}
-                            icon={Package2}
-                        />
-                    </div>
+            </main>
 
-                    <div className="col-span-2 row-span-2">
-                        <CardHeader
-                            isLoading={resumenMateriaPrima.isLoading}
-                            text="Cajas Estimadas"
-                            value={String(cajasEstimadas)}
-                            icon={PackageOpen}
-                        />
-                    </div>
-
-                    {/* <div className="col-span-4 row-span-2">
-                        <CardHeader
-                            text="Cumplimiento"
-                            value={`${cumplimiento}%`}
-                            icon={TrendingUp}
-                            sizeIcon={24}
-                        />
-                    </div> */}
-
-                    {/* GRAFICA PRINCIPAL */}
-                    <section className="col-span-7 row-span-4 ">
-                        <ViajesProgramadosV2 isLoading={boletas.isLoading} viajes={boletas.data ?? []} />
-
-                    </section>
-
-                    {/* ESTATUS */}
-                    <section className="col-span-3 row-span-4">
-                        <GraficaCajas cajas={cajas.data ?? []} />
-                    </section>
-
-                    {/* TABLA / RESUMEN */}
-                    <Card className="col-span-10 row-span-3 border-zinc-800 bg-zinc-900">
-                        <CardContent className="h-full p-5">
-                            <h2 className="mb-4 text-lg font-semibold text-white">
-                                Últimas Boletas
-                            </h2>
-
-                            <div className="flex h-[85%] items-center justify-center rounded-lg border border-dashed border-zinc-700">
-                                <span className="text-zinc-500">
-                                    Tabla
-                                </span>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                </div>
-            </section>
-        </div>
+        </section>
     );
+}
+
+
+/** Formatea de string para que parezca cantidad.
+ * @example 20000 => 20,0000
+ * @returns string
+ */
+const formatText = (value: string | number) => {
+    const formattedText = String(value.toLocaleString("es-MX"));
+    return formattedText;
 }
