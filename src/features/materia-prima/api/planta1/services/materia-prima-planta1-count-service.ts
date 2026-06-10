@@ -2,9 +2,9 @@ import { baseUrlRESTMonitorASP } from "@/config/base-url-env.config";
 import { api } from "@/shared/services/api";
 
 import type { RangoFechasMateriaPrimaDto } from "../../shared/dto/rangoFechasMateriaPrimaDto.dto";
-import type { ICountBoletasMateriaPrima } from "../../shared/interfaces/ICountBoletasMatariaPrima";
-import type { IResumenMateriaPrima } from "../../shared/interfaces/IResumenMateriaPrima";
-import type { MateriaPrimaResumenResponse } from "../../shared/responses/materiaPrimaResumenResponse";
+import type { ICountBoletasMateriaPrima } from "../../shared/interfaces/iCountBoletasMateriaPrima.interface";
+import type { IResumenMateriaPrima } from "../../shared/interfaces/iResumenMateriaPrima";
+import type { MateriaPrimaResumenResponse } from "../../shared";
 
 /** Clase encargada de la logica de los conteos relacinados con materia prima en planta 1 */
 export class MateriaPrimaPlanta1CountService

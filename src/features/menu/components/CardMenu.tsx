@@ -30,7 +30,7 @@ export function CardMenu({ title, route, icon: Icon, buttonText = "Ir" }: CardMe
           asChild
           className="mt-8 h-14 w-full rounded-2xl bg-slate-900 text-lg font-semibold text-white shadow-none transition-colors hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-950 dark:hover:bg-white sm:w-[18rem]"
         >
-          <Link onClick={() =>  console.log(route)} to={route}>
+          <Link to={route}>
             {buttonText}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>

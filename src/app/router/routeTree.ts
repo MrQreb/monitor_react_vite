@@ -7,7 +7,7 @@ import { produccionDiariaRoutes } from "@/features/app-tags/routes/routes";
 import { tiemposMuertosRoutes } from "@/features/tiempos-muertos/routes/routes";
 import { loginRoute } from "@/features/auth/routes/routes";
 import { carryOverRoutes } from "@/features/conservador/routes/routes";
-import { materiaPrimaRoutes } from "@/materia-prima/routes/routes";
+import { materiaPrimaRoutes } from "@/features/materia-prima/routes/routes";
 
 /**
  * Arreglo de rutas donde se importan todas las rutas de la aplicacion

@@ -9,7 +9,8 @@
     "skipLibCheck": true,
 
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@features/*": ["./src/features*"]
     },
 
     "moduleResolution": "bundler",

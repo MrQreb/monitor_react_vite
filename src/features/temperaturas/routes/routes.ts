@@ -10,7 +10,7 @@ const temperaturasLayout = createRoute({
   path: "/temperaturas",
 });
 
-const planta1 = createRoute({
+const tunelPlanta1 = createRoute({
   getParentRoute: () => temperaturasLayout,
   path: "/planta-1",
   component: () => TemperaturasPlanta1Page(),
@@ -43,7 +43,7 @@ const cedis2 = createRoute({
 
 /** Rutas a todo lo relacionado de las temperaturas */
 export const temperaturasRoutes = temperaturasLayout.addChildren([
-  planta1,
+  tunelPlanta1,
   tunel1Planta3,
   tunel2Planta3,
   cedis1,

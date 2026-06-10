@@ -9,7 +9,7 @@ import { DashboardMateriaPrimaPlanta1Page } from "../ui/pages";
 
 const materiaPrimaLayout = createRoute({
     getParentRoute: () => rootRoute,
-    path: '/materia-prima',
+    path: 'materia-prima',
     //   component: Layout,
 });
 

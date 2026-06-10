@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import NavBar from "@/components/common/NavBar/NavBar";
 import useSocketConnection from "@/shared/hooks/useConnetion";
@@ -19,9 +19,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ButtonCalendar } from "../components/ButtonCalendar";
 import { useMateriaPrimaResumen } from "../hooks/useMateriaPrimaResumen";
-import { GraficaCajas } from "@/materia-prima/ui/components/GraficaCajas";
 import { ThemeButton } from "@/features/menu/components/ThemeButton";
-import { useGetCajasPlanta1 } from "@/materia-prima/ui/hooks";
+import { useGetBoletas } from "../hooks/useGetBoletas";
+import { ViajesProgramadosV2 } from '../../../ui/components/ViajesProgramadosV2';
+import { GraficaCajas } from "@/features/materia-prima/ui/components/GraficaCajas";
+import { useGetCajasPlanta1 } from "@/features/materia-prima/ui/hooks";
 
 export function DashboardMateriaPrimaPlanta1Page() {
 
@@ -58,7 +60,14 @@ export function DashboardMateriaPrimaPlanta1Page() {
     // const estatus = useEstatusPlanta1();
     const cajas = useGetCajasPlanta1();
 
-    const connection = useSocketConnection();
+    const boletas = useGetBoletas({
+        fechaBusqueda: {
+            fechaInicio: rangoFechas.fechaInicio ?? new Date().toISOString().split("T")[0],
+            fechaFin: rangoFechas.fechaFin ?? new Date().toISOString().split("T")[0],
+        },
+        planta: 1
+    });
+
 
     /** Hooks de use query para datos */
     const contarBoletas = useBoletasCount({
@@ -73,8 +82,6 @@ export function DashboardMateriaPrimaPlanta1Page() {
     // const totalCajas = formatText(cajas.data?.length ?? 0);
     const cajasEstimadas = formatText(resumenMateriaPrima.data?.estimado ?? 0);
     const cajasRecibidas = formatText(resumenMateriaPrima.data?.real ?? 0);
-
-    if (!connection) return <NoConnection />;
 
     return (
         <div className="flex min-h-screen flex-col  dark:bg-zinc-950 md:h-screen md:px-3">
@@ -158,19 +165,10 @@ export function DashboardMateriaPrimaPlanta1Page() {
                     </div> */}
 
                     {/* GRAFICA PRINCIPAL */}
-                    <Card className="col-span-7 row-span-4 border-zinc-800 bg-zinc-900">
-                        <CardContent className="h-full p-5">
-                            <h2 className="mb-4 text-lg font-semibold text-white">
-                                Cajas recibidas por día
-                            </h2>
+                    <section className="col-span-7 row-span-4 ">
+                        <ViajesProgramadosV2 isLoading={boletas.isLoading} viajes={boletas.data ?? []} />
 
-                            <div className="flex h-[90%] items-center justify-center rounded-lg border border-dashed border-zinc-700">
-                                <span className="text-zinc-500">
-                                    Tabla
-                                </span>
-                            </div>
-                        </CardContent>
-                    </Card>
+                    </section>
 
                     {/* ESTATUS */}
                     <section className="col-span-3 row-span-4">
