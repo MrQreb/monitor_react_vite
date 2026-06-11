@@ -9,23 +9,24 @@ import {
   XAxis,
   YAxis,
 } from "recharts"
-
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
-import { cn } from "@/lib/utils"
 import { useTheme } from "@/app/providers/ThemeProvider"
-
+import { cn } from "@/lib/utils"
 import type { ComparativaCajasResponse } from "../../api/queries/responses/comparatovaCajasResponse";
 
 type Props = {
   cajas: ComparativaCajasResponse[]
 }
 
+/** Grafica de barras para la comparacionde las cajas que llegaron, vs las cajas recibidas
+ * @param cajas - ComparativaCajasResponse[]
+ * @returns Tsx component
+ */
 export function GraficaCajasV2({ cajas }: Props) {
 
 
@@ -110,7 +111,7 @@ export function GraficaCajasV2({ cajas }: Props) {
                 interval={0}
                 tick={{
                   fill: colores.texto,
-                  fontSize: 11,
+                  fontSize: 15,
                 }}
                 tickLine={false}
                 axisLine={{
@@ -125,7 +126,7 @@ export function GraficaCajasV2({ cajas }: Props) {
                 ]}
                 tick={{
                   fill: colores.texto,
-                  fontSize: 11,
+                  fontSize: 15,
                 }}
                 tickLine={false}
                 axisLine={{
@@ -175,7 +176,7 @@ export function GraficaCajasV2({ cajas }: Props) {
                   dataKey="cajasEstimadas"
                   position="top"
                   fill={colores.etiqueta}
-                  fontSize={11}
+                  fontSize={15}
                   fontWeight={600}
                   formatter={(value) =>
                     quantityFormatter(Number(value ?? 0))
@@ -193,8 +194,11 @@ export function GraficaCajasV2({ cajas }: Props) {
                   dataKey="cajasReales"
                   position="top"
                   fill={colores.etiqueta}
-                  fontSize={11}
+                  fontSize={15}
                   fontWeight={600}
+                  formatter={(value) =>
+                    quantityFormatter(Number(value ?? 0))
+                  }
                 />
               </Bar>
             </BarChart>

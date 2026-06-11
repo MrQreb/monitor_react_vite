@@ -31,12 +31,12 @@ export const CardHeader = ({
     return (
         <Card
             className={`
-        border-border
-        bg-card
-        text-card-foreground
-        shadow-sm
-        ${className ?? ""}
-      `}
+                border-border
+                bg-card
+                text-card-foreground
+                shadow-sm
+                ${className ?? ""}`
+            }
         >
             <CardContent className="flex h-full flex-col justify-between p-5">
                 <div className="flex items-center justify-between">

@@ -1,5 +1,5 @@
 import type { QueryBoletasPlanta } from "../../shared/queries/queryBoletasPlanta.query";
-import type { BoletasCamionesResponse } from "../responses/getEstatusBoletasPlantasResponse.response";
+import type { BoletasCamionesResponse } from "../responses/boletasCamionesResponse";
 
 /** Devuelve la lista de agricultor, numero de  cajas  y producto de cada boleta. */
 export interface IGetEstatusBoletasPlanta {

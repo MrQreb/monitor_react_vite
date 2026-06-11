@@ -17,7 +17,7 @@ import { useScrollStore } from "@/shared/store/use-scroll-store"
 import { useTheme } from "@/app/providers/ThemeProvider"
 import { cn } from "@/lib/utils"
 import { ViajesProgramadosSkeleton } from "./ViajesProgramadosSkeleton";
-import type { GetEstatusBoletasPlantaResponse } from "../../api/queries/responses/getEstatusBoletasPlantasResponse.response";
+import type { BoletasCamionesResponse } from "../../api/queries/responses/boletasCamionesResponse";
 
 /**
  * Propiedades del componente ViajesProgramadosV2.
@@ -26,7 +26,7 @@ type Props = {
   /**
    * Colección de viajes programados a mostrar.
    */
-  viajes: GetEstatusBoletasPlantaResponse[]
+  viajes: BoletasCamionesResponse[]
 
   /**
    * Indica si la información se encuentra cargando.

@@ -1,5 +1,5 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { useEffect, useState } from "react";
+import { CardContent } from "@/components/ui/card";
+import { useState } from "react";
 import NavBar from "@/components/common/NavBar/NavBar";
 import type { RangoFechasMateriaPrimaDto } from "../../../api/shared/dto/rangoFechasMateriaPrimaDto.dto";
 import { CardHeader } from '../components/CardHeader';
@@ -10,7 +10,6 @@ import { ButtonCalendar } from "../components/ButtonCalendar";
 import { ViajesProgramadosV2 } from '../../../ui/components/ViajesProgramadosV2';
 import { useMateriaPrimaResumen } from "../hooks/useMateriaPrimaResumen";
 import { ThemeButton } from "@/features/menu/components/ThemeButton";
-import { GraficaCajas } from "@/features/materia-prima/ui/components/GraficaCajas";
 import { useGetCajasPlanta1 } from "@/features/materia-prima/ui/hooks";
 import {
     FileText,
@@ -21,13 +20,8 @@ import {
     Truck,
 } from "lucide-react";
 import { useQueryCajas } from "../hooks/useQueryCajas";
-import { CLICK_TRIGGER_IDENTIFIER } from "@base-ui/react/internals/constants";
 import { useBoletasCount } from "../hooks/useBoletasCount";
 import { GraficaCajasV2 } from "@/features/materia-prima/ui/components/GraficaCajasV2";
-// import useSocketConnection from "@/shared/hooks/useConnetion";
-// import { NoConnection } from "@/components/common/NoConnection/NoConnection";
-// import { useBoletasPlanta1 } from "../../../ui/hooks/useBoletasPlanta";
-// import { useEstatusPlanta1, useGetCajasPlanta1 } from "../../../ui/hooks";
 
 export function DashboardMateriaPrimaPlanta1Page() {
 
@@ -50,6 +44,7 @@ export function DashboardMateriaPrimaPlanta1Page() {
     };
 
     //Queries
+
     /** Obtiene la distribución de cajas por estatus */
     const cajas = useGetCajasPlanta1();
 
@@ -70,10 +65,6 @@ export function DashboardMateriaPrimaPlanta1Page() {
         },
         planta: 1,
     });
-
- 
-
-
 
     /** Obtiene el total de boletas registradas */
     const contarBoletas = useBoletasCount({
@@ -100,6 +91,7 @@ export function DashboardMateriaPrimaPlanta1Page() {
     const cajasRecibidas = formatText(
         resumenMateriaPrima.data?.real ?? 0
     );
+    
 
     /** Configuración de tarjetas */
     const cards = [
