@@ -23,7 +23,7 @@ import { GraficaCajasV2 } from "@/features/materia-prima/ui/components/GraficaCa
 import { PlantaEnum } from "../enus/plantaEnums";
 import { useQueryBoletas } from "../hooks/useQueryBoletas";
 
-export function DashboardMateriaPrimaPlanta3Page() {
+export function DashboardMateriaPrimaPlanta1Page() {
 
     /** Fecha actual utilizada como valor por defecto */
     const today = new Date().toISOString().split("T")[0];
@@ -44,13 +44,14 @@ export function DashboardMateriaPrimaPlanta3Page() {
     };
 
     //Queries
+
     /** Obtiene las boletas del rango seleccionado */
     const boletas = useQueryBoletas({
         fechaBusqueda: {
             fechaInicio: rangoFechas.fechaInicio ?? today,
             fechaFin: rangoFechas.fechaFin ?? today,
         },
-        planta: PlantaEnum.Planta3,
+        planta: PlantaEnum.Planta1,
     });
 
     /** Obtiene las boletas del rango seleccionado */
@@ -59,9 +60,8 @@ export function DashboardMateriaPrimaPlanta3Page() {
             fechaInicio: rangoFechas.fechaInicio ?? today,
             fechaFin: rangoFechas.fechaFin ?? today,
         },
-        planta: PlantaEnum.Planta3,
+        planta: PlantaEnum.Planta1,
     });
-
 
     /** Obtiene el total de boletas registradas */
     const contarBoletas = useBoletasCount({
@@ -132,7 +132,7 @@ export function DashboardMateriaPrimaPlanta3Page() {
                     <div className="flex items-center gap-3">
 
                         <h1 className="text-2xl font-bold">
-                            Materia Prima Planta 3
+                            Materia Prima Planta 1
                         </h1>
 
                         <Badge
