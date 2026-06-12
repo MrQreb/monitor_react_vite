@@ -6,7 +6,6 @@ import type { ComparativaCajasResponse } from "../responses/comparatovaCajasResp
 import type { ICompativaCajaPlanta } from '../interfaces/iCompativaCajaPlanta.interface';
 import type { QueryCajas } from "../../dto/queryCajas.dto";
 import type { QueryBoletasPlanta } from "../../dto/queryBoletasPlanta.dto";
-import { useQueryCajas } from "@/features/materia-prima/features/dashboard/hooks/useQueryCajas";
 
 /**
  * Servicio encargado de consultas que compartan las bases de datos de materia prima.

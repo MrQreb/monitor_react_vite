@@ -6,7 +6,11 @@ interface Props {
     rangoFechasMateriaPrimaDto?: RangoFechasMateriaPrimaDto;
 }
 
-export function useMateriaPrimaResumen(
+/** Devuelve las cajas estimadas, reales y el producto de la materia prima de planta 1
+ * @param rangoFechasMateriaPrimaDto
+ * @returns query
+  */
+export function useMateriaPrimaResumenPlanta1(
     { rangoFechasMateriaPrimaDto }: Props = {}
 ) {
     return useQuery({

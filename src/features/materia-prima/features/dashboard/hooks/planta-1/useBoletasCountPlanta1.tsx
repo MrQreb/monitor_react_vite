@@ -1,12 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import type { RangoFechasMateriaPrimaDto } from "../../../api/shared/dto/rangoFechasMateriaPrimaDto.dto";
-import { materiaPrimaPlanta1CountService } from "../../../api/planta1/instances/materiaPrimaPlanta1Count.instance";
+import type { RangoFechasMateriaPrimaDto } from "../../../../api/shared/dto/rangoFechasMateriaPrimaDto.dto";
+import { materiaPrimaPlanta1CountService } from "../../../../api/planta1/instances/materiaPrimaPlanta1Count.instance";
 
 interface Props {
     rangoFechasMateriaPrimaDto?: RangoFechasMateriaPrimaDto;
 }
 
-export function useBoletasCount(
+/** Devuelve el conteo de las boletas por rango de fechas
+ * @param rangoFechasMateriaPrimaDto
+ * @returns query
+ */
+export function useBoletasCountPlanta1(
     { rangoFechasMateriaPrimaDto }: Props = {}
 ) {
     return useQuery({

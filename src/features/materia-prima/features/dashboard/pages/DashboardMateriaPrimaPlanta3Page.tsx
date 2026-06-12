@@ -1,5 +1,5 @@
 import { CardContent } from "@/components/ui/card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "@/components/common/NavBar/NavBar";
 import type { RangoFechasMateriaPrimaDto } from "../../../api/shared/dto/rangoFechasMateriaPrimaDto.dto";
 import { CardHeader } from '../components/CardHeader';
@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ButtonCalendar } from "../components/ButtonCalendar";
 import { ViajesProgramadosV2 } from '../../../ui/components/ViajesProgramadosV2';
-import { useMateriaPrimaResumen } from "../hooks/useMateriaPrimaResumen";
 import { ThemeButton } from "@/features/menu/components/ThemeButton";
 import {
     FileText,
@@ -17,11 +16,12 @@ import {
     Package2,
     Truck,
 } from "lucide-react";
-import { useQueryCajas } from "../hooks/useQueryCajas";
-import { useBoletasCount } from "../hooks/useBoletasCount";
+import { useQueryCajas } from "../hooks/shared/useQueryCajas";
 import { GraficaCajasV2 } from "@/features/materia-prima/ui/components/GraficaCajasV2";
 import { PlantaEnum } from "../enus/plantaEnums";
-import { useQueryBoletas } from "../hooks/useQueryBoletas";
+import { useQueryBoletas } from "../hooks/shared/useQueryBoletas";
+import { useBoletasCountPlanta3 } from "../hooks/planta-3/useBoletasCountPlanta3";
+import { useMateriaPrimaResumenPlanta3 } from "../hooks/planta-3/useMateriaPrimaResumenPlanta3";
 
 export function DashboardMateriaPrimaPlanta3Page() {
 
@@ -64,17 +64,22 @@ export function DashboardMateriaPrimaPlanta3Page() {
 
 
     /** Obtiene el total de boletas registradas */
-    const contarBoletas = useBoletasCount({
+    const contarBoletas = useBoletasCountPlanta3({
         rangoFechasMateriaPrimaDto: rangoFechas,
     });
 
     /** Obtiene el resumen general de materia prima */
-    const resumenMateriaPrima = useMateriaPrimaResumen({
+    const resumenMateriaPrima = useMateriaPrimaResumenPlanta3({
         rangoFechasMateriaPrimaDto: rangoFechas,
     });
 
     /** Cantidad total de boletas */
     const totalBoletas = formatText(contarBoletas.data ?? 0);
+
+    useEffect(() => {
+      console.log(contarBoletas)
+    }, [contarBoletas.data])
+    
 
     /** Total de cajas estimadas */
     const cajasEstimadas = formatText(

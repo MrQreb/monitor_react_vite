@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ButtonCalendar } from "../components/ButtonCalendar";
 import { ViajesProgramadosV2 } from '../../../ui/components/ViajesProgramadosV2';
-import { useMateriaPrimaResumen } from "../hooks/useMateriaPrimaResumen";
+import { useMateriaPrimaResumenPlanta1 } from "../hooks/planta-1/useMateriaPrimaResumenPlanta1";
 import { ThemeButton } from "@/features/menu/components/ThemeButton";
 import {
     FileText,
@@ -17,11 +17,11 @@ import {
     Package2,
     Truck,
 } from "lucide-react";
-import { useQueryCajas } from "../hooks/useQueryCajas";
-import { useBoletasCount } from "../hooks/useBoletasCount";
+import { useQueryCajas } from "../hooks/shared/useQueryCajas";
+import { useBoletasCountPlanta1 } from "../hooks/planta-1/useBoletasCountPlanta1";
 import { GraficaCajasV2 } from "@/features/materia-prima/ui/components/GraficaCajasV2";
 import { PlantaEnum } from "../enus/plantaEnums";
-import { useQueryBoletas } from "../hooks/useQueryBoletas";
+import { useQueryBoletas } from "../hooks/shared/useQueryBoletas";
 
 export function DashboardMateriaPrimaPlanta1Page() {
 
@@ -64,12 +64,12 @@ export function DashboardMateriaPrimaPlanta1Page() {
     });
 
     /** Obtiene el total de boletas registradas */
-    const contarBoletas = useBoletasCount({
+    const contarBoletas = useBoletasCountPlanta1({
         rangoFechasMateriaPrimaDto: rangoFechas,
     });
 
     /** Obtiene el resumen general de materia prima */
-    const resumenMateriaPrima = useMateriaPrimaResumen({
+    const resumenMateriaPrima = useMateriaPrimaResumenPlanta1({
         rangoFechasMateriaPrimaDto: rangoFechas,
     });
 
