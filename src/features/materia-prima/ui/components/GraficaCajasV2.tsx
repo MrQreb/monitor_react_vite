@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/card"
 import { useTheme } from "@/app/providers/ThemeProvider"
 import { cn } from "@/lib/utils"
-import type { ComparativaCajasResponse } from "../../api/queries/responses/comparatovaCajasResponse";
+import type { ComparativaCajasResponse } from "../../api/shared/queries/responses/comparatovaCajasResponse";
 
 type Props = {
   cajas: ComparativaCajasResponse[]

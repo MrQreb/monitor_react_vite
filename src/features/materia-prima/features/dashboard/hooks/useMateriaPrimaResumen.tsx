@@ -1,4 +1,4 @@
-import { materiaPrimaPlanta1CountService } from "@/features/materia-prima/api/planta1/instances/materiaPrimaInstancesService.instance";
+import { materiaPrimaPlanta1CountService } from "@/features/materia-prima/api/planta1/instances/materiaPrimaPlanta1Count.instance";
 import type { RangoFechasMateriaPrimaDto } from "@/features/materia-prima/api/shared";
 import { useQuery } from "@tanstack/react-query";
 

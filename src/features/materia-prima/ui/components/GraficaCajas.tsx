@@ -110,7 +110,7 @@ export function GraficaCajas({ cajas }: Props) {
                 interval={0}
                 tick={{
                   fill: colores.texto,
-                  fontSize: 11,
+                  fontSize: 15,
                 }}
                 tickLine={false}
                 axisLine={{
@@ -125,7 +125,7 @@ export function GraficaCajas({ cajas }: Props) {
                 ]}
                 tick={{
                   fill: colores.texto,
-                  fontSize: 11,
+                  fontSize: 15,
                 }}
                 tickLine={false}
                 axisLine={{
@@ -175,7 +175,7 @@ export function GraficaCajas({ cajas }: Props) {
                   dataKey="estimado"
                   position="top"
                   fill={colores.etiqueta}
-                  fontSize={11}
+                  fontSize={16}
                   fontWeight={600}
                   formatter={(value) =>
                     quantityFormatter(Number(value ?? 0))

@@ -9,4 +9,5 @@ export const NAV_MATERIA_PRIMA = {
   viajesCajasPlanta3: `${PREFIX_MATERIA_PRIMA}/planta-3/viajes-cajas`,
   compativoCajas: `${PREFIX_MATERIA_PRIMA}/compartivo-cajas`,
   dashboardPlanta1: `${PREFIX_MATERIA_PRIMA}/planta-1/dashboard`,
+  dashboardPlanta3: `${PREFIX_MATERIA_PRIMA}/planta-3/dashboard`,
 };

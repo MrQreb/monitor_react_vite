@@ -1,4 +1,4 @@
-import type { QueryBoletasPlanta } from "../../shared/queries/queryBoletasPlanta.query";
+import type { QueryBoletasPlanta } from "../../dto/queryBoletasPlanta.dto";
 import type { BoletasCamionesResponse } from "../responses/boletasCamionesResponse";
 
 /** Devuelve la lista de agricultor, numero de  cajas  y producto de cada boleta. */

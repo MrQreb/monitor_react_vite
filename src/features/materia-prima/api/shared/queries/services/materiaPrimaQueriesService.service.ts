@@ -1,19 +1,20 @@
 import { baseUrlRESTMonitorASP } from "@/config/base-url-env.config";
 import { api } from "@/shared/services/api";
-import type { QueryBoletasPlanta } from "../../shared/queries/queryBoletasPlanta.query";
 import type { IGetEstatusBoletasPlanta } from "../interfaces/iGetStatusBoeltasPlanta.interface";
 import type { BoletasCamionesResponse } from "../responses/boletasCamionesResponse";
 import type { ComparativaCajasResponse } from "../responses/comparatovaCajasResponse";
-import type { QueryCajas } from "../../shared/queries/queryCajas.query";
 import type { ICompativaCajaPlanta } from '../interfaces/iCompativaCajaPlanta.interface';
+import type { QueryCajas } from "../../dto/queryCajas.dto";
+import type { QueryBoletasPlanta } from "../../dto/queryBoletasPlanta.dto";
+import { useQueryCajas } from "@/features/materia-prima/features/dashboard/hooks/useQueryCajas";
 
 /**
- * Servicio encargado de consultar el estatus de boletas.
+ * Servicio encargado de consultas que compartan las bases de datos de materia prima.
  */
-export class MateriaPrimaPlanta1QueryService implements IGetEstatusBoletasPlanta, ICompativaCajaPlanta
+export class MateriaPrimaQueriesService implements IGetEstatusBoletasPlanta, ICompativaCajaPlanta
 {
   private readonly apiUrl = `${baseUrlRESTMonitorASP}/api/v1`;
-  private readonly prefix = "materia-prima-planta-1";
+  private readonly prefix = "materia-prima-queries";
   private readonly endpoint = `${this.apiUrl}/${this.prefix}`;
 
   /** Devuelve la lista de agricultor, numero de  cajas  y producto de cada boleta.
@@ -64,7 +65,7 @@ export class MateriaPrimaPlanta1QueryService implements IGetEstatusBoletasPlanta
       if (query.fechaBusqueda?.fechaFin) {
         params.append("FechaFin", query.fechaBusqueda.fechaFin);
       }
-
+      
       return await api<ComparativaCajasResponse[]>(
         `${this.endpoint}/comparativo-de-cajas?${params.toString()}`,
         {

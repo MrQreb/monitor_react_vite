@@ -25,6 +25,7 @@ const menuItems: MenuItem[] = [
   { title: 'Materia Prima Planta 1', category: 'Planta 1', route: NAV_MATERIA_PRIMA.viajesCajasPlanta1, icon: Carrot },
   { title: 'Seguimiento Planta 1', category: 'Planta 1', route: NAV_MATERIA_PRIMA.viajesProgramadosPlanta1, icon: Factory },
   { title: 'Dashboard Planta 1', category: 'Planta 1', route: NAV_MATERIA_PRIMA.dashboardPlanta1, icon: ChartBar },
+  { title: 'Dashboard Planta 3', category: 'Planta 3', route: NAV_MATERIA_PRIMA.dashboardPlanta3, icon: ChartBar },
   { title: 'Materia Prima Planta 3', category: 'Planta 3', route: NAV_MATERIA_PRIMA.viajesCajasPlanta3, icon: Carrot },
   { title: 'Seguimiento Planta 3', category: 'Planta 3', route: NAV_MATERIA_PRIMA.viajesProgramadosPlanta3, icon: Factory },
   { title: 'Concentrado en Plantas', category: 'Ambas', route: NAV_MATERIA_PRIMA.compativoCajas, icon: ChartColumnBig },
